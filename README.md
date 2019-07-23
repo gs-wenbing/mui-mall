@@ -1,4 +1,5 @@
 ## 首先说明一下项目结构：
+![image](https://github.com/ButBueatiful/dotvim/raw/master/screenshots/vim-screenshot.jpg)
 * img目录存放静态图片
 * data目录存放模拟的数据
 * js目录存放公用的js工具
