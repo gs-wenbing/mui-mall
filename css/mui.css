@@ -1174,15 +1174,15 @@ button,
 {
     font-size: 14px;
     font-weight: 400;
-    line-height: 1.42;
-
+    /*line-height: 1.42;*/
+    line-height: 1.2;
     position: relative;
 
     display: inline-block;
 
     margin-bottom: 0;
-    padding: 6px 12px;
-
+    /*padding: 6px 12px;*/
+    padding: 8px 20px;
     cursor: pointer;
     -webkit-transition: all;
             transition: all;
@@ -5609,4 +5609,30 @@ body > .mui-progressbar
     height: 100%;
 
     border: 0;
+}
+/*重写MUI 
+ *解决沉寖式状态栏导致导航栏高度少20px的问题*/
+.mui-bar-nav {
+    height: 64px;
+    padding-top: 22px;
+}
+
+.mui-bar-nav ~ .mui-content
+{
+    padding-top: 64px;
+}
+
+.mui-bar-nav ~ .mui-content .mui-pull-top-pocket
+{
+    top: 64px;
+}
+
+.mui-bar-nav ~ .mui-content.mui-scroll-wrapper .mui-scrollbar-vertical
+{
+    top: 64px;
+}
+
+.mui-bar-nav ~ .mui-content .mui-slider.mui-fullscreen
+{
+    top: 64px;
 }

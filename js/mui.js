@@ -7364,15 +7364,15 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
 	    }, options || {});
 
 
-		if ($.os.plus && options.type !== 'div') {
-			//默认显示在底部；
-			$.plusReady(function() {
-				plus.nativeUI.toast(message, {
-					verticalAlign: 'bottom',
-					duration:options.duration
-				});
-			});
-		} else {
+// 		if ($.os.plus && options.type !== 'div') {
+// 			//默认显示在底部；
+// 			$.plusReady(function() {
+// 				plus.nativeUI.toast(message, {
+// 					verticalAlign: 'bottom',
+// 					duration:options.duration
+// 				});
+// 			});
+// 		} else {
 			if (typeof options.duration === 'number') {
 		        duration = options.duration>0 ? options.duration:durations['short'];
 		    } else {
@@ -7405,7 +7405,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
 			return {
 		        isVisible: function() {return !!toast;}
 		    }
-		}   
+		// }   
 	};
 
 })(mui, window);
@@ -8384,3 +8384,55 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
         return buttonApis.length === 1 ? buttonApis[0] : buttonApis;
     };
 })(mui, window, document);
+
+/**
+ * 适配iPhone X 系列手机的导航栏(包括状态栏)
+ */
+mui.plusReady(function(){
+    if(plus.navigator.isImmersedStatusbar() && isIPhoneX()){
+        //.mui-bar-nav
+        var nav = document.querySelector(".mui-bar-nav");
+        if(nav){
+            nav.style.cssText="height:88px; padding-top: 44px;";
+        } else {
+            return;
+        }
+        //.mui-bar-nav ~ .mui-content
+        var content = document.querySelector(".mui-content");
+        if (content) {
+            content.style.paddingTop = "88px";
+        } else {
+            return;
+        }
+        //.mui-bar-nav ~ .mui-content .mui-pull-top-pocket
+        var pullTopPocket_Arr = content.querySelectorAll(".mui-pull-top-pocket");
+        if (pullTopPocket_Arr) {
+            pullTopPocket_Arr.forEach(function(value){
+                value.style.top = "88px";
+            });
+        }
+        //.mui-bar-nav ~ .mui-content.mui-scroll-wrapper .mui-scrollbar-vertical
+        var scrollbarVertical = document.querySelector(".mui-content.mui-scroll-wrapper .mui-scrollbar-vertical");
+        if (scrollbarVertical) {
+            scrollbarVertical.style.top = "88px";
+        }
+        //.mui-bar-nav ~ .mui-content .mui-slider.mui-fullscreen
+        var slider_fullscreen_Arr = content.querySelectorAll(".mui-content .mui-slider.mui-fullscreen");
+        if (slider_fullscreen_Arr) {
+            slider_fullscreen_Arr.forEach(function(value){
+                value.style.top = "88px";
+            });
+        }
+    }
+});
+
+/**
+ * 判断是否为iPhone X 系列机型
+ */
+function isIPhoneX(){
+    if(plus.device.model.indexOf('iPhone') > -1 && screen.height >= 812){
+        return true;
+    }else{
+        return false;
+    }
+}

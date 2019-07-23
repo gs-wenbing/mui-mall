@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>品牌联盟</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link href="../../css/style.css" rel="stylesheet" />
+
+	</head>
+	<style>
+		.header-bar {
+			background-color: rgba(230, 0, 18, 0);
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
+	<body class="bg-gray" style="margin: 0;max-width: 100%;">
+		<header id="header" class="mui-bar mui-bar-transparent header-bar">
+			<div class="topbar" >
+				<div class="logo-index">
+					<img src="../../img/logo.jpg">
+				</div>
+				<div class="header-search">
+					<input id="search-input" type="search" @tap="onInput" placeholder="点击搜索名称,产品型号" style="border: 2px solid #f14646;height: 32px !important;">
+					<button @tap="gotoGoodsClass('','','')" class="btn-search" type="button" style="top: 10px;">
+						<!-- <span class="iconfont icon-m-q1"></span> -->
+						<img src="../../img/search.png" style="height: 17px;"/>
+					</button>
+				</div>
+				<div id="saoma" class="saoma" @tap="scanCode()" style="text-align:center;border-radius: 50%;height: 26px;width: 26px;background:rgba(137,15,21,0.8);">
+					<img src="../../img/saoma.png" style="height: 18px;width: 18px;vertical-align: middle;margin-top: 3px;"/>
+				</div>
+			</div>
+			<!-- 不加这行时，快速滑动标题栏变黑 header-bar-->
+			<div style="width: 100%;height: 10%;" class="header-bar topbar">
+
+			</div>
+		</header>
+
+		<div class="mui-content" style="padding-bottom: 0px;">
+			<div class="banner">
+				<div id="slider" class="mui-slider mgauto" >
+					<div class="mui-slider-group mui-slider-loop">
+						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<!-- margin-top: 24px; -->
+							<a href="#">
+								<img style="width: 100%;" src="../../img/banner3.png">
+							</a>
+						</div>
+						<!-- 第一张 -->
+						<div class="mui-slider-item">
+							<a href="#">
+								<img style="width: 100%;" src="../../img/banner1.png">
+							</a>
+						</div>
+						<!-- 第二张 -->
+						<div class="mui-slider-item">
+							<a href="#">
+								<img style="width: 100%;" src="../../img/banner2.png">
+							</a>
+						</div>
+						<!-- 第三张 -->
+						<div class="mui-slider-item">
+							<a @tap="toRewardInfo()">
+								<img style="width: 100%;" src="../../img/banner3.png">
+							</a>
+						</div>
+						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#">
+								<img style="width: 100%;" src="../../img/banner1.png">
+							</a>
+						</div>
+					</div>
+					<div class="mui-slider-indicator">
+						<div class="mui-indicator mui-active"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+					</div>
+				</div>
+				<div class="banner-bg"></div>
+			</div>
+			<div class="notice-wrapper">
+				<div class="notice flexbox">
+					<span class="icon-notice"></span>
+					<marquee class="notice-text">
+						<template v-if="NoticeList && NoticeList.length>0" v-for="Notice in NoticeList">
+							<span style="color: #e60012">【{{Notice.LogoContent}}】</span>
+							<span>{{Notice.NoticeContent}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						</template>
+						<span v-if="!NoticeList || NoticeList.length==0"><span style="color: #e60012">【恭喜】</span>金万年文具品牌联盟已上线，正式走上文具联盟时代，让商家直接与厂家交易，减少中间商环节。</span>
+					</marquee>
+				</div>
+			</div>
+			<div class="shortcut bg-white mgt-015">
+				<a class="shortcut-item" @tap="gotoGoodsClass('','','In')">
+					<img class="shortcut-icon" src="../../img/shortcut-new.png">
+					<div class="shortcut-text">
+						新品推荐
+					</div>
+				</a>
+				<a class="shortcut-item" @tap="gotoGoodsClass('','','Ih')">
+					<img class="shortcut-icon" src="../../img/shortcut-hot.png">
+					<div class="shortcut-text">
+						热销市场
+					</div>
+				</a>
+				<a class="shortcut-item" @tap="gotoGoodsClass('','','Ip')">
+					<img class="shortcut-icon" src="../../img/shortcut-discount.png">
+					<div class="shortcut-text">
+						促销折扣
+					</div>
+				</a>
+				<a class="shortcut-item" @tap="gotoBrandList()">
+					<img class="shortcut-icon" src="../../img/shortcut-brand.png">
+					<div class="shortcut-text">
+						品牌街
+					</div>
+				</a>
+				<a class="shortcut-item" @tap="gotoSuggest()">
+					<img class="shortcut-icon" src="../../img/shortcut-suggest.png">
+					<div class="shortcut-text">
+						建议订单
+					</div>
+				</a>
+			</div>
+
+			<div class="cart-product" v-for="(index,item) in items">
+				<a @tap="gotoGoodsClass(item.GoodsClassID,'','')" class="cart-product__header">
+					<!-- BarBackground(index) -->
+					<span class="bar bar-red" :style="BarBackground(index)"></span>
+					<span class="text" style="padding-top: 2px;">{{item.GoodsClassName}}</span>
+					<span class="mui-icon mui-icon-arrowright"></span>
+				</a>
+				<div class="cart-product__body">
+					<div class="goods-row col-2">
+						<a @tap="gotoGoodsDetail(MallGood.GoodsID)" class="goods-item__link" v-for="MallGood in item.MallGoodsList1">
+							<div class="goods-item__img" style="background-color: #FFFFFF;">
+								<img style="height: 100%;" :src="MallGood.DefaultPicURL">
+							</div>
+							<div class="goods-item__descr">
+								{{MallGood.GoodsName}}
+							</div>
+							<div class="goods-item__attr">
+								<span class="model">型号：{{MallGood.GoodsModel}}</span>
+							</div>
+							<div class="goods-item__price">
+								<template v-if="!user">
+									<span class="price-now">￥{{MallGood.InvoicePrice}}</span>
+									<s class="price-origin" v-if="MallGood.InvoicePrice*1<MallGood.OldInvoicePrice*1">￥{{MallGood.OldInvoicePrice}}</s>
+								</template>
+								<!-- 0不含税 1含税 -->
+								<template v-if="user.IsTax==0">
+									<span class="price-now">￥{{MallGood.NoInvoicePrice}}</span>
+									<s class="price-origin" v-if="MallGood.NoInvoicePrice*1<MallGood.OldNoInvoicePrice*1">￥{{MallGood.OldNoInvoicePrice}}</s>
+								</template>
+								<!-- 1含税 -->
+								<template v-if="user.IsTax==1">
+									<span class="price-now">￥{{MallGood.InvoicePrice}}</span>
+									<s class="price-origin" v-if="MallGood.InvoicePrice*1<MallGood.OldInvoicePrice*1">￥{{MallGood.OldInvoicePrice}}</s>
+								</template>
+
+							</div>
+						</a>
+					</div>
+					<div class="goods-row col-3">
+						<a @tap="gotoGoodsDetail(MallGood.GoodsID)" class="goods-item__link" v-for="MallGood in item.MallGoodsList2">
+							<div class="goods-item__img" style="background-color: #FFFFFF;">
+								<img style="height: 100%;" :src="MallGood.DefaultPicURL">
+							</div>
+							<div class="goods-item__descr">
+								{{MallGood.GoodsName}}
+							</div>
+							<div class="goods-item__attr">
+								<span class="model">型号：{{MallGood.GoodsModel}}</span>
+							</div>
+							<div class="goods-item__price">
+								<template v-if="!user">
+									<span class="price-now">￥{{MallGood.InvoicePrice}}</span>
+									<s class="price-origin" v-if="MallGood.InvoicePrice*1<MallGood.OldInvoicePrice*1">￥{{MallGood.OldInvoicePrice}}</s>
+								</template>
+								<!-- 0不含税 1含税 -->
+								<template v-if="user.IsTax==0">
+									<span class="price-now">￥{{MallGood.NoInvoicePrice}}</span>
+									<s class="price-origin" v-if="MallGood.NoInvoicePrice*1<MallGood.OldNoInvoicePrice*1">￥{{MallGood.OldNoInvoicePrice}}</s>
+								</template>
+								<!-- 1含税 -->
+								<template v-if="user.IsTax==1">
+									<span class="price-now">￥{{MallGood.InvoicePrice}}</span>
+									<s class="price-origin" v-if="MallGood.InvoicePrice*1<MallGood.OldInvoicePrice*1">￥{{MallGood.OldInvoicePrice}}</s>
+								</template>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/vue.js"></script>
+		<script src="../../js/zepto.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="../../js/api.js"></script>
+		<script src="../../data/home.js"></script>
+		<script src="../../data/classy.js"></script>
+		<script src="home.js"></script>
+	</body>
+</html>

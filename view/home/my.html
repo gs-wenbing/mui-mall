@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>品牌联盟</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link href="../../css/style.css" rel="stylesheet" />
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+
+	<body id="app" style="margin: 0;max-width: 100%;">
+		<header class="mui-bar mui-bar-nav noShadow personalCenter-header">
+			<h1 class="mui-title text-white">我的</h1>
+			<span class="mui-icon iconfont icon-m-ag mui-pull-right text-white btn-set"></span>
+		</header>
+
+		<div id="mui-content" class="mui-content personalCenter" style="padding-bottom: 0px;">
+			<div class="personalCenter-header-bg"></div>
+			<div class="header-panel" style="min-height: 125px;">
+				<div class="header-panel__head">
+					<img style="background-color: white;" v-else src="../../img/user-img.png">
+
+					<div class="mui-pull-left  mg-t-5" v-if="isLogin==true">
+						<h3 class="title">{{user.UserNo}} </h3>
+						<h4 v-if="user.DepartmentName && user.CustomerType!=6" class="subtitle" @tap="dial(user.PlantLandlineNumber)">
+							<label>配送方：</label>{{user.DepartmentName}}
+							&nbsp;&nbsp;<i class="iconfont icon-m-n" v-if="user.PlantLandlineNumber" style="font-size:11px;color: #5b8dff;"></i>
+						</h4>
+					</div>
+					<div class="mui-pull-left" style="margin-top: 8px;" v-if="isLogin==false" @tap="login">
+						<h3 class="title">登录/注册</h3>
+					</div>
+					<a @tap="applyAgent" v-if="user.CustomerType==4||user.CustomerType==5" class="head-link">申请代理</a>
+				</div>
+				<div class="tag-phone tag-phone-new" v-if="isLogin==true">
+					<a v-if="user.Salesman && user.CustomerType!=6" @tap="dial(user.SalesmanTEL)" class="tag-phone-item">
+						销售经理：{{user.Salesman}}
+						<i class="iconfont icon-m-n"></i>
+					</a>
+					<a v-if="user.Salessuper && user.CustomerType!=6 && user.Salessuper!=user.Salesman" @tap="dial(user.SalessuperTEL)"
+					 class="tag-phone-item">
+						上级领导：{{user.Salessuper}}
+						<i class="iconfont icon-m-n"></i>
+					</a>
+				</div>
+
+				<div class="header-panel__body flexbox" v-if="isLogin && user.CustomerType!=6">
+					<div class="flexbox-item">
+						<p class="mgb-0 text-red text-bold">￥ 1487.92</p>
+						<p>余额</p>
+					</div>
+					<div class="flexbox-item">
+						<p class="mgb-0 text-red text-bold">￥ 14.92</p>
+						<p>欠款</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel my-order">
+				<div class="panel__title flexbox beforeline">
+					<div class="panel-title__text">我的订单</div>
+					<a class="link-more" href="javascript:;">
+						全部订单
+						<span class="mui-icon mui-icon-arrowright"></span>
+					</a>
+				</div>
+				<div class="panel__body flexbox">
+					<div class="link-item" data-status="0">
+						<span class="mui-icon iconfont icon-m-o1 block"></span>
+						未付款
+					</div>
+					<div class="link-item" data-status="10">
+						<span class="mui-icon iconfont icon-m-z1 block"></span>
+						已受理
+					</div>
+					<div class="link-item" data-status="30">
+						<span class="mui-icon iconfont icon-m-p1 block"></span>
+						已发货
+					</div>
+					<div class="link-item" data-status="100">
+						<span class="mui-icon iconfont icon-m-n1 block"></span>
+						退货/退款
+					</div>
+				</div>
+			</div>
+			<!-- 我的工具 -->
+			<div class="panel my-tools" v-if="isLogin">
+				<div class="panel__title flexbox beforeline">
+					<div class="panel-title__text">我的工具</div>
+				</div>
+				<div class="panel__body flexbox">
+					<div class="link-item" @tap="goFunction('suggest/suggest.order.html')">
+						<div class="link-item-bgblock bgblock-1"></div>
+						建议订单
+					</div>
+					<div class="link-item" @tap="goFunction('saleorder/saleorder.list.html')">
+						<div class="link-item-bgblock bgblock-2"></div>
+						销售管理
+					</div>
+					<div class="link-item" @tap="goFunction('refundbill/custom.refundbill.html')">
+						<div class="link-item-bgblock bgblock-3"></div>
+						客户退单
+					</div>
+					<div class="link-item" @tap="goFunction('stock/stock.manage.html')">
+						<div class="link-item-bgblock bgblock-4"></div>
+						库存管理
+					</div>
+					<!-- CustomerType:4一般客户 -->
+					<div class="link-item" @tap="goFunction('reward/reward.index.html')">
+						<div class="link-item-bgblock bgblock-5"></div>
+						我的奖励
+					</div>
+					<div class="link-item" @tap="goFunction('bankaccount/bankaccount.index.html')">
+						<div class="link-item-bgblock bgblock-6"></div>
+						我的账单
+					</div>
+					<div class="link-item" @tap="goFunction('visited/visited.index.html')">
+						<div class="link-item-bgblock bgblock-7"></div>
+						被拜访记录
+					</div>
+					<div class="link-item" @tap="goFunction('brand/brand.figure.html')">
+						<div class="link-item-bgblock bgblock-8"></div>
+						广告形象
+					</div>
+					<div class="link-item" @tap="goFunction('contract/contract.manage.html')">
+						<div class="link-item-bgblock bgblock-9"></div>
+						合同管理
+					</div>
+					<div class="link-item" @tap="goFunction('invoice/invoice.index.html')">
+						<div class="link-item-bgblock bgblock-10"></div>
+						发票管理
+					</div>
+					<div class="link-item" @tap="goFunction('goodsprice/goodsprice.index.html')">
+						<div class="link-item-bgblock bgblock-11"></div>
+						客户商品价格管理
+					</div>
+					<div class="link-item" @tap="goFunction('cardvoucher/cardvoucher.index.html')">
+						<div class="link-item-bgblock bgblock-12"></div>
+						我的卡券
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/vue.js"></script>
+		<script src="../../js/zepto.min.js"></script>
+		<script src="../../js/api.js"></script>
+		<script src="my.js"></script>
+	</body>
+
+</html>

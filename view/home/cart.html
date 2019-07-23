@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>品牌联盟</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link href="../../css/style.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
+	</head>
+	<style type="text/css">
+		.classfy-item__body{
+			min-height: 100px;height:auto;
+		}
+		.mui-media-title{
+			font-size: 14px;line-height:20px;padding-right: 0px;word-break:normal; width:auto; display:block; white-space:pre-wrap;word-wrap : break-word ;overflow: hidden ;
+		}
+		.mui-media-decr{
+			font-size: 13px;
+		}
+		.price-origin{
+			color: #757575;font-size: 12px;margin-right: 10px;
+		}
+		.pcs-num{
+			color: #757575;font-size: 13px;
+		}
+		.mui-numbox{
+			width: 100px;height: 26px !important;border: solid 1px #E4E4E4 !important;padding:0px !important;margin-left:0px;
+			}
+		.mui-btn-numbox-minus{
+			width: 32% !important;
+		}
+		.mui-btn-numbox-plus{
+			width: 32% !important;
+		}
+		.mui-popup-button {  
+			font-size: 13px;  
+			line-height: 36px;  
+			height: 36px;  
+		} 
+		.mui-popup {
+			margin: 10px;
+			top: 45%;  
+			left: 50%;  
+			width: 250px;  
+		} 
+		.mui-popup-inner {  
+			position: relative;  
+			padding: 10px;  
+			border-radius: 13px 13px 0 0;  
+			background: rgba(255,255,255,.95)  
+		}  
+		.mui-popup-title {  
+			font-size: 14px;  
+		}  
+		.mui-bar-cartsum .mui-btn-danger {
+            padding: 6px 12px !important;
+		}
+	</style>
+
+	<body id="app" style="margin: 0;">
+		<header class="mui-bar mui-bar-nav bg-red noShadow" style="padding-right: 0px;position: fixed;">
+			<a class="mui-pull-left text-white"></a>
+			<h1 class="mui-title text-white">购物车</h1>
+			<span class="mui-pull-right btn-option btn-edit" style="font-size: 15px;height: 100%;padding: 13px;">编辑</span>
+		</header>
+		<div class="notice-wrapper" v-if="isLogin==true && user.CustomerType!=6" style="position: fixed;margin-top: 34px;z-index: 100;width: 100%;">
+			<div class="notice flexbox">
+				<span class="icon-notice"></span>
+				<marquee class="notice-text">
+					<span>好消息！下订单只要使用微信和支付宝支付货款，订单经确认并全部发货后，可获得金额计奖励金{{user.RewardAmountRate*100}}%。</span>
+				</marquee>
+			</div>
+		</div>
+		<div class="mui-content" style="margin-top: 30px;">
+			
+			<div class="state-container" v-if="isCartEmpty">
+				<div class="state-icon state-cartempty"></div>
+				<div class="state-title">
+					购物车空空如也~
+				</div>
+				<div class="state-btns">
+					<a @tap="toShopping" v-if="isLogin==true" type="button" class="mui-btn mui-btn-danger">去 逛 逛</a>
+					<a @tap="toShopping" v-else type="button" class="mui-btn mui-btn-danger">去 登 录</a>
+				</div>
+			</div>
+			<div class="goods" v-if="isCartEmpty==false">
+				<!-- 普通商品 -->
+				<div class="block-group">
+					<ul class="mui-table-view">
+						<li class="li_normal mui-table-view-cell mui-media" v-for="(index,Goods) in GoodsList">
+							<div class="mui-checkbox mui-pull-left">
+								<input class="checkbox" name="checkbox" type="checkbox" :checked="Goods.Checked == 1" v-on:change="onCheckbox()"
+								 :value="Goods" v-model="check_goods">
+							</div>
+							<div class="classfy-item__img flexbox">
+								<img class="mui-media-object mui-pull-left" :src="URL_PIC+Goods.DefaultPicURL">
+							</div>
+							<div class="mui-media-body classfy-item__body">
+								<h2 class="mui-media-title">{{Goods.GoodsName}}</h2>
+								<p class="mui-media-decr">
+									型号: {{Goods.GoodsModel}} 
+									<span class="mui-pull-right">{{Goods.GoodsAttributesName}}: {{Goods.GoodsAttributesValueName}}</span>
+								</p>
+								<div style="margin-top: 4px;">
+									<!-- 0不含税 1含税 -->
+									<template v-if="user.IsTax==0">
+										<span class="price-now">￥{{Goods.NoInvoicePrice}} </span>
+										<s class="price-origin" v-if="Goods.NoInvoicePrice*1<Goods.OldNoInvoicePrice*1">￥{{Goods.OldNoInvoicePrice}}</s>
+									</template>
+									<!-- 1含税 -->
+									<template v-if="user.IsTax==1">
+										<span class="price-now">￥{{Goods.InvoicePrice}}</span>
+										<s class="price-origin" v-if="Goods.InvoicePrice*1 < Goods.OldInvoicePrice*1">￥{{Goods.OldInvoicePrice}}</s>
+									</template>
+									<span class="price-origin"  v-if="Goods.SaleDiscount>0">{{(Goods.SaleDiscountStr)}}折</span>
+								</div>
+								<div style="margin-top: 10px;">
+									<!-- <span class="pcs-num" >{{Goods.Amount}} PCS</span> -->
+									<div >
+										<div class="mui-numbox" data-numbox-min='1'>
+											<button class="mui-btn mui-btn-numbox-minus" type="button" @tap="minusNum(Goods)">-</button>
+											<input class="mui-input-numbox" type="number" @tap="tapNum(Goods)" readonly="readonly" v-on:input="watchNum(Goods)" v-model="Goods.MinPCSAmount"/> 
+											<button class="mui-btn mui-btn-numbox-plus"  type="button" @tap="plusNum(Goods)">+</button>
+										</div>
+										PCS
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				
+				<!-- 满额商品（礼品）  多个商品送单个礼品 -->
+				<template v-if="FullAmountGoodsList != null && FullAmountGoodsList.length > 0" v-for="(index,FullAmount) in FullAmountGoodsList">
+					<div class="block-group" :data-index="index">
+						<div class="block-row block-mane beforeline">
+							<span class="tag">满额</span>
+							<span class="confirmOrder-reduction">
+								{{FullAmount.GoodsList[0].PreferentialAmountStr}}
+							</span>
+							<a @tap="toFullSales(FullAmount.GoodsList[0].PromotionID)" class="link mui-pull-right text-red confirmOrder-link">去凑单&gt;</a>
+						</div>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell mui-media" v-for="(r,Goods) in FullAmount.GoodsList">
+				
+								<div class="mui-checkbox mui-pull-left">
+									<input class="checkbox" name="checkbox" type="checkbox"  :checked="Goods.Checked == 1" v-on:change="onCheckbox()"
+									 :value="Goods" v-model="check_FullAmountGoods">
+								</div>
+								<div class="classfy-item__img flexbox">
+									<img class="mui-media-object mui-pull-left" :src="URL_PIC+Goods.DefaultPicURL">
+								</div>
+								<div class="mui-media-body classfy-item__body">
+									<h2 class="mui-media-title">{{Goods.GoodsName}}</h2>
+									<p class="mui-media-decr">
+										型号: {{Goods.GoodsModel}} 
+										<span class="mui-pull-right">{{Goods.GoodsAttributesName}}: {{Goods.GoodsAttributesValueName}}</span>
+									</p>
+									<div style="margin-top: 4px;">
+										<!-- 0不含税 1含税 -->
+										<template v-if="user.IsTax==0">
+											<span class="price-now">￥{{Goods.NoInvoicePrice}} </span>
+											<s class="price-origin" v-if="Goods.NoInvoicePrice*1<Goods.OldNoInvoicePrice*1">￥{{Goods.OldNoInvoicePrice}}</s>
+										</template>
+										<!-- 1含税 -->
+										<template v-if="user.IsTax==1">
+											<span class="price-now">￥{{Goods.InvoicePrice}}</span>
+											<s class="price-origin" v-if="Goods.InvoicePrice*1 < Goods.OldInvoicePrice*1">￥{{Goods.OldInvoicePrice}}</s>
+										</template>
+										<span class="price-origin"  v-if="Goods.SaleDiscount>0">{{(Goods.SaleDiscountStr)}}折</span>
+									</div>
+									<div style="margin-top: 10px;">
+										<!-- <span class="pcs-num" >{{Goods.Amount}} PCS</span> -->
+										<div>
+											<div class="mui-numbox" data-numbox-min='1'>
+												<button class="mui-btn mui-btn-numbox-minus" type="button" @tap="minusNum(Goods)">-</button>
+												<input class="mui-input-numbox" type="number" readonly="readonly" v-on:input="watchNum(Goods)" v-model="Goods.MinPCSAmount"/> 
+												<button class="mui-btn mui-btn-numbox-plus"  type="button" @tap="plusNum(Goods)">+</button>
+											</div>
+											PCS
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<div v-if="FullAmount.GiftList && FullAmount.GiftList.length>0" v-for="(x,Gift) in FullAmount.GiftList" class="block-row tr_gift" style="color:#909293;">
+							<template v-if="user.IsTax==1 && Gift.IsInvoice==1 && Gift.ActualGoodsNum>0">
+								【赠品】{{Gift.GoodsGiftName}}<em> x {{Gift.ActualGoodsNum}}</em>
+							</template>
+							<template v-if="user.IsTax==0 && Gift.IsInvoice==0 && Gift.ActualGoodsNum>0">
+								【赠品】{{Gift.GoodsGiftName}}<em> x {{Gift.ActualGoodsNum}}</em>
+							</template>
+						</div>
+					</div>
+				</template>
+				
+				<!-- 满量商品（礼品） 单个商品送单个礼品 -->
+				<template v-if="FullNumGoodsList  != null && FullNumGoodsList .length > 0" v-for="(index,FullNum) in FullNumGoodsList ">
+					<div class="block-group" :data-index="index">
+						<div class="block-row block-mane beforeline">
+							<span class="tag">满量</span>
+							<span class="confirmOrder-reduction">
+								{{FullNum.Goods.PreferentialAmountStr}}
+							</span>
+							<a @tap="toFullSales(FullNum.Goods.PromotionID)" class="link mui-pull-right text-red confirmOrder-link">去凑单&gt;</a>
+						</div>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell mui-media">
+								<div class="mui-checkbox mui-pull-left">
+									<input class="checkbox" name="checkbox" type="checkbox" :checked="FullNum.Goods.Checked == 1" v-on:change="onCheckbox()"
+									 :value="FullNum.Goods" v-model="check_FullNumGoods">
+								</div>
+								<div class="classfy-item__img flexbox">
+									<img class="mui-media-object mui-pull-left" :src="URL_PIC+FullNum.Goods.DefaultPicURL">
+								</div>
+								<div class="mui-media-body classfy-item__body">
+									<h2 class="mui-media-title">{{FullNum.Goods.GoodsName}}</h2>
+									<p class="mui-media-decr">
+										型号: {{FullNum.Goods.GoodsModel}} 
+										<span class="mui-pull-right">{{FullNum.Goods.GoodsAttributesName}}: {{FullNum.Goods.GoodsAttributesValueName}}</span>
+									</p>
+									<div style="margin-top: 4px;">
+										<!-- 0不含税 1含税 -->
+										<template v-if="user.IsTax==0">
+											<span class="price-now">￥{{FullNum.Goods.NoInvoicePrice}} </span>
+											<s class="price-origin" v-if="FullNum.Goods.NoInvoicePrice*1<FullNum.Goods.OldNoInvoicePrice*1">￥{{FullNum.Goods.OldNoInvoicePrice}}</s>
+										</template>
+										<!-- 1含税 -->
+										<template v-if="user.IsTax==1">
+											<span class="price-now">￥{{FullNum.Goods.InvoicePrice}}</span>
+											<s class="price-origin" v-if="FullNum.Goods.InvoicePrice*1 < FullNum.Goods.OldInvoicePrice*1">￥{{FullNum.Goods.OldInvoicePrice}}</s>
+										</template>
+										<span class="price-origin"  v-if="FullNum.Goods.SaleDiscount>0">{{(FullNum.Goods.SaleDiscountStr)}}折</span>
+									</div>
+									<div style="margin-top: 10px;">
+										<!-- <span class="pcs-num" >{{FullNum.Goods.Amount}} PCS</span> -->
+										<div >
+											<div class="mui-numbox" data-numbox-min='1'>
+												<button class="mui-btn mui-btn-numbox-minus" type="button" @tap="minusNum(FullNum.Goods)">-</button>
+												<input class="mui-input-numbox" type="number" readonly="readonly" v-on:input="watchNum(FullNum.Goods)" v-model="FullNum.Goods.MinPCSAmount"/> 
+												<button class="mui-btn mui-btn-numbox-plus"  type="button" @tap="plusNum(FullNum.Goods)">+</button>
+											</div>
+											PCS
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<div v-if="FullNum.GiftList && FullNum.GiftList.length>0" v-for="(x,Gift) in FullNum.GiftList" class="block-row tr_gift" style="color:#909293;">
+							<template v-if="user.IsTax==1 && Gift.IsInvoice==1 && Gift.ActualGoodsNum>0">
+								【赠品】{{Gift.GoodsGiftName}}<em> x {{Gift.ActualGoodsNum}}</em>
+							</template>
+							<template v-if="user.IsTax==0 && Gift.IsInvoice==0 && Gift.ActualGoodsNum>0">
+								【赠品】{{Gift.GoodsGiftName}}<em> x {{Gift.ActualGoodsNum}}</em>
+							</template>
+						</div>
+					</div>
+				</template>
+				
+
+				<!-- 坎级商品（礼品/打折）  多个商品送多个礼品 -->
+				<template v-if="LadderGoodsList != null && LadderGoodsList.length > 0" v-for="(index,LadderGoods) in LadderGoodsList">
+					<div class="block-group" :data-index="index">
+						<div class="block-row block-mane beforeline">
+							<span class="tag">坎级</span>
+							<span class="confirmOrder-reduction">
+								{{LadderGoods.GoodsList[0].PreferentialAmountStr}}
+							</span>
+							<a @tap="toFullSales(LadderGoods.GoodsList[0].PromotionID)" class="link mui-pull-right text-red confirmOrder-link">去凑单&gt;</a>
+						</div>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell mui-media" v-for="(r,Goods) in LadderGoods.GoodsList">
+				
+								<div class="mui-checkbox mui-pull-left">
+									<input class="checkbox" name="checkbox" type="checkbox" v-on:change="onCheckbox()"
+									 :checked="Goods.Checked == 1" :value="Goods" v-model="check_LadderGoods">
+								</div>
+								<div class="classfy-item__img flexbox">
+									<img class="mui-media-object mui-pull-left" :src="URL_PIC+Goods.DefaultPicURL">
+								</div>
+								<div class="mui-media-body classfy-item__body">
+									<h2 class="mui-media-title">{{Goods.GoodsName}}</h2>
+									<p class="mui-media-decr">
+										型号: {{Goods.GoodsModel}} 
+										<span class="mui-pull-right">{{Goods.GoodsAttributesName}}: {{Goods.GoodsAttributesValueName}}</span>
+									</p>
+									<div style="margin-top: 4px;">
+										<!-- 0不含税 1含税 -->
+										<template v-if="user.IsTax==0">
+											<span class="price-now">￥{{Goods.NoInvoicePrice}} </span>
+											<s class="price-origin" v-if="Goods.NoInvoicePrice*1<Goods.OldNoInvoicePrice*1">￥{{Goods.OldNoInvoicePrice}}</s>
+										</template>
+										<!-- 1含税 -->
+										<template v-if="user.IsTax==1">
+											<span class="price-now">￥{{Goods.InvoicePrice}}</span>
+											<s class="price-origin" v-if="Goods.InvoicePrice*1 < Goods.OldInvoicePrice*1">￥{{Goods.OldInvoicePrice}}</s>
+										</template>
+										<span class="price-origin"  v-if="Goods.SaleDiscount>0">{{(Goods.SaleDiscountStr)}}折</span>
+									</div>
+									<div style="margin-top: 10px;">
+										<!-- <span class="pcs-num" >{{Goods.Amount}} PCS</span> -->
+										<div>
+											<div class="mui-numbox" data-numbox-min='1'>
+												<button class="mui-btn mui-btn-numbox-minus" type="button" @tap="minusNum(Goods)">-</button>
+												<input class="mui-input-numbox" type="number"  readonly="readonly" v-on:input="watchNum(Goods)" v-model="Goods.MinPCSAmount"/> 
+												<button class="mui-btn mui-btn-numbox-plus"  type="button" @tap="plusNum(Goods)">+</button>
+											</div>
+											PCS
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<div v-if="LadderGoods.GiftList && LadderGoods.GiftList.length>0" v-for="(x,Gift) in LadderGoods.GiftList" class="block-row tr_gift" style="color:#909293;">
+							<template v-if="user.IsTax==1 && Gift.IsInvoice==1 && Gift.ActualGoodsNum>0">
+								【赠品】{{Gift.GoodsGiftName}}<em> x {{Gift.ActualGoodsNum}}</em>
+							</template>
+							<template v-if="user.IsTax==0 && Gift.IsInvoice==0 && Gift.ActualGoodsNum>0">
+								【赠品】{{Gift.GoodsGiftName}}<em> x {{Gift.ActualGoodsNum}}</em>
+							</template>
+						</div>
+					</div>
+				</template>
+				
+				<!-- 下架的商品 -->
+				<div class="block-group disabled">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell mui-media" v-for="(index,goods) in InValidList">
+							<div class="mui-checkbox mui-pull-left">
+								<input name="checkboxDisabled" type="checkbox" :disabled="isDelete==false" :value="goods" v-model="check_InValidList">
+							</div>
+							<div class="classfy-item__img flexbox">
+								<img class="mui-media-object mui-pull-left" :src="URL_PIC+goods.DefaultPicURL">
+							</div>
+							<div class="mui-media-body classfy-item__body">
+								<h2 class="mui-media-title">{{goods.GoodsName}}</h2>
+								<p class="mui-media-decr">{{goods.GoodsModel}}</p>
+								<p class="mui-media-decr">{{goods.GoodsAttributesName}}:{{goods.GoodsAttributesValueName}}</p>
+								<div class="mui-media-price">
+									<!-- 0不含税 1含税 -->
+									<template v-if="user.IsTax==0">
+										<span class="price-now"><span style="font-size: 14px;">￥</span>{{goods.NoInvoicePrice}}</span>
+										<s class="price-origin" v-if="goods.NoInvoicePrice*1<goods.OldNoInvoicePrice*1">￥{{goods.OldNoInvoicePrice}}</s>
+									</template>
+									<!-- 1含税 -->
+									<template v-if="user.IsTax==1">
+										<span class="price-now"><span style="font-size: 14px;">￥</span>{{goods.InvoicePrice}}</span>
+										<s class="price-origin" v-if="goods.InvoicePrice*1<goods.OldInvoicePrice*1">￥{{goods.OldInvoicePrice}}</s>
+									</template>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		</div>
+
+		<div v-if="isCartEmpty==false" class="mui-bar mui-bar-tab noShadow mui-bar-cartsum" style="bottom: 0;">
+			<div class="bar-tab-sum" style="background-color: #FAFAFA;">
+				<div class="mui-checkbox mui-pull-left">
+					<label>
+						<input class="checkAll" name="checkAll" type="checkbox" @click="check_all" :disabled="allCount <= 0" :checked="total_num == allCount && allCount!=0">
+						全选
+					</label>
+				</div>
+				<div class="cartsum__body">
+					合计：<strong class="text-red"><span style="font-size: 14px;">￥</span>
+					<template v-if="user.IsTax==1">
+						{{AmountInfo.GoodsInvoiceTotal}}
+					</template>
+					<template v-if="user.IsTax==0">
+						{{AmountInfo.GoodsNoInvoiceTotal}}
+					</template>
+					</strong>
+					<button @tap="submit" class="mui-btn-danger mui-pull-right" style="padding-top: 8px;" opacity: 0.8; :disabled="total_num <= 0">去结算 ({{total_num}}) </button>
+				</div>
+				<button @tap="deleteCart" class="mui-btn-danger mui-btn-outlined mui-pull-right btn-remove mui-hidden" style="font-size: 12px;margin-top: 10px;height: 30px;width: 70px;">删除</button>
+			</div>
+		</div>
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/vue.js"></script>
+		<script src="../../js/zepto.min.js"></script>
+		<script src="../../js/api.js"></script>
+		<script src="../../data/cart.js"></script>
+		<script src="cart.js"></script>
+	</body>
+
+</html>

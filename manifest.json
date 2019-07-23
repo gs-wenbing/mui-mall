@@ -44,6 +44,9 @@
 			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
 			"waiting": true
 		},
+		"statusbar" : {
+		    "immersed" : true
+		},
 		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
 		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
 		"distribute": {
@@ -53,7 +56,18 @@
 				"password": "",/*iOS应用打包个人证书导入密码*/
 				"p12": "",/*iOS应用打包个人证书，打包配置文件关联的个人证书*/
 				"devices": "universal",/*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
-				"frameworks": []
+				"frameworks": [],
+				"plistcmds" : [
+				    "Set :NSCameraUsageDescription 调取您的相机摄像头，您可以拍照来更换您的头像",
+				    "Set :NSPhotoLibraryUsageDescription 根据您的相册图片，您可以选择相片来更换您的头像",
+				    "Set :NSLocationWhenInUseUsageDescription 地图定位用于获取门店地址所在的位置信息"
+				],
+				"privacyDescription" : {
+				    "NSCameraUsageDescription" : "调取您的相机摄像头，您可以拍照来更换您的头像",
+				    "NSPhotoLibraryUsageDescription" : "根据您的相册图片，您可以选择相片来更换您的头像",
+				    "NSLocationWhenInUseUsageDescription" : "地图定位用于获取门店地址所在的位置信息"
+				},
+				"UIReserveStatusbarOffset" : false
 			},
 			"google": {
 				"packagename": "",/*Android应用包名，如io.dcloud.HelloH5*/
