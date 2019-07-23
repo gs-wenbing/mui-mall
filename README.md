@@ -98,6 +98,5 @@ js代码
 
 ```
 注意iphoneX中出现遮挡底部tab现象,采用js判断屏幕大小方式改变bottom值，isIPhoneX()，isIPhoneX() 要在plusReady后调用。
-其他的没什么难点
 
 
