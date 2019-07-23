@@ -1,11 +1,11 @@
 ## 首先说明一下项目结构：
-![image](https://github.com/ButBueatiful/dotvim/raw/master/screenshots/vim-screenshot.jpg)
 * img目录存放静态图片
 * data目录存放模拟的数据
 * js目录存放公用的js工具
 * view目录存放html页面
 * index.html 首页，也是启动页面，启动页可以在manifest.json中配置
 * manifest.json APP的配置信息，具体怎么配置的参照http://ask.dcloud.net.cn/article/94
+![image](https://github.com/gs-wenbing/mui-mall/blob/master/img/show/structure.png)
 
 ## 首页底部的Tab
 html页面<br>
