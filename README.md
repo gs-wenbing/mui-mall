@@ -108,9 +108,94 @@ js代码
 },
 ```
 
-设置了沉浸式状态栏后，状态栏的高度变为0，如图所示
+2.__设置了沉浸式状态栏后，状态栏的高度变为0，如图所示<br>
+![Image text](https://github.com/gs-wenbing/mui-mall/blob/master/img/show/status1.jpg)
+<br>输入框把状态挡住了，这时候需要重写mui.css或者mui.min.css样式表，在样式表底部添加如下一段样式__：
+```
+*解决沉寖式状态栏导致导航栏高度少20px的问题*/
+.mui-bar-nav {
+    height: 64px;
+    padding-top: 22px;
+}
 
-注意：以上操作后Android沉浸式状态就完成了，但是IOS还需在distribute节点下的apple节点下添加
+.mui-bar-nav ~ .mui-content
+{
+    padding-top: 64px;
+}
+
+.mui-bar-nav ~ .mui-content .mui-pull-top-pocket
+{
+    top: 64px;
+}
+
+.mui-bar-nav ~ .mui-content.mui-scroll-wrapper .mui-scrollbar-vertical
+{
+    top: 64px;
+}
+
+.mui-bar-nav ~ .mui-content .mui-slider.mui-fullscreen
+{
+    top: 64px;
+}
+```
+显示效果如图<br>
+![Image text](https://github.com/gs-wenbing/mui-mall/blob/master/img/show/status2.jpg)
+<br><br>注意：以上操作后Android沉浸式状态就完成了，但是IOS还需在distribute节点下的apple节点下添加
 ```
 "UIReserveStatusbarOffset" : false
+```
+__本以为沉浸式状态栏就完成了，结果老板iPhoneX手机显示有问题，于是又单独适配iPhoneX，具体操作：<br>
+在mui.js或者mui.min.js中底部添加如下一段代码__：
+```
+/**
+ * 适配iPhone X 系列手机的导航栏(包括状态栏)
+ */
+mui.plusReady(function(){
+    if(plus.navigator.isImmersedStatusbar() && isIPhoneX()){
+        //.mui-bar-nav
+        var nav = document.querySelector(".mui-bar-nav");
+        if(nav){
+            nav.style.cssText="height:88px; padding-top: 44px;";
+        } else {
+            return;
+        }
+        //.mui-bar-nav ~ .mui-content
+        var content = document.querySelector(".mui-content");
+        if (content) {
+            content.style.paddingTop = "88px";
+        } else {
+            return;
+        }
+        //.mui-bar-nav ~ .mui-content .mui-pull-top-pocket
+        var pullTopPocket_Arr = content.querySelectorAll(".mui-pull-top-pocket");
+        if (pullTopPocket_Arr) {
+            pullTopPocket_Arr.forEach(function(value){
+                value.style.top = "88px";
+            });
+        }
+        //.mui-bar-nav ~ .mui-content.mui-scroll-wrapper .mui-scrollbar-vertical
+        var scrollbarVertical = document.querySelector(".mui-content.mui-scroll-wrapper .mui-scrollbar-vertical");
+        if (scrollbarVertical) {
+            scrollbarVertical.style.top = "88px";
+        }
+        //.mui-bar-nav ~ .mui-content .mui-slider.mui-fullscreen
+        var slider_fullscreen_Arr = content.querySelectorAll(".mui-content .mui-slider.mui-fullscreen");
+        if (slider_fullscreen_Arr) {
+            slider_fullscreen_Arr.forEach(function(value){
+                value.style.top = "88px";
+            });
+        }
+    }
+});
+
+/**
+ * 判断是否为iPhone X 系列机型
+ */
+function isIPhoneX(){
+    if(plus.device.model.indexOf('iPhone') > -1 && screen.height >= 812){
+        return true;
+    }else{
+        return false;
+    }
+}
 ```
