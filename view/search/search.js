@@ -22,11 +22,11 @@ mui.plusReady(function() {
 	if (isIPhoneX()) {
 		IPhoneXCSS();
 	}else{
-		// 64=44+24:   (标题栏高度+状态栏高度)
-		$(".classfy").css("top","64px");
+		// 66px=44+22:   (标题栏高度+状态栏高度)
+		$(".classfy").css("top","66px");
 		$(".classfy").css("height","46px");
-		// 112 = 44+46+24  (标题栏高度+标题栏下方的tab高度+状态栏高度)
-		$(".mui-content").css("padding-top","114px !important");
+		// 112 = 44+46+22  (标题栏高度+标题栏下方的tab高度+状态栏高度)
+		$(".mui-content").css("padding-top","112px !important");
 	}
 	if (mui.os.android) {
 		var height = (plus.display.resolutionHeight+0.5) + "px";
