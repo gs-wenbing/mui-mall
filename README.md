@@ -100,3 +100,15 @@ js代码
 注意iphoneX中出现遮挡底部tab现象,采用js判断屏幕大小方式改变bottom值，isIPhoneX()，isIPhoneX() 要在plusReady后调用。
 
 
+## 沉浸式状态栏
+1.在manifest.json文件，切换到代码视图，在plus -> statusbar 下添加immersed节点并设置值为true
+```
+"statusbar" : {
+	"immersed" : true
+},
+```
+2.在distribute节点下的apple节点下添加
+```
+"UIReserveStatusbarOffset" : false
+```
+设置了沉浸式状态栏后，状态栏的高度变为0，如图所示
