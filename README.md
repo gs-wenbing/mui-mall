@@ -107,8 +107,10 @@ js代码
 	"immersed" : true
 },
 ```
-2.在distribute节点下的apple节点下添加
+
+设置了沉浸式状态栏后，状态栏的高度变为0，如图所示
+
+注意：以上操作后Android沉浸式状态就完成了，但是IOS还需在distribute节点下的apple节点下添加
 ```
 "UIReserveStatusbarOffset" : false
 ```
-设置了沉浸式状态栏后，状态栏的高度变为0，如图所示
