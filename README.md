@@ -6,6 +6,15 @@
 * index.html 首页，也是启动页面，启动页可以在manifest.json中配置
 * manifest.json APP的配置信息，具体怎么配置的参照http://ask.dcloud.net.cn/article/94
 
+## 涉及到知识点：
+* 首页底部Tab
+* 沉浸式状态栏
+* 分类顶部切换的slider
+* 搜索列表页双层类似侧滑的弹框
+* 上拉刷新下拉加载
+* 登录、退出逻辑处理
+<br><br>主要功能点：<br>
+首页tab，banner广告，商品分类，搜索列表，商品详情，购物车，下订单，个人中心，我的订单/退单，收货地址管理
 ## 首页底部的Tab
 html页面<br>
 ```
