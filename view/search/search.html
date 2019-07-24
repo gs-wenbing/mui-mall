@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>品牌联盟</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link href="../../css/style.css" rel="stylesheet" />
+	</head>
+	<body style="margin: 0;max-width: 100%;">
+		<!-- 主页面部分 -->
+		<header class="mui-bar mui-bar-nav bg-red noShadow header-boxz">
+			<div class="topbar">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left text-white"></a>
+				<div class="header-search">
+					<form action="" method="get">
+						<input type="search" placeholder="点击搜索名称,  产品型号">
+						<button class="btn-search" type="button">
+							<span class="iconfont icon-m-ah"></span>
+						</button>
+					</form>
+				</div>
+			</div>
+		</header>
+		<div class="classfy beforeline flexbox" style="position: fixed;background-color: #F4F4F4;">
+			<div class="classfy-item classfy-sort">
+				销量
+				<svg class="svg-icon" aria-hidden="true">
+					<use xlink:href="#icon-m-av"></use>
+				</svg>
+			</div>
+			<div class="classfy-item classfy-sort">
+				上市
+				<svg class="svg-icon" aria-hidden="true">
+					<use xlink:href="#icon-m-av"></use>
+				</svg>
+			</div>
+			<div class="classfy-item classfy-sort">
+				价格
+				<svg class="svg-icon" aria-hidden="true">
+					<use xlink:href="#icon-m-av"></use>
+				</svg>
+			</div>
+			<div class="classfy-item">
+				<a id="offCanvasBtn" @tap="toggleCateMask('Cate','show')">筛选 <span class="mui-icon iconfont icon-m-af"></span></a>
+			</div>
+		</div>
+
+		<div class="mui-content pdb-0">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-media" v-for="(index,item) in MallGoodsList">
+					<a href="javascript:;" @tap="gotoGoodsDetail(item.GoodsID)">
+						<!-- 清仓 -->
+						<div :class="classObject(index)" class="classfy-item__img icon-tag flexbox">
+							<img class="mui-media-object mui-pull-left" :src="item.DefaultPicURL">
+						</div>
+						<div class="mui-media-body classfy-item__body" style="min-height: 100px;height:auto;">
+							<h2 class="mui-media-title" style="padding-right: 0px;word-wrap:break-word;overflow: hidden;line-height: 22px;font-size: 14px;">
+								{{item.GoodsName}}
+							</h2>
+							<p class="mui-media-decr" style="font-size: 13px;">型号：{{item.GoodsModel}}</p>
+							<p class="mui-media-price">
+								<span class="price-now"><span style="font-size: 15px;">￥</span>{{item.NoInvoicePrice}}</span>
+								<s class="price-origin" v-if="item.NoInvoicePrice*1<item.OldNoInvoicePrice*1">￥{{item.OldNoInvoicePrice}}</s>
+							</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<div class="underline">------------ 已经没有更多了 ------------</div>
+		</div>
+
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/zepto.min.js"></script>
+		<script src="../../js/iconfont.js"></script>
+		<script src="../../js/vue.js"></script>
+		<script src="../../js/api.js"></script>
+		<script src="../../data/classy.js"></script>
+		<script src="../../data/search.js"></script>
+		<script src="search.js"></script>
+	</body>
+</html>

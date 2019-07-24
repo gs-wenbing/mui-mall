@@ -13,7 +13,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 1,
-		"PicURL": "goodsClassPic/201906030303004810.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030303004810.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -23,7 +23,7 @@ classList = [{
 		"IsVisible": 1,
 		"IsDefault": 0,
 		"Sort": 1,
-		"PicURL": "goodsClassPic/201906030318096012.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030318096012.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -33,7 +33,7 @@ classList = [{
 		"IsVisible": 1,
 		"IsDefault": 0,
 		"Sort": 1,
-		"PicURL": null,
+		"PicURL":"http://res.genvana.cn/upload/goodsClassPic/201906030303004810.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -43,7 +43,7 @@ classList = [{
 		"IsVisible": 1,
 		"IsDefault": 0,
 		"Sort": 1,
-		"PicURL": null,
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030340305924.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -53,7 +53,7 @@ classList = [{
 		"IsVisible": 1,
 		"IsDefault": 0,
 		"Sort": 1,
-		"PicURL": null,
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030303004810.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -63,7 +63,7 @@ classList = [{
 		"IsVisible": 1,
 		"IsDefault": 0,
 		"Sort": 1,
-		"PicURL": "goodsClassPic/201906030340305924.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030340305924.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -73,7 +73,7 @@ classList = [{
 		"IsVisible": 1,
 		"IsDefault": 0,
 		"Sort": 1,
-		"PicURL": null,
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030348227828.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -83,7 +83,7 @@ classList = [{
 		"IsVisible": 1,
 		"IsDefault": 0,
 		"Sort": 1,
-		"PicURL": null,
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030340305924.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -93,7 +93,7 @@ classList = [{
 		"IsVisible": 1,
 		"IsDefault": 0,
 		"Sort": 1,
-		"PicURL": "goodsClassPic/201906030348227828.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030348227828.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -103,7 +103,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 2,
-		"PicURL": "goodsClassPic/201906030311029908.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030311029908.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -113,7 +113,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 3,
-		"PicURL": "goodsClassPic/201906030319184830.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030319184830.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -123,7 +123,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 4,
-		"PicURL": "goodsClassPic/201906030307097506.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030307097506.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -133,7 +133,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 5,
-		"PicURL": "goodsClassPic/201906030312322388.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030312322388.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -143,7 +143,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 6,
-		"PicURL": "goodsClassPic/201906030337487721.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030337487721.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -153,7 +153,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 7,
-		"PicURL": "goodsClassPic/201906030347094967.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030347094967.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -163,7 +163,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 8,
-		"PicURL": "goodsClassPic/201906030421170953.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030421170953.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -173,7 +173,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 9,
-		"PicURL": "goodsClassPic/201906030345535806.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030345535806.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -183,7 +183,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 10,
-		"PicURL": "goodsClassPic/201906030313033736.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030313033736.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -193,7 +193,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 11,
-		"PicURL": "goodsClassPic/201906030311378854.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030311378854.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -203,7 +203,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 12,
-		"PicURL": "goodsClassPic/201906030309434361.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030309434361.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -213,7 +213,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 13,
-		"PicURL": "goodsClassPic/201906030348384762.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030348384762.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -223,7 +223,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 14,
-		"PicURL": "goodsClassPic/201906030314052711.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030314052711.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -233,7 +233,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 15,
-		"PicURL": "goodsClassPic/201906030320365670.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030320365670.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -243,7 +243,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 16,
-		"PicURL": "goodsClassPic/201906030343459029.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030343459029.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -253,7 +253,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 17,
-		"PicURL": "goodsClassPic/201906030324419898.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030324419898.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -263,7 +263,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 18,
-		"PicURL": "goodsClassPic/201906030334015973.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030334015973.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -273,7 +273,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 19,
-		"PicURL": "goodsClassPic/201906030329509488.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030329509488.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -283,7 +283,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 20,
-		"PicURL": "goodsClassPic/201906030335358404.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030335358404.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -293,7 +293,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 21,
-		"PicURL": "goodsClassPic/201906030339196490.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030339196490.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -303,7 +303,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 22,
-		"PicURL": "goodsClassPic/201906030334578551.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030334578551.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -313,7 +313,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 23,
-		"PicURL": "goodsClassPic/201906030327455426.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030327455426.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -323,7 +323,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 24,
-		"PicURL": null,
+		"PicURL":  "http://res.genvana.cn/upload/goodsClassPic/201906030421170953.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -333,7 +333,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 25,
-		"PicURL": "goodsClassPic/201906030319443687.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030319443687.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -343,7 +343,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 26,
-		"PicURL": "goodsClassPic/201906030331506920.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030331506920.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -353,7 +353,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 27,
-		"PicURL": "goodsClassPic/201906030343110904.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030343110904.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -363,7 +363,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 28,
-		"PicURL": "goodsClassPic/201906030310230299.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030310230299.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -373,7 +373,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 29,
-		"PicURL": "goodsClassPic/201906030317177525.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030317177525.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -383,7 +383,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 30,
-		"PicURL": "goodsClassPic/201906030327071988.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030327071988.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -393,7 +393,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 31,
-		"PicURL": "goodsClassPic/201906030308110670.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030308110670.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -403,7 +403,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 32,
-		"PicURL": "goodsClassPic/201906030332389752.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030332389752.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -413,7 +413,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 33,
-		"PicURL": "goodsClassPic/201906030339488726.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030339488726.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -423,7 +423,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 34,
-		"PicURL": "goodsClassPic/201906030340518101.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030340518101.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -433,7 +433,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 35,
-		"PicURL": "goodsClassPic/201906030318455963.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030318455963.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -443,7 +443,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 36,
-		"PicURL": "goodsClassPic/201906030320084156.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030320084156.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -453,7 +453,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 37,
-		"PicURL": "goodsClassPic/201906030342281236.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030342281236.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -463,7 +463,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 38,
-		"PicURL": "goodsClassPic/201906030326257750.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030326257750.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -473,7 +473,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 39,
-		"PicURL": "goodsClassPic/201906030344283560.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030344283560.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -483,7 +483,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 40,
-		"PicURL": "goodsClassPic/201906030333278560.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030333278560.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -493,7 +493,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 41,
-		"PicURL": "goodsClassPic/201906030328485845.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030328485845.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -503,7 +503,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 42,
-		"PicURL": "goodsClassPic/201906030338431295.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030338431295.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -513,7 +513,7 @@ classList = [{
 		"IsVisible": 0,
 		"IsDefault": 0,
 		"Sort": 43,
-		"PicURL": null,
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030338431295.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -523,7 +523,7 @@ classList = [{
 		"IsVisible": 1,
 		"IsDefault": 0,
 		"Sort": 99999,
-		"PicURL": "goodsClassPic/201811121118026114.jpg",
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201811121118026114.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}, {
@@ -533,7 +533,7 @@ classList = [{
 		"IsVisible": 1,
 		"IsDefault": 0,
 		"Sort": 99999,
-		"PicURL": null,
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030338431295.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}],
@@ -553,7 +553,7 @@ classList = [{
 		"IsVisible": 1,
 		"IsDefault": 0,
 		"Sort": 1,
-		"PicURL": null,
+		"PicURL":  "http://res.genvana.cn/upload/goodsClassPic/201906030421170953.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}],
@@ -573,7 +573,7 @@ classList = [{
 		"IsVisible": 1,
 		"IsDefault": 0,
 		"Sort": 99999,
-		"PicURL": null,
+		"PicURL": "http://res.genvana.cn/upload/goodsClassPic/201906030338431295.jpg",
 		"children": null,
 		"MallGoodsList": null
 	}],

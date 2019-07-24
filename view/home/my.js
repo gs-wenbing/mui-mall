@@ -1,5 +1,7 @@
 mui.init();
 mui.plusReady(function() {
+	userInfo.user = getUser();
+	
 	//点击设置
 	mui(".personalCenter-header").on('tap', '.btn-set', function() {
 		createWindow("../setting/setting.html", "setting.html", "账户设置", null);
@@ -9,8 +11,8 @@ mui.plusReady(function() {
 		var extras = {
 			Status: ""
 		}
-		if (userInfo.isLogin==false) {
-			goLogin("../login/login2.html", "../order/MyOrderList.html", "MyOrderList.html",  extras)
+		if (!userInfo.user) {
+			goLogin("../login/login.html", "../order/MyOrderList.html", "MyOrderList.html",  extras)
 			return false;
 		}
 		createWindow("../order/MyOrderList.html", "MyOrderList.html", extras)
@@ -21,8 +23,8 @@ mui.plusReady(function() {
 		var extras = {
 			Status: status
 		}
-		if (userInfo.isLogin==false) {
-			goLogin("../login/login2.html", "../order/MyOrderList.html", "MyOrderList.html", extras)
+		if (!userInfo.user) {
+			goLogin("../login/login.html", "../order/MyOrderList.html", "MyOrderList.html", extras)
 			return false;
 		}
 		if (status != 100) {
@@ -41,8 +43,8 @@ mui.plusReady(function() {
 			var extras = {
 				Status: ""
 			}
-			if (userInfo.isLogin==false) {
-				goLogin("../login/login2.html", href, id, title, extras)
+			if (!userInfo.user) {
+				goLogin("../login/login.html", href, id, title, extras)
 				return false;
 			}
 			createWindow(href, id, title, extras);
@@ -53,21 +55,18 @@ mui.plusReady(function() {
 var userInfo = new Vue({
 	el: "#app",
 	data: {
-		URL_PIC: URL_PIC,
-		userAcount: {},
-		user: {},
-		isLogin: false
+		user: {}
 	},
 	methods: {
 		login: function() {
-			goLogin("../login/login2.html", "home.html", "home.html", null)
+			goLogin("../login/login.html", "home.html", "home.html", null)
 		},
 		goFunction: function(href, title) {
 			var extras = {
 				Status: ""
 			}
-			if (this.isLogin==false) {
-				goLogin("../login/login2.html", href, id, extras)
+			if (!this.user) {
+				goLogin("../login/login.html", href, id, extras)
 				return false;
 			}
 			var hrefArr = href.split("/");
@@ -97,3 +96,7 @@ var userInfo = new Vue({
 		}
 	}
 })
+window.addEventListener('refresh_my', function(e) { //执行刷新
+	userInfo.user = {};
+	userInfo.user = getUser();
+});

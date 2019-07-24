@@ -23,8 +23,7 @@ mui(".mui-slider").slider({
 var mallGoods = new Vue({
 	el: '.bg-gray',
 	data: {
-		items: [],
-		user: getUser()
+		items: []
 	},
 	computed: {
 		BarBackground: function() {
@@ -45,10 +44,6 @@ var mallGoods = new Vue({
 	methods: {
 		gotoGoodsClass: function(ParantClassID, GoodsClassID, type) {
 			document.activeElement.blur(); //隐藏软键盘  
-			if (type && !this.user) {
-				goLogin("../login/login2.html", "", "", null)
-				return false;
-			}
 			var keyWords = mui("#search-input")[0].value;
 			var extras = {
 				ParantClassID: ParantClassID,
@@ -56,7 +51,7 @@ var mallGoods = new Vue({
 				type: type,
 				keyWords: keyWords
 			}
-			createWindow("second-classfy.html", "second-classfy.html", extras)
+			createWindow("../search/search.html", "search.html", extras)
 			mui("#search-input")[0].value = "";
 		},
 
@@ -101,6 +96,9 @@ $(document).on('focusout', function () {
 
 
 window.addEventListener('refrash_homeData', function(e) { //执行刷新
+	classIndex = 0;
+	goodsGroupIndex = 0;
+	mallGoods.items=[];
 	GetMallGoodsList();
 });
 
@@ -160,10 +158,8 @@ function pullupLoading() {
 
 
 function GetMallGoodsList() {
-	var wd = plus.nativeUI.showWaiting();
 	var t1 = window.setTimeout(function(){
 		convertMallData(homeGoodsList, classList[0]);
-		wd.close();
 		classIndex++;
 	}, 1000);
 }

@@ -18,7 +18,7 @@ window.addEventListener('loadData', function(e) { //执行刷新
 })(mui)
 
 mui.plusReady(function () {
-    var user = getUser();
+	
 })
 //编辑事件
 var _btnEdit = document.querySelector(".btn-edit");
@@ -30,28 +30,13 @@ _btnEdit.addEventListener("tap", function() {
 			$(".cartsum__body").addClass("mui-hidden");
 			$(".btn-remove").removeClass("mui-hidden");
 			goodsCarts.isDelete = true;
-			goodsCarts.allCount = goodsCarts.GoodsList.length + goodsCarts.FullNumGoodsList.length;
-			mui.each(goodsCarts.FullAmountGoodsList, function(index, FullAmount) {
-				goodsCarts.allCount += FullAmount.GoodsList.length;
-			})
-			mui.each(goodsCarts.LadderGoodsList, function(index, LadderGoods) {
-				goodsCarts.allCount += LadderGoods.GoodsList.length;
-			})
-			if (goodsCarts.InValidList) {
-				goodsCarts.allCount += goodsCarts.InValidList.length;
-			}
+			goodsCarts.allCount = goodsCarts.GoodsList.length;
 		} else {
 			$(this).removeClass('btn-complete').html('编辑');
 			$(".cartsum__body").removeClass("mui-hidden");
 			$(".btn-remove").addClass("mui-hidden");
 			goodsCarts.isDelete = false;
-			goodsCarts.allCount = goodsCarts.GoodsList.length + goodsCarts.FullNumGoodsList.length;
-			mui.each(goodsCarts.FullAmountGoodsList, function(index, FullAmount) {
-				goodsCarts.allCount += FullAmount.GoodsList.length;
-			})
-			mui.each(goodsCarts.LadderGoodsList, function(index, LadderGoods) {
-				goodsCarts.allCount += LadderGoods.GoodsList.length;
-			})
+			goodsCarts.allCount = goodsCarts.GoodsList.length;
 		}
 	}
 	if ($('.block-group').not('.disabled').length === 0) {
@@ -60,7 +45,6 @@ _btnEdit.addEventListener("tap", function() {
 }, false)
 
 function pulldownRefresh() {
-	goodsCarts.CheckedGoodsSkuIDs = null;
 	GetShoppingCartList();
 }
 
@@ -193,7 +177,7 @@ var goodsCarts = new Vue({
 		toShopping: function() {
 			var user = getUser();
 			if (user == null) {
-				goLogin("../login/login2.html", "home.html", "home.html", null)
+				goLogin("../login/login.html", "home.html", "home.html", null)
 				return false;
 			}
 			var extras = {

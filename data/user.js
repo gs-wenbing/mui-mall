@@ -1,9 +1,9 @@
-{
+userInfo = {
 	"UserAccountID": 122382,
-	"UserNo": "test",
+	"UserNo": "zhangke",
 	"UserName": "张克",
 	"Mobile": "",
-	"Phone": "17521101379",
+	"Phone": "15021101379",
 	"BelongID": 70,
 	"FromEnterpriseID": 0,
 	"CustomerType": 4,
@@ -12,7 +12,7 @@
 	"LastLoginIP": "127.0.0.1",
 	"LoginTime": "2019-07-22 09:59:39",
 	"LoginIP": "114.86.86.118",
-	"HeadImageUrl": "employees\\201906240257100608.jpg",
+	"HeadImageUrl": "http://res.genvana.cn/upload/employees/201906240257100608.jpg",
 	"CreateTime": "2019-06-18T09:45:11.585742",
 	"IsTax": 1,
 	"IsEffectiveAccount": 1,
@@ -20,12 +20,12 @@
 	"Disable": 0,
 	"OrderRefundRate": 0.98,
 	"RewardAmountRate": 0.02,
-	"DepartmentName": "广州办事处",
+	"DepartmentName": "上海办事处",
 	"PlantLandlineNumber": "020-81815586",
-	"Salesman": "周纯辉",
-	"SalesmanTEL": "13360166999",
-	"Salessuper": "周育英",
-	"SalessuperTEL": "13825010439",
+	"Salesman": "穆志生",
+	"SalesmanTEL": "13860166900",
+	"Salessuper": "周大成",
+	"SalessuperTEL": "13325010329",
 	"AddPriceRatio": 0.1,
-	"Password": "57ca6db3a815d23d0ee42783696818a2"
+	"Password": "123456"
 }

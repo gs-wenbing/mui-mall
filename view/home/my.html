@@ -10,9 +10,9 @@
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
 		<link href="../../css/style.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
 	</head>
-	<link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
-	<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
 
 	<body id="app" style="margin: 0;max-width: 100%;">
 		<header class="mui-bar mui-bar-nav noShadow personalCenter-header">
@@ -24,33 +24,33 @@
 			<div class="personalCenter-header-bg"></div>
 			<div class="header-panel" style="min-height: 125px;">
 				<div class="header-panel__head">
-					<img style="background-color: white;" v-else src="../../img/user-img.png">
-
-					<div class="mui-pull-left  mg-t-5" v-if="isLogin==true">
+					<img style="background-color: white;" v-if="user" :src="user.HeadImageUrl" >
+					<img style="background-color: white;" v-if="!user" src="../../img/missing-face.png">
+					
+					<div class="mui-pull-left  mg-t-5" v-if="user">
 						<h3 class="title">{{user.UserNo}} </h3>
-						<h4 v-if="user.DepartmentName && user.CustomerType!=6" class="subtitle" @tap="dial(user.PlantLandlineNumber)">
+						<h4 class="subtitle" @tap="dial(user.PlantLandlineNumber)">
 							<label>配送方：</label>{{user.DepartmentName}}
 							&nbsp;&nbsp;<i class="iconfont icon-m-n" v-if="user.PlantLandlineNumber" style="font-size:11px;color: #5b8dff;"></i>
 						</h4>
 					</div>
-					<div class="mui-pull-left" style="margin-top: 8px;" v-if="isLogin==false" @tap="login">
+					<div class="mui-pull-left" style="margin-top: 8px;" v-else @tap="login">
 						<h3 class="title">登录/注册</h3>
 					</div>
-					<a @tap="applyAgent" v-if="user.CustomerType==4||user.CustomerType==5" class="head-link">申请代理</a>
 				</div>
-				<div class="tag-phone tag-phone-new" v-if="isLogin==true">
-					<a v-if="user.Salesman && user.CustomerType!=6" @tap="dial(user.SalesmanTEL)" class="tag-phone-item">
+				<div class="tag-phone" v-if="user">
+					<a v-if="user.Salesman" @tap="dial(user.SalesmanTEL)" class="tag-phone-item">
 						销售经理：{{user.Salesman}}
 						<i class="iconfont icon-m-n"></i>
 					</a>
-					<a v-if="user.Salessuper && user.CustomerType!=6 && user.Salessuper!=user.Salesman" @tap="dial(user.SalessuperTEL)"
+					<a v-if="user.Salessuper && user.Salessuper!=user.Salesman" @tap="dial(user.SalessuperTEL)"
 					 class="tag-phone-item">
 						上级领导：{{user.Salessuper}}
 						<i class="iconfont icon-m-n"></i>
 					</a>
 				</div>
 
-				<div class="header-panel__body flexbox" v-if="isLogin && user.CustomerType!=6">
+				<div class="header-panel__body flexbox" v-if="user">
 					<div class="flexbox-item">
 						<p class="mgb-0 text-red text-bold">￥ 1487.92</p>
 						<p>余额</p>
@@ -90,7 +90,7 @@
 				</div>
 			</div>
 			<!-- 我的工具 -->
-			<div class="panel my-tools" v-if="isLogin">
+			<div class="panel my-tools" v-if="user">
 				<div class="panel__title flexbox beforeline">
 					<div class="panel-title__text">我的工具</div>
 				</div>

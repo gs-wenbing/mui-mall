@@ -14,7 +14,6 @@ mui.plusReady(function() {
 		el: "#app",
 		data: {
 			GoodsClassList: [],
-			URL_PIC: URL_PIC,
 			searchString: "",
 		},
 		computed: {
@@ -44,7 +43,7 @@ mui.plusReady(function() {
 					type: "",
 					keyWords: this.searchString
 				}
-				createWindow("second-classfy.html", "second-classfy.html", extras);
+				createWindow("../search/search.html", "search.html", extras);
 				this.searchString = "";
 			},
 			swichTab: function(index) {
@@ -92,6 +91,3 @@ var os = function() {
 	};
 }();
 
-function toFeedbook() {
-	createWindowWithTitle('../setting/feedback.html', 'feedback.html',"建议反馈",  {})
-}

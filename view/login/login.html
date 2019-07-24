@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>品牌联盟</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link href="../../css/style.css" rel="stylesheet" />
+	</head>
+	<body id="body" class="bg-white">
+		<div id="login-box" class="login-wrapper">
+			<header class="mui-bar mui-bar-nav bg-linear noShadow">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left text-white"></a>
+				<h1 class="mui-title">登录</h1>
+			</header>
+
+			<div class="mui-content bg-white" style="margin-top: -2px;">
+
+				<div class="logo">
+					<img src="../../img/mall_code.png">
+				</div>
+
+				<div class="w80-pst mgauto mgtb-50 mui-input-group noBefore noAfter login-form">
+					<div class="mui-input-row noAfter border border-radius mgb-025">
+						<i class="iconfont icon-m-n"></i>
+						<input type="number" oninput="value=value.replace(/[^\d]/g,'')" class="mui-input-clear" v-model="LoginName"
+						 placeholder="请输入您的手机号">
+					</div>
+					<div class="mui-input-row noAfter border border-radius mgb-025">
+						<i class="iconfont icon-m-j"></i>
+						<input type="password" class="mui-input-password" v-model="Password" placeholder="请输入您的密码">
+					</div>
+					<div class="mgb-025 pdlr-01 mui-clearfix">
+						<div class="mui-pull-left">
+							<label class="login-form__label">
+								<input id="remember" :checked="isRemember" v-model="isRemember" type="checkbox" class="input__remember mui-icon mui-icon-checkmarkempty">
+								<span class="label__text">
+									记住密码
+								</span>
+							</label>
+						</div>
+						<div class="mui-pull-right">
+							<a class="link__forgetpwd">忘记密码？</a>
+						</div>
+					</div>
+					<button type="submit" :disabled="!LoginName || LoginName.length!=11 || !Password" class="mui-btn mui-btn-block btn-submit bg-red text-white h72"
+					 data-loading-text="提交中" data-loading-icon-position="right">登录</button>
+
+					<div class="mui-text-center mgt-08 text-small">
+						还没有商城账号？<a class="text-red link__register">立即注册</a>
+					</div>
+				</div>
+				<script src="../../js/mui.js"></script>
+				<script src="../../js/zepto.min.js"></script>
+				<script src="../../js/vue.js"></script>
+				<script src="../../js/api.js"></script>
+				<script src="../../data/user.js"></script>
+				<script src="login.js"></script>
+			</div>
+		</div>
+	</body>
+</html>

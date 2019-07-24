@@ -275,5 +275,5 @@ function goLogin(loginPath, toView, toViewID, extras) {
 		toViewID: toViewID,
 		extras: extras
 	}
-	createWindow(loginPath, "login2.html", param)
+	createWindow(loginPath, "login.html", param)
 }

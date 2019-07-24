@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>品牌联盟</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link href="../../css/style.css" rel="stylesheet" />
+
+
+	</head>
+
+	<body class="mui-fullscreen">
+		<header class="mui-bar mui-bar-nav bg-red noShadow">
+			<a  class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left text-white"></a>
+			<h1 class="mui-title text-white">账户设置</h1>
+		</header>
+		
+		<!--页面主内容区开始-->
+		<div class="mui-page-content" style="margin-top: 64px;">
+			<div class="mui-scroll-wrapper">
+				<!--头像，菜单列表-->
+				<div class="mui-scroll">
+					<!--头像，菜单列表-->
+					<ul class="mui-table-view mui-table-view-chevron mgb-6">
+						<li class="mui-table-view-cell mui-media">
+							<a data-login="1" class="mui-navigate-right headImg-link"  href="accountInfo.html" title="基本信息">
+								<img v-if="user" :src="user.HeadImageUrl" class="mui-media-object head-img" id="head-img">
+								<img v-if="!user" src="../../img/missing-face.png" class="mui-media-object head-img" id="head-img">
+								<div class="mui-media-body">
+								    <span>{{user.userNo}}</span>
+									<p class="mui-ellipsis">{{user.Phone}}</p>
+								</div>
+								<p v-if="!user" @tap="login">
+									登录/注册
+								</p>
+							</a>
+						</li>
+					</ul>
+					<!-- 菜单列表 -->
+					<ul class="mui-table-view mui-table-view-chevron mgb-6">
+						<li class="mui-table-view-cell">
+							<a data-login="1" title="收货地址管理" data-wid="addressManage.html" href="../address/addressManage.html" class="mui-navigate-right">
+							    <img src="../../img/SetShippingAddress.png" class="mean-img">
+							    <span>收货地址管理</span>
+							</a>
+						</li>
+						<li class="mui-table-view-cell" >
+							<a data-login="1" title="设置支付密码" href="setPayPwd.html" class="mui-navigate-right">
+							    <img src="../../img/SetPayPassword.png" class="mean-img">
+							    <span>设置支付密码</span>
+							</a>
+						</li>
+						<li  class="mui-table-view-cell">
+							<a data-login="1" title="重置登录密码" href="resetLoginPwd.html" class="mui-navigate-right">
+							    <img src="../../img/SetResetLoginPassword.png" class="mean-img">
+							    <sapn>重置登录密码</sapn>
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a data-login="1" title="建议反馈" href="feedback.html" class="mui-navigate-right">
+							    <img src="../../img/SetFeedback.png" class="mean-img">
+							    <span>建议反馈</span>
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a href="phone.html" class="mui-navigate-right">
+							    <img src="../../img/SetCustomerService.png" class="mean-img">
+							    <span>联系客服</span>
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							 <a data-login="0"  title="关于" href="about.html" class="mui-navigate-right">
+                                 <img src="../../img/SetAbout.png" class="mean-img">
+                                 <span>关&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;于</span>
+                             </a>
+						</li>
+					</ul>
+					<!--底部按钮-->
+                    <div class="click-btn" v-if="user" >
+                        <ul class="mui-table-view mui-table-view-chevron mgb-6">
+                            <li class="mui-table-view-cell">
+                                <a @tap="logout()" class="mui-bar mui-bar-tab font-color-red">退出登录</a>
+                            </li>
+                        </ul>
+                    </div>
+				</div>
+				
+			</div>
+		</div>
+	</body>
+	<script src="../../js/mui.js"></script>
+	<script src="../../js/zepto.min.js"></script>
+	<script src="../../js/vue.js"></script>
+	<script src="../../js/api.js"></script>
+	<script src="setting.js"></script>
+	
+</html>

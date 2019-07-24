@@ -12,27 +12,6 @@
 		<link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
 
 	</head>
-	<style>
-	    .mui-table-view.mui-grid-view .mui-table-view-cell>a:not(.mui-btn) {
-            margin: -10px 0 0 -6px !important;
-        }
-        .bg-color {
-            background: #f5f5f5 !important;
-        }
-        .mui-media-body{
-            color: #fff !important;
-            width: 90px !important;
-            height: 34px !important;
-            text-align: center !important;
-            line-height: 34px !important;
-            border-radius: 4px !important;
-            background: #e60012 !important;
-            font-weight: 800;
-        }
-        .mui-pull-bottom-tips {
-            background: #f5f5f5 !important;
-        }
-    </style>
 	<body class="bg-white" id="app">
 		<header class="mui-bar mui-bar-nav bg-red noShadow">
 			<div class="topbar">
@@ -63,10 +42,8 @@
 								<ul class="mui-table-view mui-table-view-chevron mui-grid-view goods-list"  style="background-color: #F5F5F5;">
 									<li class="mui-table-view-cell mui-media" :class="mui_col_xs" v-for="child in GoodsClass.children">
 										<a @tap="gotoGoodsClass(child.GoodsClassID)">
-											<!-- <div class="mui-media-imgbox">
-												<img class="mui-media-object" onerror="javascript:this.src='../../img/goods-default.gif'" :src="URL_PIC+child.PicURL">
-											</div> -->
-											<div class="mui-media-body">{{child.GoodsClassName}}</div>
+											<img style="height: 90px;" :src="child.PicURL">
+											<div style="font-size: 13px;">{{child.GoodsClassName}}</div>
 										</a>
 									</li>
 								</ul>
