@@ -208,3 +208,42 @@ function isIPhoneX(){
     }
 }
 ```
+
+## 标题栏在IOS上存在的问题
+原生标题栏
+
+```
+var styles = { // 窗口参数 参考5+规范中的WebviewStyle,也就是说WebviewStyle下的参数都可以在此设置
+	titleNView: { // 窗口的标题栏控件
+		titleText: title, // 标题栏文字,当不设置此属性时，默认加载当前页面的标题，并自动更新页面的标题
+		titleColor: "#FFFFFF", // 字体颜色,颜色值格式为"#RRGGBB",默认值为"#000000"
+		backgroundColor: "#E60012", // 控件背景颜色,颜色值格式为"#RRGGBB",默认值为"#F7F7F7"
+		autoBackButton: true
+	}
+}
+plus.webview.create(url, id, styles, extras);
+```
+__1.mui原生标题栏，假如titleColor的值为小写（#ffffff）的话，在IOS上不显示标题，必须要大写（#FFFFFF）才显示，亲测<br>
+__2.非原生标题栏，假如页面中有输入框的话，软键盘弹出，IOS上会把标题栏顶上去，因为ios弹出软键盘的时候，webview的高度没有变化导致超出屏幕范围，
+而plus这时候又会自动把header的 position：fixed 属性设置为 position：relative，header就跟着滚动了。在mui社区找到一个的解决方案：
+[](http://ask.dcloud.net.cn/question/10629)
+```
+plus.webview.currentWebview().setStyle({  
+    softinputMode: "adjustResize"  // 弹出软键盘时自动改变webview的高度  
+}); 
+
+html, body {  
+    height: 100%;  
+    margin: 0px;  
+    padding: 0px;  
+    overflow: hidden;  
+    -webkit-touch-callout: none;  
+    -webkit-user-select: none;  
+}  
+
+.mui-content {  
+    height: 100%;  
+    overflow: auto;   
+}   
+```
+这样会解决IOS标题栏顶上去的问题，但是这样处理后，页面打开会有个标题栏会有震动，虽然很短暂，但是看着不爽
