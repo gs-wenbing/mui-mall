@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>品牌联盟</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link href="../../css/style.css" rel="stylesheet" />
+		<style>
+			.mui-selected .mui-navigate-right {
+				color: #e60012 !important;
+			}
+			.class-item-group{
+				float:left;margin:0px 6px 15px 0px; 
+			}	
+		</style>
+	</head>
+
+	<body>
+		<!--侧滑菜单容器-->
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable mui-slide-in">
+			<!--品牌菜单部分-->
+			<aside id="offCanvasSide1" class="mui-off-canvas-right" style="width: 100%;">
+				<div class="mui-bar mui-bar-nav sidebar-header noShadow" style="width: 90%;">
+					<a @tap="closeSide" class="action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+					<h1 class="mui-title">品牌</h1>
+					<a @tap="conformSide" class="link-confirm mui-pull-right">确定</a>
+				</div>
+				<div class="mui-scroll-wrapper sidebar-body">
+					<div class="mui-scroll">
+						<div class="mgb-20">
+							<ul class="mui-table-view mui-table-view-checkbox" style="padding: 10px;">
+								<template v-for=" Brand in BrandList">
+									<li tabindex="1" class="btns-group class-item-group">
+										<button class="mui-btn btns-item class-item" @tap="checkedBrand($event,Brand)">
+											{{Brand.CompanyBrandName}}
+										</button>
+									</li>
+								</template>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</aside>
+			<!--分类菜单部分-->
+			<aside id="offCanvasSide2" class="mui-off-canvas-right " style="width: 100%;">
+				<div class="mui-bar mui-bar-nav sidebar-header noShadow" style="width: 90%;">
+					<a @tap="closeSide" class="action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+					<h1 class="mui-title">分类</h1>
+					<a @tap="conformSide" class="link-confirm mui-pull-right">确定</a>
+				</div>
+				<div class="mui-scroll-wrapper sidebar-body">
+					<div class="mui-scroll">
+						<div v-if="classy.IsVisible==0" class="mgb-20" v-for="classy in ClassList">
+							<h5 class="mui-content-padded title">{{classy.GoodsClassName}}</h5>
+							<ul class="mui-table-view mui-table-view-checkbox" style="padding: 10px;">
+								<template v-for="child in classy.children">
+									<li v-if="child.IsVisible==0" tabindex="1" class="btns-group class-item-group">
+										<button class="mui-btn btns-item class-item" @tap="checkedClass($event,child)">
+											{{child.GoodsClassName}}
+										</button>
+									</li>
+								</template>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</aside>
+			<!-- 主页面部分 -->
+			<div class="mui-inner-wrap">
+				<div class="mui-scroll-wrapper" style="top: 22px;background-color: #ffffff;width: 90%;">
+					<div class="mui-scroll">
+						<div class="wedget">
+							<div class="widget-title">价格区间</div>
+							<div class="widget-body">
+								<div class="filter-price flexbox align-items-center">
+									<div class="filter-item"><input v-model="minPrice" type="text" placeholder="最低价"></div>
+									&nbsp;&nbsp;—&nbsp;&nbsp;
+									<div class="filter-item"><input v-model="maxPrice" type="text" placeholder="最高价"></div>
+								</div>
+							</div>
+						</div>
+						<div class="wedget">
+							<div class="widget-title mui-table-view-cell">
+								<a href="#offCanvasSide1" class="mui-navigate-right navigate-right">品牌</a>
+							</div>
+							<div v-if="isShowSelected" class="widget-body">
+								<span class="selected-item" v-for="Brand in selectedBrand">{{Brand.CompanyBrandName}}</span>
+							</div>
+						</div>
+						<div class="wedget">
+							<div class="widget-title">类型</div>
+							<div class="widget-body">
+								<div class="btns-group flexbox align-items-center mg-0">
+									<button type="button" class="mui-btn btns-item" style="width: 46%;" @tap="checkType($event,1)">热销</button>
+									<button type="button" class="mui-btn btns-item" style="width: 46%;" @tap="checkType($event,2)">新品</button>
+								</div>
+								<div class="btns-group flexbox align-items-center">
+									<button type="button" class="mui-btn btns-item" style="width: 46%;" @tap="checkType($event,3)">促销</button>
+									<button type="button" class="mui-btn btns-item" style="width: 46%;" @tap="checkType($event,4)">清仓</button>
+								</div>
+							</div>
+						</div>
+						<div class="wedget">
+							<div class="widget-title mui-table-view-cell">
+								<a href="#offCanvasSide2" class="mui-navigate-right navigate-right">分类</a>
+							</div>
+							<div v-if="isShowSelected" class="widget-body">
+								<span class="selected-item" v-for="classy in selectedClass">{{classy.GoodsClassName}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="offCanvasSide-bottom">
+						<div class="offCanvasSide-bottom-body afterline">
+							<button type="button" @tap="reSetSearch" class="btn bg-white">重置</button>
+							<button type="button" @tap="queRsearch" class="btn bg-danger text-white">确定</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/vue.js"></script>
+		<script src="../../js/iconfont.js"></script>
+		<script src="../../js/zepto.min.js"></script>
+		<script src="../../data/brand.js"></script>
+		<script src="../../data/classy.js"></script>
+		<script src="../../js/api.js"></script>
+		<script type="text/javascript" charset="utf-8">
+
+			var GoodsSearch = new Vue({
+				el: '#offCanvasWrapper',
+				data: {
+					BrandList: [],
+					ClassList: [],
+					minPrice: "",
+					maxPrice: "",
+					typeList: [],
+					selectedBrand: [],
+					selectedClass: [],
+					isShowSelected:false
+				},
+				created() {
+					var $that = this;
+					window.setTimeout(function() {
+						$that.BrandList = brandList;
+						$that.ClassList = classList;
+					}, 500);
+				},
+				methods: {
+					//关闭第二层侧滑栏
+					closeSide: function() {
+						mui('#offCanvasWrapper').offCanvas('close');
+					},
+					//第二层侧滑栏确定
+					conformSide: function() {
+						this.isShowSelected = true;
+						mui('#offCanvasWrapper').offCanvas('close');
+					},
+					//选择品牌
+					checkedBrand: function(event,brandItem){
+						if(event.target.classList.contains('active')){
+							event.target.classList.remove('active');
+							this.selectedBrand.splice(this.selectedBrand.indexOf(brandItem), 1)
+						}else{
+							event.target.classList.add('active');
+							this.selectedBrand.push(brandItem);
+						}
+					},
+					//选择分类
+					checkedClass: function(event,classItem){
+						if(event.target.classList.contains('active')){
+							event.target.classList.remove('active');
+							this.selectedClass.splice(this.selectedClass.indexOf(classItem), 1)
+						}else{
+							event.target.classList.add('active');
+							this.selectedClass.push(classItem);
+						}
+					},
+					/**
+					 * 选择类型
+					 */
+					checkType:function(event,Type){
+						if(event.target.classList.contains('active')){
+							event.target.classList.remove('active');
+							this.typeList.splice(this.typeList.indexOf(Type), 1)
+						}else{
+							event.target.classList.add('active');
+							this.typeList.push(Type);
+						}
+					},
+					/**
+					 * 重置
+					 */
+					reSetSearch: function() {
+						this.minPrice = "";
+						this.maxPrice =  "";
+						this.typeList =  [];
+						this.selectedBrand =  [];
+						this.selectedClass =  [];
+						// mui.fire(main, "menu:swiperight");
+					},
+					/**
+					 * 确定
+					 */
+					queRsearch: function() {
+						var params = {
+							minPrice: this.minPrice,
+							maxPrice: this.maxPrice,
+							typeList: this.typeList,
+							selectedBrand: this.selectedBrand,
+							selectedClass: this.selectedClass,
+						}
+						mui.fire(main, "menu:swiperight",params);
+					}
+				}
+			});
+			//侧滑栏滚动
+			mui('.mui-scroll-wrapper').scroll();
+			//关闭back、menu按键监听，这样侧滑主界面会自动获得back和memu的按键事件，仅在主界面处理按键逻辑即可；
+			mui.init({
+				keyEventBind: {
+					backbutton: false,
+					menubutton: false
+				}
+			});
+			var main = null;
+			mui.plusReady(function () {
+				main = plus.webview.currentWebview().opener();
+			})
+			
+			var originalHeight = document.documentElement.clientHeight || document.body.clientHeight;
+			window.onresize = function() {
+				//软键盘弹起与隐藏  都会引起窗口的高度发生变化
+				var resizeHeight = document.documentElement.clientHeight || document.body.clientHeight;
+				if (resizeHeight * 1 < originalHeight * 1) { //resizeHeight<originalHeight证明窗口被挤压了
+					$('.offCanvasSide-bottom').css('display', 'none');
+				} else {
+					$('.offCanvasSide-bottom').css('display', 'block');
+				}
+			}
+		</script>
+	</body>
+
+</html>

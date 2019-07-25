@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
-		<title>品牌联盟</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -11,7 +12,8 @@
 		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
 		<link href="../../css/style.css" rel="stylesheet" />
 	</head>
-	<body style="margin: 0;max-width: 100%;">
+
+	<body id="app">
 		<!-- 主页面部分 -->
 		<header class="mui-bar mui-bar-nav bg-red noShadow header-boxz">
 			<div class="topbar">
@@ -45,8 +47,8 @@
 					<use xlink:href="#icon-m-av"></use>
 				</svg>
 			</div>
-			<div class="classfy-item">
-				<a id="offCanvasBtn" @tap="toggleCateMask('Cate','show')">筛选 <span class="mui-icon iconfont icon-m-af"></span></a>
+			<div class="classfy-item" id="show-btn">
+				<a id="offCanvasBtn">筛选 <span class="mui-icon iconfont icon-m-af"></span></a>
 			</div>
 		</div>
 
@@ -73,12 +75,11 @@
 			</ul>
 			<div class="underline">------------ 已经没有更多了 ------------</div>
 		</div>
-		<script src="../../js/mui.js"></script>
+		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/zepto.min.js"></script>
 		<script src="../../js/iconfont.js"></script>
 		<script src="../../js/vue.js"></script>
 		<script src="../../js/api.js"></script>
-		<script src="../../data/classy.js"></script>
 		<script src="../../data/search.js"></script>
 		<script src="search.js"></script>
 	</body>
