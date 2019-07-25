@@ -7,14 +7,20 @@
 * manifest.json APP的配置信息，具体怎么配置的参照http://ask.dcloud.net.cn/article/94
 
 ## 涉及到知识点：
+* vue.js
+* iScroll.js（mui下拉刷新和部分功能有冲突，页面可以滚动并且有输入框时，页面容易错乱）
 * 首页底部Tab
+* banner广告
 * 沉浸式状态栏
 * 分类顶部切换的slider
+* 图片预览并保存到相册
+* 拍照、扫码、选择本地文件
+* 侧滑栏
 * 搜索列表页双层类似侧滑的弹框
 * 上拉刷新下拉加载
 * 登录、退出逻辑处理
 <br><br>主要功能点：<br>
-首页tab，banner广告，商品分类，搜索列表，商品详情，购物车，下订单，个人中心，我的订单/退单，收货地址管理
+首页商品展示，商品分类，搜索列表，商品详情，购物车，下订单，个人中心，我的订单/退单，收货地址管理
 ## 首页底部的Tab
 html页面<br>
 ```
@@ -223,10 +229,10 @@ var styles = { // 窗口参数 参考5+规范中的WebviewStyle,也就是说Webv
 }
 plus.webview.create(url, id, styles, extras);
 ```
-__1.mui原生标题栏，假如titleColor的值为小写（#ffffff）的话，在IOS上不显示标题，必须要大写（#FFFFFF）才显示，亲测<br>
+__1.mui原生标题栏，假如titleColor的值为小写（#ffffff）的话，在IOS上不显示标题，必须要大写（#FFFFFF）才显示，亲测<br>__
 __2.非原生标题栏，假如页面中有输入框的话，软键盘弹出，IOS上会把标题栏顶上去，因为ios弹出软键盘的时候，webview的高度没有变化导致超出屏幕范围，
-而plus这时候又会自动把header的 position：fixed 属性设置为 position：relative，header就跟着滚动了。在mui社区找到一个的解决方案：
-[](http://ask.dcloud.net.cn/question/10629)
+而plus这时候又会自动把header的 position：fixed 属性设置为 position：relative，header就跟着滚动了。在mui社区找到一个的解决方案：__
+http://ask.dcloud.net.cn/question/10629
 ```
 plus.webview.currentWebview().setStyle({  
     softinputMode: "adjustResize"  // 弹出软键盘时自动改变webview的高度  
@@ -246,4 +252,4 @@ html, body {
     overflow: auto;   
 }   
 ```
-这样会解决IOS标题栏顶上去的问题，但是这样处理后，页面打开会有个标题栏会有震动，虽然很短暂，但是看着不爽
+这样会解决IOS标题栏顶上去的问题，但是这样处理后，页面打开标题栏会有抖动，虽然很短暂，但是看着不爽
