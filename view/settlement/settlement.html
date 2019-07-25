@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>品牌联盟</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link href="../../css/style.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-media-left{
+			float: left;width: 75%;min-height: 100px;height:auto;padding-bottom: 25px;
+			}
+			.goods-name{
+			font-size: 14px;line-height:21px;
+			}
+			.goods-model{
+			color: #757575;font-size: 13px;margin-top: 6px;line-height:22px;
+			}
+			.goods-all-price{
+			height: 26px;font-size: 15px;
+			}
+			.mui-media-right{
+			float: right;width:25%;text-align: right;
+			}
+			.goods-price{line-height:22px;color: #717071;
+			}
+			.goods-old-price{
+			line-height:22px;margin-top: 4px;font-size: 13px;
+			}
+			.goods-num{
+			margin-top: 4px;font-size: 13px;
+			}
+		</style>
+	</head>
+
+	<body id="el-box">
+		<header id="header" class="mui-bar mui-bar-nav bg-red noShadow">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left text-white"></a>
+			<h1 class="mui-title text-white">确认订单</h1>
+		</header>
+
+		<div class="mui-content pdb-100">
+			<div id="adress-detail" class="mui-table-view-cell adress-detail mgb-6">
+				<a class="mui-navigate-right white-space--initial" @tap="gotoAddressManage()">
+					<template v-if="RecieveAddress!=null">
+						<div class="adress-detail__title" style="font-size: 14px;color: #646464;">
+							<img src="../../img/customer_location.png" style="height: 19px;width: 16px;position: relative;top: 3px;margin-right: 9px;">
+							<strong>{{RecieveAddress.RecieveName}}</strong>
+							<strong  class="adress-detail__body font-size-16">{{RecieveAddress.MobilePhone}}</strong>
+						</div>
+						<div class="adress-detail__body" style="font-size: 13px;color: #757575;">
+							地址：{{RecieveAddress.RecieverProvinceName}}{{RecieveAddress.RecieverCityName}}{{RecieveAddress.RecieverCountyName}}{{RecieveAddress.RecieverAddress}}
+							<template v-if="RecieveAddress.PostCode">
+								({{RecieveAddress.PostCode}})
+							</template>
+						</div>
+					</template>
+					<div v-if="RecieveAddress==null" style="padding: 10px;text-align:center">
+						<span class="text-red" style="color: #F29E96;">
+							您还没有收货地址，赶紧添加吧！
+						</span>
+					</div>
+				</a>
+			</div>
+
+			<div class="goods">
+				<div class="block-group">
+					<ul class="mui-table-view">
+						<li class="li_normal mui-table-view-cell mui-media" v-for="(index,Goods) in GoodsList">
+							<div class="classfy-item__img flexbox">
+								<img class="mui-media-object mui-pull-left" :src="Goods.DefaultPicURL">
+							</div>
+							<div class="mui-media-body classfy-item__body" style="min-height: 100px;height:auto;">
+								<div class="mui-media-left">
+									<!-- 商品名称 -->
+									<div class="goods-name">{{Goods.GoodsName}}</div>
+									<div class="goods-model">
+										型号: {{Goods.GoodsModel}}
+										&nbsp;&nbsp;{{Goods.GoodsAttributesName}}: {{Goods.GoodsAttributesValueName}}
+									</div>
+									<!-- 商品总价 -->
+									<div class="mui-media-price text-red goods-all-price">
+										￥{{(Goods.Price * Goods.Amount).toFixed(2)}}
+									</div>
+								</div>
+								<div class="mui-media-right">
+									<!-- 商品单价 -->
+									<p class="goods-price">
+										<span class="unit-price">￥{{(Goods.Price*1).toFixed(2)}}</span>
+									</p>
+									<!-- 商品原价 -->
+									<p class="goods-old-price">
+										<s class="price-origin">￥{{(Goods.OldPrice*1).toFixed(2)}}</s>
+									</p>
+									<p class="goods-old-price">9.5折</p>
+									<!-- 商品数量 -->
+									<p class="goods-num">X {{Goods.Amount}}</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				
+				<ul class="mui-table-view">
+					<!--优惠券勾选-->
+					<li class="coupon">
+					    <div class="mgb-6" style="position:relative;">
+					        <div class="mui-checkbox checkbox-kaifapiao">
+					            <label>
+					                <input v-model="IsCoupon" name="checkbox" type="checkbox" class="gcs-radio">
+					                <label class="point"></label>
+					                <span class="checkbox-text">使用优惠券</span>
+					            </label>
+					            <span class="checkbox-text checkbox-text-tip">&nbsp;&nbsp;&nbsp;{{AmountInfo.CouponName}}（剩余可用￥{{AmountInfo.CouponAmount}}）</span>
+					        </div>
+					        <!--优惠券说明详情-->
+					        <ul class="mui-table-view">
+					            <li class="mui-table-view-cell mui-collapse">
+					                <a class="mui-navigate-right text-blue">&nbsp;</a>
+					                <div class="mui-collapse-content">
+					                    <ul class="mui-table-view" >
+					                        <li class="mui-table-view-cell mui-table-view-cell-new">
+					                            <span class="mui-view-cell-val">
+													{{AmountInfo.Description}}
+					                            </span>
+					                        </li>
+					                    </ul>
+					                </div>
+					            </li>
+					        </ul>
+					    </div>
+					</li>
+				</ul>
+				<ul class="mui-table-view ">
+					
+					<li class="mui-table-view-cell" >
+						商品总金额
+						<span class="mui-view-cell-val text-red text-big">
+								￥ {{AmountInfo.GoodsTotalAmount}}
+						</span>
+					</li>
+					<li class="mui-table-view-cell">
+						促销优惠
+						<span class="mui-view-cell-val text-red text-big">
+							-￥{{AmountInfo.GoodsCuXiaoYouHui}}
+						</span>
+					</li>
+					<li class="mui-table-view-cell">
+						优&nbsp;&nbsp;惠&nbsp;&nbsp;券
+						<span class="mui-view-cell-val text-red text-big">
+							-￥{{AmountInfo.CouponOrderAmount}}
+						</span>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+		<div v-if="RecieveAddress!=null" style="display: none;background-color: #FFF1D9;" id="address" class="mui-bar mui-bar-tab noShadow bg-warn text-warn mui-bar-cartsum confirmOrder-warnInfo">
+			地址：{{RecieveAddress.RecieverProvinceName}}{{RecieveAddress.RecieverCityName}}{{RecieveAddress.RecieverCountyName}}{{RecieveAddress.RecieverAddress}}
+			<template v-if="RecieveAddress.PostCode">
+				({{RecieveAddress.PostCode}})
+			</template>
+		</div>
+
+
+		<div id="bottomx" class="mui-bar mui-bar-tab" style="box-shadow: 0 4px 8px #000;">
+			<div class="bar-tab-sum">
+				应付：<span class="text-red" style="font-weight: bold;">￥
+						{{AmountInfo.GoodsTotalAmount-AmountInfo.GoodsCuXiaoYouHui-AmountInfo.CouponOrderAmount}}
+					</template>
+				</span>
+				<button class="mui-btn mui-btn-danger mui-pull-right" :disabled="RecieveAddress==null" type="button" @tap="submit()">提交订单</button>
+			</div>
+		</div>
+
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/zepto.min.js"></script>
+		<script src="../../js/vue.js"></script>
+		<script src="../../js/api.js"></script>
+		<script src="../../data/settlement.js"></script>
+		<script src="settlement.js"></script>
+	</body>
+
+</html>

@@ -198,6 +198,25 @@ function del_html_tags(str, reallyDo, replaceWith) {
 }
 
 /**
+ * @param {Object} arg字符串转dom   parseDom("<div>"+GoodsDesc+"</div>")  
+ */
+function parseDom(arg) {
+	var objE = document.createElement("div");
+	objE.innerHTML = arg;
+	return objE.childNodes;
+};
+/**
+ * @param {Object} node  dom转字符串
+ */
+function nodeToString(node) {
+	var tmpNode = document.createElement("div");
+	tmpNode.appendChild(node);
+	var str = tmpNode.innerHTML;
+	tmpNode = node = null; // prevent memory leaks in IE  
+	return str;
+}
+
+/**
  * 打开页面
  * url 页面
  * id  页面ID
@@ -261,7 +280,7 @@ function createGoodsDetail(goodsId) {
 	var extras = {
 		goodsId: goodsId
 	}
-	plus.webview.create("goodsDetail.html", "goodsDetail.html", styles, extras);
+	plus.webview.create("../detail/goods-detail.html", "goods-detail.html", styles, extras);
 }
 
 function showWindow() {

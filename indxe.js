@@ -16,6 +16,7 @@ mui.back = function back() {
 }
 
 window.addEventListener('refresh', function(e) { //执行刷新
+	console.log(e.detail.index)
 	var btn = null;
 	if (e.detail.index == 1) {
 		btn = document.getElementById("tab1");
@@ -25,7 +26,6 @@ window.addEventListener('refresh', function(e) { //执行刷新
 		btn = document.getElementById("tab3");
 	} else {
 		btn = document.getElementById("defaultTab");
-		HomeInfo.user=getUser();
 	}
 	mui.trigger(btn, 'tap');
 	//切换选项卡高亮

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>品牌联盟</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link href="../../css/style.css" rel="stylesheet" />
+	</head>
+	<body id="app">
+		<div class="state-container">
+			<div v-if="isSuccess==0" class="state-icon state-payfailed"></div>
+			<div v-if="isSuccess==1" class="state-icon state-paysuccess"></div>
+			<div class="state-title">
+				支付成功
+			</div>
+			<div class="state-subtitle">
+				恭喜你支付成功<br />
+				感谢您对品牌联盟的支持！
+			</div>
+			<div class="state-btns">
+				<a date-href="order-list" type="button" class="mui-btn mui-btn-danger mui-btn-outlined">查看订单</a>
+				<a date-href="home" type="button" class="mui-btn mui-btn-danger">返回首页</a>
+			</div>
+		</div>
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/vue.js"></script>
+		<script src="../../js/zepto.min.js"></script>
+		<script src="../../js/api.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			var Info = new Vue({
+				el: "#app",
+				data: {
+					isSuccess: 0,
+				}
+			})
+			mui.back = function() {
+				// plus.webview.currentWebview().close();
+			};
+			mui.plusReady(function() {
+				var self = plus.webview.currentWebview();
+				Info.isShowJLJ = self.isShowJLJ;
+				Info.isSuccess = self.isSuccess;
+				Info.subTitle = self.subTitle;
+				if (Info.isShowJLJ == 1) {
+					var TotalMoney = self.TotalMoney;
+					Info.jianglijin = (TotalMoney * getUser().RewardAmountRate).toFixed(2);
+				}
+				mui(".state-btns").on("tap", "a", function(event) {
+					var href = $(this).attr("date-href");
+					//商品详情
+					var goodsDetail = plus.webview.getWebviewById("goods-detail.html");
+					if (goodsDetail) {
+						plus.webview.close(goodsDetail, "none");
+					}
+					//商品搜索页
+					var search = plus.webview.getWebviewById("search.html");
+					if (search) {
+						plus.webview.close(search, "none");
+					}
+					
+					//购物车 确认订单
+					var settlement = plus.webview.getWebviewById("settlement.html");
+					if (settlement) {
+						plus.webview.close(settlement, "none");
+					}
+					//订单详情
+					var orderDetail = plus.webview.getWebviewById("order-detail.html");
+					if (orderDetail) {
+						plus.webview.close(orderDetail, "none");
+					}
+					//支付页面
+					var payment = plus.webview.getWebviewById("payment.html");
+					if (payment) {
+						plus.webview.close(payment, "none");
+					}
+					var order = plus.webview.getWebviewById("order-list.html");
+					if (order) {
+						plus.webview.close(order, "none");
+					}
+					if ("order-list" == href) {
+						var extras = {
+							Status: "",
+							OrderID:self.OrderID
+						}
+						createWindow("../order/order-detail.html", "order-detail.html", extras)
+						plus.webview.currentWebview().close();
+					} else {
+						var main = plus.webview.getLaunchWebview();
+						mui.fire(main, 'refresh', {
+							index: 0
+						});
+						plus.webview.currentWebview().close();
+					}
+				})
+			})
+		</script>
+	</body>
+
+</html>

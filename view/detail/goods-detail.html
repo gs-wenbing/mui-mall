@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>品牌联盟</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../css/iconfont.css" rel="stylesheet" />
+		<link href="../../css/style.css" rel="stylesheet" />
+		<link href="../../css/icons-extra.css" rel="stylesheet" />
+	</head>
+	<style>
+		.header-bar { background-color: rgba(230,0,18,0);}
+		.icon-share{ width: 24px;height: 24px;text-align: center; font-size: 18px !important;}
+		.mui-title{ color:#ffffff;opacity: 0;}
+		/* 改变图标的颜色 */
+		.mui-bar a{
+			color: #fff;
+		}
+		.Goods-Display{
+			display: none;
+		}
+		body {
+			padding-top: constant(safe-area-inset-top);
+        }
+ 
+        .mui-bar.mui-bar-nav {
+			top: constant(safe-area-inset-top);
+        }
+	</style>
+
+	<body id="goodsDetail" style="margin: 0;max-width: 100%;">
+		<div class="mui-content pdb-50" style="padding-top: 25px;background-color: white;">
+			<!--轮播图片-->
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-group mui-slider-group">
+					<div class="mui-slider-item" v-for="goodsPic in GetGoodsPicURL">
+						<div style="height: 350px;display: flex;justify-content: center; align-items: center; ">
+							<img :src="goodsPic.PicURL" data-preview-src="" data-preview-group="1">
+						</div>
+					</div>
+				</div>
+				<div class="mui-slider-indicator">
+					<div class="mui-indicator" :class="{'mui-active':index==0}" v-for="(index,goodsPic) in GetGoodsPicURL"></div>
+				</div>
+			</div>
+
+			<div class="goods">
+				<div class="block-group">
+					<div class="block-row block-price" style="height: 40px;">
+						<span id="totalGoodsPrice">
+							￥12.90
+						</span>
+						<span id="unitPrice" style="color: #000; font-size: .2rem;font-weight: normal;margin-left: 15px;">
+							单品价：￥0.65
+						</span>
+						<s class="price-origin" style="color: #000; font-size: .2rem;font-weight: normal;margin-left: 15px;">
+							原价： ￥1.20
+						</s>
+						<span class="tag" style="padding-top:2px">新品,热销</span>
+					</div>
+					<h1 class="block-row block-title" style="line-height:2;">
+						{{Goods.GoodsName}}{{Goods.GoodsName}}
+					</h1>
+					<!-- 1:折扣促销  2:满量  3：满额  4：坎级 -->
+					<div class="block-row block-mane">
+						<span class="tag">满减</span>
+						<span class="confirmOrder-reduction mg-r-2">
+							购买该商品满50元减5元,满100元减10元，满100元减10元，满100元减10元，满100元减10元，
+						</span>
+					</div>
+					<div class="block-row block-attr mui-clearfix">
+						<label class="block-attr__title">属&nbsp;&nbsp;&nbsp;&nbsp;性</label>
+						<div class="block-attr__body" id="goodsSkuUl">
+							<template v-for="(index,sku) in GoodsSkuList">
+								<span :data-index="index" class="inline-attr__val" :class="{'active':index==0}">{{sku.GoodsAttributesValueName}}</span>
+							</template>
+						</div>
+					</div>
+					<div class="block-row block-attr mui-clearfix">
+						<label class="block-attr__title">包&nbsp;&nbsp;&nbsp;&nbsp;装</label>
+						<div class="block-attr__body" id="goodsTemplate">
+							<template v-for="(index,temp) in GoodsUnitTemplateList">
+								<span :data-index="index" class="inline-pack__val" :class="{'active':index==0}">{{temp.UnitTemplateDes}}</span>
+							</template>
+						</div>
+					</div>
+					<div class="block-row block-attr mui-clearfix">
+						<label class="block-attr__title pdtb-10">购买数量</label>
+						<div class="block-attr__body">
+							<div class="mui-numbox" data-numbox-min='1'>
+								<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+								<input class="mui-input-numbox" v-model="inputNum" type="number" />
+								<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="block-group">
+					<div class="block-row block-attr mui-clearfix">
+						<label class="block-attr__title">商品卖点</label>
+						<div class="block-attr__body">
+							{{Goods.GoodsSalePoint}}
+						</div>
+					</div>
+					<div class="block-row block-attr mui-clearfix">
+						<label class="block-attr__title">产品型号</label>
+						<div class="block-attr__body">
+							{{Goods.GoodsModel}}
+						</div>
+					</div>
+					<div class="block-row block-attr mui-clearfix">
+						<label class="block-attr__title">产品规格</label>
+						<div class="block-attr__body">
+							{{Goods.GoodsUnitTemplateDes}}
+						</div>
+					</div>
+					<div class="block-row block-attr mui-clearfix">
+						<label class="block-attr__title">适用人群</label>
+						<div class="block-attr__body">
+							学生
+						</div>
+					</div>
+				</div>
+
+				<div class="goods-detail">
+					<div class="goods-detail__title">
+						商品详情
+					</div>
+					<div class="goods-detail__body" v-html="Goods.GoodsDesc">
+						{{Goods.GoodsDesc}}
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<nav class="mui-bar mui-bar-tab table-layout-auto">
+			<a class="mui-tab-item ft-tab-item" data-index="0">
+				<span class=" mui-icon iconfont icon-m-ao"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item ft-tab-item" data-index="2">
+				<!--经沟通原型设计只设计一个即可，开发做公用组件-->
+				<span v-if="cartNum>0" class="goods-corner-marker" style="
+						width: 15px;
+						height: 15px;
+						line-height: 17px;
+						background: red;
+						color: #fff;
+						font-size: 10px;
+						position: absolute;
+						margin-left: 14px;
+						border-radius: 50%;
+						z-index: 100000;">
+					<span class="goods-num">{{cartNum}}</span>
+				</span>
+				<span class="mui-icon iconfont icon-m-ak"></span>
+				<span class="mui-tab-label">购物车</span>
+			</a>
+			<a class="mui-tab-item ft-tab-item" data-index="3">
+				<span class="mui-icon iconfont icon-m-am"></span>
+				<span class="mui-tab-label">收藏</span>
+			</a>
+			<a class="mui-tab-item-nolink" data-index="4">
+				<button class="mui-btn-danger">加入购物车</button>
+			</a>
+			<a class="mui-tab-item-nolink" data-index="5">
+				<button class="mui-btn-danger">立即购买</button>
+			</a>
+		</nav>
+
+
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/mui.zoom.js"></script>
+		<script src="../../js/mui.previewimage.js"></script>
+		<script src="../../js/zepto.min.js"></script>
+		<script src="../../js/vue.js"></script>
+		<script src="../../js/api.js"></script>
+		<script src="../../data/detail.js"></script>
+		<script src="goods-detail.js"></script>
+	</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>品牌联盟</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link href="../../css/style.css" rel="stylesheet" />
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav bg-red noShadow">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left text-white"></a>
+			<h1 class="mui-title text-white">订单支付</h1>
+		</header>
+		<div class="mui-content">
+			<div class="notice-wrapper" v-if="user.CustomerType!=6">
+				<div class="notice flexbox">
+					<span class="icon-notice"></span>
+					<marquee class="notice-text">
+						好消息！下订单只要使用微信和支付宝支付货款，订单经确认并全部发货后，可获得金额计奖励金{{user.RewardAmountRate*100}}%。
+					</marquee>
+				</div>
+			</div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<label>订单编号</label>
+					<span class="mui-view-cell-val">
+						{{Order.OrderNo}}
+					</span>
+				</li>
+				<li class="mui-table-view-cell">
+					<label>订单金额</label>
+					<span class="mui-view-cell-val">
+						￥ {{Order.TotalAmount}}
+					</span>
+				</li>
+				<li class="mui-table-view-cell">
+					<label>未付款金额</label>
+					<span class="mui-view-cell-val text-red">
+						￥ {{Order.payMoney}}
+					</span>
+				</li>
+				<li class="mui-input-row beforeline">
+					<label>支付金额</label>
+					<input id="payMoney" value="{{Order.payMoney}}" type="number" onkeyup="this.value= this.value.match(/\d+(\.\d{0,2})?/) ? this.value.match(/\d+(\.\d{0,2})?/)[0] : ''"
+					 class="mui-input-text mui-text-right" placeholder="请确认金额">
+				</li>
+			</ul>
+
+			<div class="pay-method beforeline">支付方式</div>
+			<ul class="mui-table-view">
+				<li class="mui-input-row beforeline mui-radio pay pay-yue">
+					<label data-pay="pay-yue">余额支付 <small>（当前账户余额{{AcountBalance.AcountBalance}}元）</small></label>
+					<input name="radio-pay" type="radio" data-id="yue">
+				</li>
+				<li class="mui-input-row beforeline mui-radio pay pay-weixin">
+					<label data-pay="pay-weixin">微信支付</label>
+					<input name="radio-pay" type="radio" data-id="wxpay">
+				</li>
+				<li class="mui-input-row mui-radio pay pay-zhifubao">
+					<label data-pay="pay-zhifubao">支付宝支付</label>
+					<input name="radio-pay" type="radio" data-id="alipay">
+				</li>
+				<li class="mui-table-view-cell mui-radio pay pay-xianxia">
+					<a class="mui-navigate-right" @tap="goXianxiaPay">
+						<label data-pay="pay-xianxia">
+							线下支付
+						</label>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<a id="btn-confirmPay" class="mui-bar mui-bar-tab bg-red text-white bottom-fixed-block">支付</a>
+
+		<!-- 底部弹窗 -->
+		<div id="confirmPay" class="box mui-popover mui-popover-action mui-popover-bottom pay-container">
+			<h3 class="mui-popover-title pay-title beforeline">
+				输入支付密码
+				<span class="mui-icon mui-icon-closeempty icon-close"></span>
+			</h3>
+			<div class="mui-popover-body pay-body">
+				<div class="input-container">
+					<input class="input-item" type="password" readonly>
+					<input class="input-item" type="password" readonly>
+					<input class="input-item" type="password" readonly>
+					<input class="input-item" type="password" readonly>
+					<input class="input-item" type="password" readonly>
+					<input class="input-item" type="password" readonly>
+				</div>
+				<div class="forgetPwd-container">
+					<a class="forgetPwd">忘记密码？</a>
+				</div>
+				<div class="key-container">
+					<div class="key-item">1</div>
+					<div class="key-item">2</div>
+					<div class="key-item">3</div>
+					<div class="key-item">4</div>
+					<div class="key-item">5</div>
+					<div class="key-item">6</div>
+					<div class="key-item">7</div>
+					<div class="key-item">8</div>
+					<div class="key-item">9</div>
+					<div class="empty"></div>
+					<div class="key-item">0</div>
+					<div class="key-item remove"></div>
+				</div>
+			</div>
+		</div>
+
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/zepto.min.js"></script>
+		<script src="../../js/vue.js"></script>
+		<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+		<script src="../../js/api.js"></script>
+		<script src="../../js/md5.js"></script>
+		<script src="payment.js"></script>
+	</body>
+
+</html>
