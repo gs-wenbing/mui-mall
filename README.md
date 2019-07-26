@@ -1,11 +1,3 @@
-## 首先说明一下项目结构：
-* img目录存放静态图片
-* data目录存放模拟的数据
-* js目录存放公用的js工具
-* view目录存放html页面
-* index.html 首页，也是启动页面，启动页可以在manifest.json中配置
-* manifest.json APP的配置信息，具体怎么配置的参照http://ask.dcloud.net.cn/article/94
-
 ## 涉及到知识点：
 * vue.js
 * 首页底部Tab
@@ -20,7 +12,16 @@
 * 登录、退出逻辑处理
 <br><br>主要功能点：<br>
 首页商品展示，商品分类，搜索列表，商品详情，购物车，下订单，个人中心，我的订单/退单，收货地址管理
-## 首页底部的Tab
+
+
+## 示例图片
+
+## 说明
+如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^<br>
+如有问题请直接在 Issues 中提，谢谢！ ^_^
+
+## 常见问题
+* 首页底部的Tab
 html页面<br>
 ```
 <nav class="mui-bar mui-bar-tab footerBar">
@@ -114,7 +115,7 @@ js代码
 注意iphoneX中出现遮挡底部tab现象,采用js判断屏幕大小方式改变bottom值，isIPhoneX()，isIPhoneX() 要在plusReady后调用。
 
 
-## 沉浸式状态栏
+* 沉浸式状态栏
 1.在manifest.json文件，切换到代码视图，在plus -> statusbar 下添加immersed节点并设置值为true
 ```
 "statusbar" : {
@@ -214,7 +215,7 @@ function isIPhoneX(){
 }
 ```
 
-## 标题栏在IOS上存在的问题
+*  标题栏在IOS上存在的问题
 原生标题栏
 
 ```
@@ -251,4 +252,4 @@ html, body {
     overflow: auto;   
 }   
 ```
-这样会解决IOS标题栏顶上去的问题，但是这样处理后，页面打开标题栏会有抖动，虽然很短暂，但是看着不爽
+这样会解决IOS标题栏顶上去的问题，但是这样处理后，页面打开标题栏会有抖动，虽然很短暂，但是看着不爽,有更好的方案可以联系我（QQ742330561）
