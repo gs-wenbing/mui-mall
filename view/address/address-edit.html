@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link href="../../css/style.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/mui.picker.css">
+		<link rel="stylesheet" href="../../css/mui.poppicker.css">
+	</head>
+	<body id="app" class="mui-fullscreen">
+		<div class="mui-page-content">
+			<div class="mui-input-group mgb-6" >
+				<div class="mui-input-row">
+					<label>
+						<i class="input-label-warning">*</i> 收&nbsp;货&nbsp;人
+					</label>
+					<input id="RecieveName" :value="RecieveAddress.RecieveName" type="text" class="mui-input-text mui-text-right mui-text-right"
+					 placeholder="请输入收货人姓名">
+				</div>
+				<div class="mui-input-row">
+					<label>
+						<i class="input-label-warning">*</i> 手机号码
+					</label>
+					<input type="text" id="MobilePhone" :value="RecieveAddress.MobilePhone" class="mui-input-text mui-text-right mui-text-right"
+					 placeholder="请输入手机号码">
+				</div>
+				<div class="mui-input-row">
+					<label>
+						<i class="input-label-warning">*</i> 所在地区
+					</label>
+					<input id="showCityPicker" :value="RecieveAddress.RecieverProvinceName + RecieveAddress.RecieverCityName +RecieveAddress.RecieverCountyName"
+					 :data-provinceid="RecieveAddress.RecieverProvinceID" :data-cityid="RecieveAddress.RecieverCityID" :data-countyid="RecieveAddress.RecieverCountyID"
+					 readonly="true" type="text" class="mui-input-text mui-text-right mui-text-right" placeholder="请选择所在地区">
+				</div>
+				<div class="mui-input-row">
+					<label>
+						<i class="input-label-warning">*</i> 详细地址
+					</label>
+					<input type="text" id="RecieverAddress" :value="RecieveAddress.RecieverAddress" class="mui-input-text mui-text-right"
+					 placeholder="请输入详细地址">
+				</div>
+				<div class="mui-input-row mgb-6">
+					<label><i class="input-label-transparent">*</i> 邮政编码</label>
+					<input type="text" id="PostCode" :value="RecieveAddress.PostCode" class="mui-input-text mui-text-right"
+					 placeholder="请输入邮政编码">
+				</div>
+			</div>
+			<div class="mui-input-group mgb-6">
+				<div class="mui-input-row">
+					<label><i class="input-label-transparent">*</i> 设为默认地址</label>
+					<div id="mySwitch" style="height: 24px;top: 3px;" :class="{'mui-active':RecieveAddress.IsDefault=='1'}" class="mui-switch mui-switch-mini">
+						<div class="mui-switch-handle" style="height: 22px;width: 22px;" ></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a @tap="saveAddressData()" class="mui-bar mui-bar-tab bg-red text-white bottom-fixed-block">保存</a>
+		</div>
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/vue.js"></script>
+		<script src="../../js/mui.picker.js"></script>
+		<script src="../../js/mui.poppicker.js"></script>
+		<script src="../../js/city.data.js"></script>
+		<script src="../../js/zepto.min.js"></script>
+		<script src="../../js/api.js"></script>
+		<script src="address-edit.js"></script>
+	</body>
+
+</html>

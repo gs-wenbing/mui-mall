@@ -66,7 +66,7 @@ function login(self, that) {
 	var t1 = window.setTimeout(function(){
 		mui(that).button('reset');
 		document.activeElement.blur(); //隐藏软键盘  
-		setStorage("user", userInfo);
+		setStorage("user-test", userInfoByCache);
 		//记住密码
 		if (LoginInfo.isRemember) {
 			setStorage("isRemember", 1);

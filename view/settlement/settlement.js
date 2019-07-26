@@ -36,7 +36,7 @@ var payOrder = new Vue({
 			var param = {
 				selectOneAddress: true
 			}
-			createWindowWithTitle("../address/addressManage.html", "addressManage.html","地址管理", param);
+			createWindowWithTitle("../address/address.html", "address.html","地址管理", param);
 		}
 	}
 
@@ -91,7 +91,3 @@ window.addEventListener('initAddress', function(e) {
 	}
 });
 
-window.addEventListener('updateInvoice', function(e) { //执行刷新
-	console.log(e.detail.InvoiceInfo)
-	payOrder.InvoiceInfo = e.detail.InvoiceInfo;
-});

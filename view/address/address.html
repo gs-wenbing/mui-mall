@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link href="../../css/style.css" rel="stylesheet" />
+		<style type="text/css">
+			.adressM-panel__opt .mui-checkbox input[type="checkbox"]::before{ font-size: 18px;}
+		</style>
+	</head>
+	<body class="mui-fullscreen">
+		<div class="mui-page-content">
+			<div class="state-container" v-if="RecieveAddressList.length==0">
+				<div class="state-icon state-nodata"></div>
+				<div class="state-title">
+					还未添加收货地址
+				</div>
+				<a @tap="addNewAdress" type="button" class="mui-btn mui-btn-danger">添加地址</a>
+			</div>
+			<div class="mui-scroll-wrapper" v-if="RecieveAddressList.length!=0" style="margin-bottom: 110px;">
+				<div class="mui-scroll">
+					<div class="adressM-panel mgb-6"  v-for="(index,address) in RecieveAddressList">
+						<div @tap="selectResAddress(index)">
+							<div class="adressM-panel__head" style="font-size: 14px;">
+								{{address.RecieveName}}&nbsp;&nbsp;&nbsp;&nbsp;{{address.MobilePhone}}
+							</div>
+							<div class="adressM-panel__body beforeline"  style="font-size: 13px;">
+								{{address.RecieverProvinceName}}{{address.RecieverCityName}}{{address.RecieverCountyName}}{{address.RecieverAddress}}
+								<template v-if="address.PostCode">
+									({{address.PostCode}})
+								</template>
+							</div>
+						</div>
+						<div class="adressM-panel__opt flexbox align-items-center" >
+							<div class="mui-input-row mui-checkbox mui-left" style="top: 5px;">
+								<label v-if="address.IsDefault==1" style="font-size: 13px;">默认地址</label>
+								<label v-if="address.IsDefault!=1" style="font-size: 13px;">设为默认</label>
+								<input name="checkbox"  type="checkbox" v-on:click="setDefault(address,index)" :checked="address.IsDefault==1">
+							</div>
+							<a @tap='editAddress(index)' class="btn-opt btn-edit"  style="font-size: 13px;">
+								<span class="mui-icon mui-icon-compose"></span>
+								编辑
+							</a>
+							<a @tap='deleteAddress(address.RecieveAddressID)' class="btn-opt btn-remove" style="font-size: 13px;">
+								<span class="mui-icon mui-icon-trash" style="size: 1px;"></span>
+								删除
+							</a>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<a @tap="addNewAdress" v-if="RecieveAddressList.length!=0" class="mui-bar mui-bar-tab bg-red text-white bottom-fixed-block">添加新地址</a>
+		</div>
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/zepto.min.js"></script>
+		<script src="../../js/vue.js"></script>
+		<script src="../../js/api.js"></script>
+		<script src="../../data/address.js"></script>
+		<script src="address.js"></script>
+	</body>
+
+</html>

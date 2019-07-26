@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>品牌联盟</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../css/iconfont.css" rel="stylesheet"/>
+		<link href="../../css/style.css" rel="stylesheet" />
+		<link href="../../css/scrollbar.css" rel="stylesheet"/>
+	</head>
+	
+	<body id="app">
+		<header class="mui-bar mui-bar-nav bg-red noShadow">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left text-white"></a>
+			<h1 class="mui-title text-white">我的订单</h1>
+		</header>
+		<div class="order-nav flexbox align-items-center beforeline" style="position: fixed;width: 100%;margin-top: 64px;left: 0px;">
+			<div class="order-nav-item" :class="{'active':Status==''}" data-id="">
+				全部
+			</div>
+			<div class="order-nav-item PayStatus" :class="{'active':Status=='0'}" data-id="0">
+				未付款
+			</div>
+			<div class="order-nav-item OrderStatus" :class="{'active':Status=='1'}" data-id="10">
+				已受理
+			</div>
+			<div class="order-nav-item OrderStatus" :class="{'active':Status=='2'}" data-id="30">
+				已发货
+			</div>
+			<div id="btn-open" class="order-nav-item btn-open">
+				<span class="mui-icon mui-icon-arrowdown btn-open-icon"></span>
+			</div>
+		</div>
+		<div id="wrapper" style="top: 104px;">
+			<div id="scroller">
+				<div id="pullDown">
+					<span class="pullDownLabel">下拉刷新</span>
+				</div>
+				<div class="mgb-6" v-if="orderList.length!=0" v-for="(index,item) in orderList" >
+					<ul class="mui-table-view " @tap="toOrderDetail(item.OrderID)">
+						<li class="mui-table-view-cell mui-active-link ">
+							<a class="mui-navigate-right">
+								{{item.OrderNo}}
+								<span class="mui-badge" :class="getStyleByStatus(item.OrderStatus)">
+									{{item.PayStatusName}} 
+									{{item.OrderStatusName}} 
+									<template v-if="item.OrderReturnStatusName || item.CancelStatus==1?'部分取消':(item.CancelStatus==2?'全部取消':'')">
+										...
+									</template>
+								</span>
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<label>类型：</label>{{item.OrderTypeName}}
+							<span class="mui-view-cell-val">
+								<label>合计：</label> <span class="text-red">￥ {{item.TotalAmount}}</span>
+							</span>
+						</li>
+					</ul>
+					<div class="mui-input-group mui-text-right beforeline pdtb-10">
+						<a @tap="showCancleBox(item.OrderID)" v-if="item.OrderStatus === 0 && item.PayStatus===0" style="right: 15px;" class="btn-cancle mui-btn mui-btn-danger mui-btn-outlined mg-0">取消订单</a>
+						<button v-if="item.PayStatus < 2 && item.OrderStatus<60" @tap="toPayment(item.OrderID,item.IsInvoice)" style="right: 5px;" type="button" class="mui-btn mui-btn-danger">立即付款</button>
+					</div>
+				</div>
+				<div id="pullUp">
+					<span class="pullUpLabel">上拉加载更多</span>
+				</div>
+				<div class="state-container" v-if="orderList.length==0" style="margin-top: 40px;">
+					<div class="state-icon state-nodata"></div>
+					<div class="state-title">
+						暂无数据！
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 弹出层--分类面板 -->
+		<div class="collapse-panel collapse-panel-1" style="margin-top: 20px;">
+			<h4 class="collapse-panel__title" style="font-size: .28rem;">订单状态</h4>
+			<div class="collapse-panel__body">
+				<div class="btns-group flexbox align-items-center">
+					<button type="button" class="mui-btn btns-item filter_orderStatus" style="padding:8px 0px;" data-id="0">已提交</button>
+					<button type="button" class="mui-btn btns-item filter_orderStatus" style="padding:8px 0px;" data-id="20">部分已发货</button>
+					<button type="button" class="mui-btn btns-item filter_orderStatus" style="padding:8px 0px;" :class="{'active':Status=='30'}" data-id="30">已发货</button>
+				</div>
+				<div class="btns-group flexbox align-items-center">
+					<button type="button" class="mui-btn mui-btn-grey btns-item filter_orderStatus" style="padding:8px 0px;" data-id="40">已收货</button>
+					<button type="button" class="mui-btn mui-btn-grey btns-item filter_orderStatus" style="padding:8px 0px;" :class="{'active':Status=='10'}"
+					 data-id="10">已受理</button>
+					<button type="button" class="mui-btn mui-btn-grey btns-item filter_orderStatus" style="padding:8px 0px;" data-id="50">交易完成</button>
+				</div>
+				<div class="btns-group flexbox align-items-center">
+					<button type="button" class="mui-btn mui-btn-grey btns-item filter_orderStatus" style="padding:8px 0px;" data-id="60">交易关闭</button>
+				</div>
+			</div>
+
+			<h4 class="collapse-panel__title" style="font-size: .28rem;">付款状态</h4>
+			<div class="collapse-panel__body">
+				<div class="btns-group flexbox align-items-center">
+					<button type="button" class="mui-btn btns-item filter_payStatus" :class="{'active':Status=='0'}" style="padding:8px 0px;" data-id="0">未付款</button>
+					<button type="button" class="mui-btn btns-item filter_payStatus" style="padding:8px 0px;" data-id="1">部分已付款</button>
+					<button type="button" class="mui-btn btns-item filter_payStatus" style="padding:8px 0px;" data-id="2">已付款</button>
+				</div>
+			</div>
+			<h4 class="collapse-panel__title" style="font-size: .28rem;">退货/退款状态</h4>
+			<div class="collapse-panel__body">
+				<div class="btns-group flexbox align-items-center">
+					<button type="button" class="mui-btn btns-item OrderReturnStatus" style="padding:8px 0px;" data-id="1">退货/退款中</button>
+					<button type="button" class="mui-btn btns-item OrderReturnStatus" style="padding:8px 0px;" data-id="2">已退货/退款</button>
+					<button type="button" class="mui-btn btns-item OrderReturnStatus" style="padding:8px 0px;visibility:hidden"></button>
+				</div>
+			</div>
+		</div>
+
+		<div id="btn-select" class="box mui-popover mui-popover-action mui-popover-bottom">
+			<div  class="mui-popover-wrapper" style="height: 380px;">
+				<div class="mui-popover-head">
+					<h3 class="mui-popover-title" style="font-weight:bold;">
+						取消订单
+						<span @tap="close" class="mui-icon mui-icon-closeempty icon-close" style="right: 8px;" ></span>
+					</h3>
+				</div>
+				<div class="mui-popover-body" style="padding-top: 2px;">
+					<div class="mui-scroll-wrapper pdb-50">
+						<div class="mui-scroll">
+							<div class="mui-popover-body" >
+								<h5 style="font-weight:bold;">请选择取消订单的原因（必选）</h5>
+								<div class="mui-input-group pdtb-10">
+									<div class="mui-input-row mui-radio noAfter">
+										<label>我不想要了</label>
+										<input name="reason-radio" style="right: 8px;" type="radio" value="0">
+									</div>
+									<div class="mui-input-row mui-radio noAfter">
+										<label>信息填写错误</label>
+										<input name="reason-radio" style="right: 8px;" type="radio" value="1">
+									</div>
+									<div class="mui-input-row mui-radio noAfter">
+										<label>其他原因</label>
+										<input name="reason-radio" style="right: 8px;" type="radio" value="2">
+									</div>
+									<textarea id="cancelReason" style="display: none;" class="mgl-15" style="width: 6.83rem;height: 2.5rem;" name=""></textarea>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<a @tap="cancelOrder()" class="mui-bar mui-bar-tab bg-red text-white bottom-fixed-block">提交</a>
+		</div>
+		<script src="../../js/iScroll.js"></script>
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/zepto.min.js"></script>
+		<script src="../../js/vue.js"></script>
+		<script src="../../js/api.js"></script>
+		<script src="../../data/order-list.js"></script>
+		<script src="order-list.js"></script>
+		<script>window.PointerEvent = undefined</script>
+		<script type="text/javascript">
+			mui.init()
+			
+			 //监听单选框状态变化
+			$('input[name="reason-radio"]').on('change', function () {
+				if ($(this).val() == "2"){
+					$("#cancelReason").css("width","6.83rem");
+					$("#cancelReason").show();
+				}else{
+					$("#cancelReason").css("width","6.83rem");
+					$("#cancelReason").hide();
+				}
+			})
+		</script>
+	</body>
+
+</html>

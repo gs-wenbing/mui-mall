@@ -1,4 +1,4 @@
-userInfo = {
+userInfoByCache = {
 	"UserAccountID": 122382,
 	"UserNo": "zhangke",
 	"UserName": "张克",

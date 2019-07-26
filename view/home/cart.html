@@ -88,7 +88,7 @@
 					<ul class="mui-table-view">
 						<li class="li_normal mui-table-view-cell mui-media" v-for="(index,Goods) in GoodsList">
 							<div class="mui-checkbox mui-pull-left">
-								<input class="checkbox" name="checkbox" type="checkbox" :checked="Goods.Checked == 1" :value="Goods" v-model="check_goods">
+								<input class="checkbox" name="checkbox" type="checkbox" checked :value="Goods" v-model="check_goods">
 							</div>
 							<div class="classfy-item__img flexbox">
 								<img class="mui-media-object mui-pull-left" :src="Goods.DefaultPicURL">

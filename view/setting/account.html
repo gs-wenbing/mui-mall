@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link href="../../css/style.css" rel="stylesheet" />
+	</head>
+	<body class="mui-fullscreen">
+		<div class="mui-page-content">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell" @tap="updateHeader">
+							<label id="head" class="mui-navigate-right">
+								头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像
+								<span class="mui-pull-right head">
+									<img class="head-img mui-action-preview" id="head-img1" :src="User.HeadImageUrl" />
+								</span>
+							</label>
+						</li>
+						<li class="mui-table-view-cell">
+							<label>用&nbsp;&nbsp;户&nbsp;&nbsp;名</label>
+							<span class="mui-pull-right">{{User.UserNo}}</span>
+						</li>
+						<li class="mui-table-view-cell">
+							<label>公司名称</label>
+							<span class="mui-pull-right">上海轧空科技有限公司</span>
+						</li>
+						<li class="mui-table-view-cell">
+							<label class="" style="width: 35%;">
+								门店地址
+							</label>
+							<div style="margin-right: -5px;display: inline-block;text-align: left;float:right;max-width: 65%;word-wrap: break-word;overflow: hidden;word-break:break-all;">
+								上海市 闸北区 共和新路 229号楼403室
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<label>公司性质</label>
+							<span class="mui-pull-right">私营企业</span>
+						</li>
+						<li class="mui-table-view-cell">
+							<label>联&nbsp;&nbsp;系&nbsp;&nbsp;人</label>
+							<span class="mui-pull-right">张DX</span>
+						</li>
+						<li class="mui-table-view-cell">
+							<label>手机号码</label>
+							<span class="mui-pull-right">16364758670</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/vue.js"></script>
+		<script src="../../js/qiao.js"></script>
+		<script src="../../js/api.js"></script>
+		<script src="account.js"></script>
+	</body>
+
+</html>

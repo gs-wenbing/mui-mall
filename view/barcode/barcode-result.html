@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>品牌联盟</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../css/style.css" rel="stylesheet" />
+
+	</head>
+	<body id="app">
+		<header class="mui-bar mui-bar-nav bg-red noShadow">
+			<a  class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left text-white"></a>
+			<h1 class="mui-title text-white">扫码结果</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-table-view-cell" v-if="dataInfo.code==1" style="width: 100%;">
+				<p style="color: #070707;">条形码：{{dataInfo.data.barcode}}</p>
+				<p style="color: #070707;">商品名称：{{dataInfo.data.goodsName}}</template></p>
+				<p style="color: #070707;" v-if="dataInfo.data.price">价格：{{dataInfo.data.price}} 元</p>
+				<p style="color: #070707;" v-if="dataInfo.data.brand">品牌：{{dataInfo.data.brand}}</p>
+				<p style="color: #070707;" v-if="dataInfo.data.standard">规格：{{dataInfo.data.standard}}</p>
+				<p style="color: #070707;">生产企业：{{dataInfo.data.supplier}}</p>
+			</div>
+			<div class="mui-table-view-cell" v-if="dataInfo.code==0" style="text-align: center;width: 100%;">
+				<p style="color: #070707;">扫码结果：{{dataInfo.msg}}</p>
+			</div>
+		</div>
+	</body>
+	<script src="../../js/mui.js"></script>
+	<script src="../../js/vue.js"></script>
+	<script src="../../js/api.js"></script>
+	<script type="text/javascript">
+		var GoodsInfo = new Vue({
+			el: '#app',
+			data: {
+				dataInfo:{}
+			}
+		})
+		mui.init();
+		mui.plusReady(function() {
+			getScanGoodsInfo();
+			// window.setTimeout(function() {
+				var barcode = plus.webview.currentWebview().opener();
+				console.log(barcode);
+				if (barcode) {
+					plus.webview.close(barcode, "none");
+				}
+			// }, 2000);
+		})
+		function getScanGoodsInfo(){
+			var self = plus.webview.currentWebview();
+			var barcode = self.barcode;
+			var wd = plus.nativeUI.showWaiting();
+			console.log(barcode);
+			mui.ajax("http://www.mxnzp.com/api/barcode/goods/details", {
+				data:{
+					barcode:barcode
+				},
+				dataType: 'json', //服务器返回json格式数据
+				type: 'get', //HTTP请求类型
+				success: function(data) {
+					wd.close();
+					GoodsInfo.dataInfo = data;
+					console.log(JSON.stringify(GoodsInfo.dataInfo));
+				},
+				error: function(xhr, type, errorThrown) {
+					wd.close();
+					//异常处理；
+					var msg = "系统异常，请联系客服";
+					if ("timeout" == type) {
+						msg = "网络连接超时";
+					} else if ("abort" == type) {
+						msg = "网络请求失败，请检查您的网络设置";
+					}
+					mui.toast(msg);
+					console.log(JSON.stringify(xhr));
+					console.log(JSON.stringify(errorThrown));
+				}
+			});
+		}
+	</script>
+</html>

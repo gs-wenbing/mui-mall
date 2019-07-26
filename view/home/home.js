@@ -59,13 +59,13 @@ var mallGoods = new Vue({
 			createGoodsDetail(goodsId);
 		},
 		scanCode: function() {
-			createWithoutTitle('barcode_custom.html', {
+			createWithoutTitle('../barcode/barcode.html', {
 				titleNView: {
 					type: 'transparent',
 					titleText: '扫一扫',
 					autoBackButton: true,
 					buttons: [{
-						fontSrc: '_www/helloh5.ttf',
+						fontSrc: '_www/barcode.ttf',
 						text: '\ue401',
 						fontSize: '18px',
 						onclick: 'javascript:switchFlash()'

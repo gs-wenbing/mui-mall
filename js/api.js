@@ -45,25 +45,29 @@ function uploadImage(path, secondDir, w, h, callback) {
 		width: h,
 	}, function(base64) {
 		base64 = base64.slice(base64.indexOf("base64,") + "base64,".length);
-		var task = plus.uploader.createUpload(UploadUrl, {
-				method: "POST"
-			},
-			function(t, status) { //上传完成
-				wd.close();
-				if (status == 200) {
-					console.log(t.responseText);
-					callback(true, t.responseText);
-				} else {
-					console.log("上传失败：" + status);
-					callback(false, "上传失败：" + status);
-					mui.toast("上传失败：" + status);
-				}
-			}
-		);
-		task.addData('upload', base64);
-		task.addData('secondDir', secondDir);
-		task.addData('ext', "JPG");
-		task.start();
+		wd.close();
+		//上传图片
+		callback(true, path);
+		// var task = plus.uploader.createUpload(UploadUrl, {
+		// 		method: "POST"
+		// 	},
+		// 	function(t, status) { //上传完成
+		// 		wd.close();
+		// 		if (status == 200) {
+		// 			console.log(t.responseText);
+		// 			callback(true, t.responseText);
+		// 		} else {
+		// 			console.log("上传失败：" + status);
+		// 			callback(false, "上传失败：" + status);
+		// 			mui.toast("上传失败：" + status);
+		// 		}
+		// 	}
+		// );
+		// //参数
+		// task.addData('upload', base64);
+		// task.addData('secondDir', secondDir);
+		// task.addData('ext', "JPG");
+		// task.start();
 	})
 }
 /**
@@ -129,7 +133,7 @@ function getUser() {
 		alert("浏览器支持localstorage");
 	} else {
 		var storage = window.localStorage;
-		var str = storage.getItem("user");
+		var str = storage.getItem("user-test");
 		user = JSON.parse(str);
 	}
 	return user;

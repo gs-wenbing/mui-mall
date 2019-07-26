@@ -35,7 +35,7 @@ mui.plusReady(function() {
 			}
 			if (userInfo.user) {
 				//打开新窗口
-				if(href.indexOf("addressManage")>0){
+				if(href.indexOf("address")>0){
 					createWindowWithTitle(href, id,title, extras)
 				}else{
 					createWindowWithTitle(href, id,title, null)
@@ -65,7 +65,7 @@ var userInfo = new Vue({
 			} else {
 				var storage = window.localStorage;
 				
-				storage.removeItem('user');
+				storage.removeItem('user-test');
 				var params = {
 					isLogoutOpr: 1
 				}

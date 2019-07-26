@@ -196,7 +196,7 @@ var goodsCarts = new Vue({
 		toShopping: function() {
 			var user = getUser();
 			if (user == null) {
-				goLogin("../login/login2.html", "home.html", "home.html", null)
+				goLogin("../login/login.html", "home.html", "home.html", null)
 				return false;
 			}
 			createWindow("../search/search.html", "search.html", {})

@@ -17,7 +17,7 @@
 	<body id="app" style="margin: 0;max-width: 100%;">
 		<header class="mui-bar mui-bar-nav noShadow personalCenter-header">
 			<h1 class="mui-title text-white">我的</h1>
-			<span class="mui-icon iconfont icon-m-ag mui-pull-right text-white btn-set"></span>
+			<span class="mui-icon iconfont icon-m-ag mui-pull-right text-white btn-set" @tap="toSetting"></span>
 		</header>
 
 		<div id="mui-content" class="mui-content personalCenter" style="padding-bottom: 0px;">
@@ -65,25 +65,25 @@
 			<div class="panel my-order">
 				<div class="panel__title flexbox beforeline">
 					<div class="panel-title__text">我的订单</div>
-					<a class="link-more" href="javascript:;">
+					<a class="link-more"  @tap="toOrder('')">
 						全部订单
 						<span class="mui-icon mui-icon-arrowright"></span>
 					</a>
 				</div>
 				<div class="panel__body flexbox">
-					<div class="link-item" data-status="0">
+					<div class="link-item" @tap="toOrder('0')">
 						<span class="mui-icon iconfont icon-m-o1 block"></span>
 						未付款
 					</div>
-					<div class="link-item" data-status="10">
+					<div class="link-item" @tap="toOrder('1')">
 						<span class="mui-icon iconfont icon-m-z1 block"></span>
 						已受理
 					</div>
-					<div class="link-item" data-status="30">
+					<div class="link-item" @tap="toOrder('2')">
 						<span class="mui-icon iconfont icon-m-p1 block"></span>
 						已发货
 					</div>
-					<div class="link-item" data-status="100">
+					<div class="link-item" @tap="toOrder('3')">
 						<span class="mui-icon iconfont icon-m-n1 block"></span>
 						退货/退款
 					</div>
@@ -95,52 +95,52 @@
 					<div class="panel-title__text">我的工具</div>
 				</div>
 				<div class="panel__body flexbox">
-					<div class="link-item" @tap="goFunction('suggest/suggest.order.html')">
+					<div class="link-item" @tap="toFunction('suggest/suggest.order.html')">
 						<div class="link-item-bgblock bgblock-1"></div>
 						建议订单
 					</div>
-					<div class="link-item" @tap="goFunction('saleorder/saleorder.list.html')">
+					<div class="link-item" @tap="toFunction('saleorder/saleorder.list.html')">
 						<div class="link-item-bgblock bgblock-2"></div>
 						销售管理
 					</div>
-					<div class="link-item" @tap="goFunction('refundbill/custom.refundbill.html')">
+					<div class="link-item" @tap="toFunction('refundbill/custom.refundbill.html')">
 						<div class="link-item-bgblock bgblock-3"></div>
 						客户退单
 					</div>
-					<div class="link-item" @tap="goFunction('stock/stock.manage.html')">
+					<div class="link-item" @tap="toFunction('stock/stock.manage.html')">
 						<div class="link-item-bgblock bgblock-4"></div>
 						库存管理
 					</div>
 					<!-- CustomerType:4一般客户 -->
-					<div class="link-item" @tap="goFunction('reward/reward.index.html')">
+					<div class="link-item" @tap="toFunction('reward/reward.index.html')">
 						<div class="link-item-bgblock bgblock-5"></div>
 						我的奖励
 					</div>
-					<div class="link-item" @tap="goFunction('bankaccount/bankaccount.index.html')">
+					<div class="link-item" @tap="toFunction('bankaccount/bankaccount.index.html')">
 						<div class="link-item-bgblock bgblock-6"></div>
 						我的账单
 					</div>
-					<div class="link-item" @tap="goFunction('visited/visited.index.html')">
+					<div class="link-item" @tap="toFunction('visited/visited.index.html')">
 						<div class="link-item-bgblock bgblock-7"></div>
 						被拜访记录
 					</div>
-					<div class="link-item" @tap="goFunction('brand/brand.figure.html')">
+					<div class="link-item" @tap="toFunction('brand/brand.figure.html')">
 						<div class="link-item-bgblock bgblock-8"></div>
 						广告形象
 					</div>
-					<div class="link-item" @tap="goFunction('contract/contract.manage.html')">
+					<div class="link-item" @tap="toFunction('contract/contract.manage.html')">
 						<div class="link-item-bgblock bgblock-9"></div>
 						合同管理
 					</div>
-					<div class="link-item" @tap="goFunction('invoice/invoice.index.html')">
+					<div class="link-item" @tap="toFunction('invoice/invoice.index.html')">
 						<div class="link-item-bgblock bgblock-10"></div>
 						发票管理
 					</div>
-					<div class="link-item" @tap="goFunction('goodsprice/goodsprice.index.html')">
+					<div class="link-item" @tap="toFunction('goodsprice/goodsprice.index.html')">
 						<div class="link-item-bgblock bgblock-11"></div>
 						客户商品价格管理
 					</div>
-					<div class="link-item" @tap="goFunction('cardvoucher/cardvoucher.index.html')">
+					<div class="link-item" @tap="toFunction('cardvoucher/cardvoucher.index.html')">
 						<div class="link-item-bgblock bgblock-12"></div>
 						我的卡券
 					</div>
