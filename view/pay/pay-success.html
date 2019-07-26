@@ -88,7 +88,7 @@
 							Status: "",
 							OrderID:self.OrderID
 						}
-						createWindow("../order/order-detail.html", "order-detail.html", extras)
+						createWindowWithTitle("../order/order-detail.html", "order-detail.html", extras)
 						plus.webview.currentWebview().close();
 					} else {
 						var main = plus.webview.getLaunchWebview();
