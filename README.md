@@ -21,7 +21,7 @@
 如有问题请直接在 Issues 中提，谢谢！ ^_^
 
 ## 常见问题
-* 首页底部的Tab
+## 首页底部的Tab
 html页面<br>
 ```
 <nav class="mui-bar mui-bar-tab footerBar">
@@ -115,7 +115,7 @@ js代码
 注意iphoneX中出现遮挡底部tab现象,采用js判断屏幕大小方式改变bottom值，isIPhoneX()，isIPhoneX() 要在plusReady后调用。
 
 
-* 沉浸式状态栏
+## 沉浸式状态栏
 1.在manifest.json文件，切换到代码视图，在plus -> statusbar 下添加immersed节点并设置值为true
 ```
 "statusbar" : {
@@ -215,7 +215,7 @@ function isIPhoneX(){
 }
 ```
 
-*  标题栏在IOS上存在的问题
+## 标题栏在IOS上存在的问题
 原生标题栏
 
 ```
