@@ -15,13 +15,7 @@
 
 
 ## 示例图片
-<br>演示1<br>
-<img src="https://github.com/gs-wenbing/mui-mall/blob/master/img/show/a1.gif" width="335" alt="示例1" />
-
-<br>演示2<br>
-<img src="https://github.com/gs-wenbing/mui-mall/blob/master/img/show/a1.gif" width="335" alt="示例1" />
-
-<br>示例图片<br>
+<br>部分示例图片<br>
 <img src="https://github.com/gs-wenbing/mui-mall/blob/master/img/show/1.jpg" width="375" alt="示例1" />
 <img src="https://github.com/gs-wenbing/mui-mall/blob/master/img/show/2.jpg" width="375" alt="示例2" />
 <img src="https://github.com/gs-wenbing/mui-mall/blob/master/img/show/3.jpg" width="375" alt="示例3" />
