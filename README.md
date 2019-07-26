@@ -21,7 +21,7 @@
 如有问题请直接在 Issues 中提，谢谢！ ^_^
 
 ## 常见问题
-## 首页底部的Tab
+* 首页底部的Tab
 html页面<br>
 ```
 <nav class="mui-bar mui-bar-tab footerBar">
@@ -115,7 +115,7 @@ js代码
 注意iphoneX中出现遮挡底部tab现象,采用js判断屏幕大小方式改变bottom值，isIPhoneX()，isIPhoneX() 要在plusReady后调用。
 
 
-## 沉浸式状态栏
+* 沉浸式状态栏
 1.在manifest.json文件，切换到代码视图，在plus -> statusbar 下添加immersed节点并设置值为true
 ```
 "statusbar" : {
@@ -125,7 +125,7 @@ js代码
 
 2.__设置了沉浸式状态栏后，状态栏的高度变为0，如图所示<br>
 ![Image text](https://github.com/gs-wenbing/mui-mall/blob/master/img/show/status1.jpg)
-<br>输入框把状态挡住了，这时候需要重写mui.css或者mui.min.css样式表，在样式表底部添加如下一段样式__：
+<br>输入框把状态挡住了，这时候需要重写mui.css或者mui.min.css样式表，在样式表底部添加如下一段样式__： 
 ```
 *解决沉寖式状态栏导致导航栏高度少20px的问题*/
 .mui-bar-nav {
@@ -215,7 +215,7 @@ function isIPhoneX(){
 }
 ```
 
-## 标题栏在IOS上存在的问题
+*  标题栏在IOS上存在的问题
 原生标题栏
 
 ```
