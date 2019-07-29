@@ -44,13 +44,7 @@
 			};
 			mui.plusReady(function() {
 				var self = plus.webview.currentWebview();
-				Info.isShowJLJ = self.isShowJLJ;
 				Info.isSuccess = self.isSuccess;
-				Info.subTitle = self.subTitle;
-				if (Info.isShowJLJ == 1) {
-					var TotalMoney = self.TotalMoney;
-					Info.jianglijin = (TotalMoney * getUser().RewardAmountRate).toFixed(2);
-				}
 				mui(".state-btns").on("tap", "a", function(event) {
 					var href = $(this).attr("date-href");
 					//商品详情
@@ -63,7 +57,11 @@
 					if (search) {
 						plus.webview.close(search, "none");
 					}
-					
+					//商品搜索页侧滑栏
+					var classMenu = plus.webview.getWebviewById("class-menu.html");
+					if (classMenu) {
+						plus.webview.close(classMenu, "none");
+					}
 					//购物车 确认订单
 					var settlement = plus.webview.getWebviewById("settlement.html");
 					if (settlement) {

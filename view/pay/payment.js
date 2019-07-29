@@ -1,6 +1,6 @@
 //支付的URL
-var ALIPAYSERVER = 'api/pay/AppAliPay'; //http://demo.dcloud.net.cn/helloh5/payment/alipay.php?total=
-var WXPAYSERVER = 'api/pay/AppWxPay';
+var ALIPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/alipay.php?total=';    
+var WXPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/wxpay.php?total=';      
 var wxChannel = null; // 微信支付  
 var aliChannel = null; // 支付宝支付  
 var channel = null; //支付通道 
@@ -197,53 +197,50 @@ function RndNum(n) {
 		rnd += Math.floor(Math.random() * 10);
 	return rnd;
 }
+
 //三方支付
 function ThirdPay(payMoney, id) {
+	
 	// 从服务器请求支付订单  
 	var PAYSERVER = '';
-	var outTradeNo = "";
 	if (id == 'alipay') {
 		PAYSERVER = ALIPAYSERVER;
 		channel = aliChannel;
-		outTradeNo = orderDetail.Order.OrderNo + '-' + orderDetail.Order.DepartmentID + '-' + orderDetail.Order.OrderUserID +
-			'-' + orderDetail.Order.CustomerType + '-' + payMoney + '-6' + '-' + RndNum(2);
 	} else if (id == 'wxpay') {
 		PAYSERVER = WXPAYSERVER;
 		channel = wxChannel;
-		outTradeNo = orderDetail.Order.OrderNo + '-' + orderDetail.Order.DepartmentID + '-' + orderDetail.Order.OrderUserID +
-			'-' + orderDetail.Order.CustomerType + '-' + parseInt(parseFloat(payMoney)*100) + '-6' + '-' + RndNum(2);
 	} else {
-		// plus.nativeUI.alert("不支持此支付通道！", null, "捐赠");
+		plus.nativeUI.alert("不支持此支付通道！", null, "捐赠");
 		return;
 	}
-
-	var ThridPayInput = {
-		TotalAmout: payMoney,
-		Subject: "金万年品牌联盟商品",
-		OutTradeNo: outTradeNo,
-		CustomerIP: returnCitySN["cip"],
-		Body: "金万年品牌联盟商品"
-	}
-	var param = {
-		Input: ThridPayInput
-	}
-	var wd = plus.nativeUI.showWaiting();
-	callApi(PAYSERVER, param, true, function(isSuccess, data, ErrMsg) {
-		wd.close();
-		if (isSuccess) {
-			var reg = /\\|\//g;
-			var newstr = data.replace(reg, '');
-			console.log(newstr);
-			plus.payment.request(channel, newstr, function(result) {
-				console.log(JSON.stringify(result));
-				isPaySuccess = true;
-			}, function(error) {
-				console.log(JSON.stringify(error));
-				mui.alert('支付失败', ' ', function() {},"div");
-				// plus.nativeUI.alert("支付失败");
-			});
+	var xhr = new XMLHttpRequest();
+	var amount = 0.01;
+	xhr.onreadystatechange = function() {
+		switch (xhr.readyState) {
+			case 4:
+				if (xhr.status == 200) {
+					//支付
+					plus.payment.request(channel, xhr.responseText, function(result) {
+						console.log(JSON.stringify(result));
+						isPaySuccess = true;
+						var param = {
+							OrderID: orderDetail.Order.OrderID,
+							isSuccess: 1,
+						}
+						openWindow("pay-success.html", "pay-success.html", param);
+					}, function(error) {
+						mui.alert('支付失败', ' ', function() {},"div");
+					});
+				} else {
+					mui.alert('获取订单信息失败！', ' ', function() {},"div");
+				}
+				break;
+			default:
+				break;
 		}
-	});
+	}
+	xhr.open('GET', PAYSERVER + amount);
+	xhr.send();
 }
 
 
@@ -270,9 +267,6 @@ function payOrder(psd) {
 	var param = {
 		OrderID: orderDetail.Order.OrderID,
 		isSuccess: 1,
-		isShowJLJ: 0,
-		TotalMoney: 0,
-		subTitle: "恭喜您支付成功",
 	}
 	openWindow("pay-success.html", "pay-success.html", param)
 }
