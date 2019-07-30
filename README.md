@@ -268,4 +268,50 @@ html, body {
 * 支付问题
 mui的支付还是比较好配置的，详细的参照http://ask.dcloud.net.cn/article/71
 
+* 侧滑导航主体内容设置下拉刷新和上拉加载后不能滚动的问题
+使用div侧滑栏的时候，给侧滑栏主题设置了下拉刷新和上拉加载
+```
+mui.init({
+	pullRefresh: {
+		container: '#pullrefresh',
+		down: {
+			style: 'circle',
+			callback: pulldownRefresh
+		},
+		up: {
+			auto: false,
+			contentrefresh: '正在加载...',
+			callback: pullupRefresh
+		}
+	}
+});
+```
+，页面不能滚动，把这段代码注释掉后就能滚动了，不知道是不是mui的bug，还是我没找到合适的方法。<br>
+下面推荐webview模式侧滑菜单
+```
+//plusReady事件后，自动创建menu窗口；
+main = plus.webview.currentWebview();
+//setTimeout的目的是等待窗体动画结束后，再执行create webview操作，避免资源竞争，导致窗口动画不流畅；
+setTimeout(function() {
+	menu = mui.preload({
+		id: 'class-menu',
+		url: 'class-menu.html',
+		styles: {
+			left: "20%",
+			width: '80%',
+			zindex: 10000
+		}
+	});
+}, 500);
+```
+详细查看demo的view/search/search.html和view/search/class-menu.html两个文件。
+
+* 下拉刷新和其他控件的冲突
+
+可以在控件某个事件触发的时候，禁止滚动下拉刷新，事件结束后在开启
+```
+mui('#pullrefresh').pullRefresh().setStopped(true);//暂时禁止滚动
+mui('#pullrefresh').pullRefresh().setStopped(false);//开启禁止滚动
+```
+注意判断mui('#pullrefresh').pullRefresh()是否为空，否则会报错
 
