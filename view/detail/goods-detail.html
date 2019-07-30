@@ -60,7 +60,7 @@
 						<s class="price-origin" style="color: #000; font-size: .2rem;font-weight: normal;margin-left: 15px;">
 							原价： ￥1.20
 						</s>
-						<span class="tag" style="padding-top:2px">新品,热销</span>
+						<span class="tag" style="padding-top:2px">{{Goods.GoodsTag}}</span>
 					</div>
 					<h1 class="block-row block-title" style="line-height:2;">
 						{{Goods.GoodsName}}{{Goods.GoodsName}}
@@ -69,7 +69,7 @@
 					<div class="block-row block-mane">
 						<span class="tag">满减</span>
 						<span class="confirmOrder-reduction mg-r-2">
-							购买该商品满50元减5元,满100元减10元，满100元减10元，满100元减10元，满100元减10元，
+							{{Goods.ReductionStr}}
 						</span>
 					</div>
 					<div class="block-row block-attr mui-clearfix">
