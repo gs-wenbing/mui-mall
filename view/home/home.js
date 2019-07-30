@@ -44,13 +44,7 @@ var mallGoods = new Vue({
 	methods: {
 		gotoGoodsClass: function(ParantClassID, GoodsClassID, type) {
 			document.activeElement.blur(); //隐藏软键盘  
-			var keyWords = mui("#search-input")[0].value;
-			var extras = {
-				ParantClassID: ParantClassID,
-				GoodsClassID: GoodsClassID,
-				type: type,
-				keyWords: keyWords
-			}
+			var extras = {}
 			createWindow("../search/search.html", "search.html", extras)
 			mui("#search-input")[0].value = "";
 		},

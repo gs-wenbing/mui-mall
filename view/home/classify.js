@@ -38,11 +38,7 @@ mui.plusReady(function() {
 		methods: {
 			gotoGoodsClass: function(GoodsClassID) {
 				document.activeElement.blur(); //隐藏软键盘  
-				var extras = {
-					GoodsClassID: GoodsClassID,
-					type: "",
-					keyWords: this.searchString
-				}
+				var extras = {}
 				createWindow("../search/search.html", "search.html", extras);
 				this.searchString = "";
 			},

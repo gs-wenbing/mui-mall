@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Hello MUI</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -20,7 +20,7 @@
 				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left text-white"></a>
 				<div class="header-search">
 					<form action="" method="get">
-						<input type="search" placeholder="点击搜索名称,  产品型号">
+						<input id="search-input" type="search" @tap="onInput" placeholder="点击搜索名称,  产品型号">
 						<button class="btn-search" type="button">
 							<span class="iconfont icon-m-ah"></span>
 						</button>

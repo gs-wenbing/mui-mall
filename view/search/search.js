@@ -38,7 +38,7 @@ mui.plusReady(function() {
 		IPhoneXCSS();
 	}else{
 		// 66px=44+22:   (标题栏高度+状态栏高度)
-		$(".classfy").css("top","66px");
+		$(".classfy").css("top","64px");
 		$(".classfy").css("height","46px");
 		// 112 = 44+46+22  (标题栏高度+标题栏下方的tab高度+状态栏高度)
 		$(".mui-content").css("padding-top","112px !important");
@@ -60,7 +60,7 @@ mui.plusReady(function() {
 			styles: {
 				left: "20%",
 				width: '80%',
-				zindex: 9997
+				zindex: 10000
 			}
 		});
 	}, 500);
@@ -140,9 +140,29 @@ var GoodsSearch = new Vue({
 		},
 		gotoGoodsDetail: function(goodsId) {
 			createGoodsDetail(goodsId);
-		}
+		},
+		onInput: function() {
+			
+			if (mui.os.ios) {
+				//禁止页面滚动
+				scrollTo(0,0);
+				document.body.addEventListener('touchmove', event_f, { passive: false });
+			}
+			$("#search-input").focus(); 
+		},
 	}
 });
+
+var event_f = function(e){e.preventDefault();}
+$(document).on('focusin', function () {
+　　//软键盘弹出的事件处理
+});
+$(document).on('focusout', function () {
+　　//软键盘收起的事件处理
+	//删除 禁止页面滚动
+	document.body.removeEventListener('touchmove', event_f, { passive: false });
+});
+
 /**
  * 筛选商品
  */
