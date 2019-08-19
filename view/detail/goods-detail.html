@@ -39,7 +39,7 @@
 				<div class="mui-slider-group mui-slider-group">
 					<div class="mui-slider-item" v-for="goodsPic in GetGoodsPicURL">
 						<div style="height: 350px;display: flex;justify-content: center; align-items: center; ">
-							<img :src="goodsPic.PicURL" data-preview-src="" data-preview-group="1">
+							<img v-lazy="goodsPic.PicURL" data-preview-src="" data-preview-group="1">
 						</div>
 					</div>
 				</div>
@@ -180,6 +180,7 @@
 		<script src="../../js/mui.previewimage.js"></script>
 		<script src="../../js/zepto.min.js"></script>
 		<script src="../../js/vue.js"></script>
+		<script src="../../js/vue-lazyload.js"></script>
 		<script src="../../js/api.js"></script>
 		<script src="../../data/detail.js"></script>
 		<script src="goods-detail.js"></script>

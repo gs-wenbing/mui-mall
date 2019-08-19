@@ -111,6 +111,12 @@ function pullupLoading(){
 		pageIndex++;
 	}, 500);
 }
+Vue.use(VueLazyload, {
+	preLoad: 1.3,
+	error: '../../img/goods-default.gif',
+	loading: '../../img/goods-default.gif',
+	attempt: 1
+})
 var GoodsSearch = new Vue({
 	el: '#app',
 	data: {

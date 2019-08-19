@@ -20,6 +20,12 @@ mui(".mui-slider").slider({
 	interval: 4000, //自动轮播周期，若为0则不自动播放，默认为0；
 	scrollTime: 500
 });
+Vue.use(VueLazyload, {
+	preLoad: 1.3,
+	error: '../../img/goods-default.gif',
+	loading: '../../img/goods-default.gif',
+	attempt: 1
+})
 var mallGoods = new Vue({
 	el: '.bg-gray',
 	data: {

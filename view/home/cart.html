@@ -91,7 +91,7 @@
 								<input class="checkbox" name="checkbox" type="checkbox" checked :value="Goods" v-model="check_goods">
 							</div>
 							<div class="classfy-item__img flexbox">
-								<img class="mui-media-object mui-pull-left" :src="Goods.DefaultPicURL">
+								<img class="mui-media-object mui-pull-left" v-lazy="Goods.DefaultPicURL">
 							</div>
 							<div class="mui-media-body classfy-item__body">
 								<h2 class="mui-media-title">{{Goods.GoodsName}}</h2>
@@ -135,6 +135,7 @@
 		</div>
 		<script src="../../js/mui.js"></script>
 		<script src="../../js/vue.js"></script>
+		<script src="../../js/vue-lazyload.js"></script>
 		<script src="../../js/zepto.min.js"></script>
 		<script src="../../js/api.js"></script>
 		<script src="../../data/cart.js"></script>

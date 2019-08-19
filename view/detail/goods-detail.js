@@ -24,7 +24,12 @@ mui.plusReady(function() {
 	});
 	mui.previewImage();
 });
-
+Vue.use(VueLazyload, {
+	preLoad: 1.3,
+	error: '../../img/goods-default.gif',
+	loading: '../../img/goods-default.gif',
+	attempt: 1
+})
 var goodsDetail = new Vue({
 	el: '#goodsDetail',
 	data: {

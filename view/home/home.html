@@ -139,7 +139,7 @@
 					<div class="goods-row col-2">
 						<a @tap="gotoGoodsDetail(MallGood.GoodsID)" class="goods-item__link" v-for="MallGood in item.MallGoodsList1">
 							<div class="goods-item__img" style="background-color: #FFFFFF;">
-								<img style="height: 100%;" :src="MallGood.DefaultPicURL">
+								<img style="height: 100%;" v-lazy="MallGood.DefaultPicURL">
 							</div>
 							<div class="goods-item__descr">
 								{{MallGood.GoodsName}}
@@ -169,7 +169,7 @@
 					<div class="goods-row col-3">
 						<a @tap="gotoGoodsDetail(MallGood.GoodsID)" class="goods-item__link" v-for="MallGood in item.MallGoodsList2">
 							<div class="goods-item__img" style="background-color: #FFFFFF;">
-								<img style="height: 100%;" :src="MallGood.DefaultPicURL">
+								<img style="height: 100%;" v-lazy="MallGood.DefaultPicURL">
 							</div>
 							<div class="goods-item__descr">
 								{{MallGood.GoodsName}}
@@ -200,6 +200,7 @@
 		</div>
 		<script src="../../js/mui.js"></script>
 		<script src="../../js/vue.js"></script>
+		<script src="../../js/vue-lazyload.js"></script>
 		<script src="../../js/zepto.min.js"></script>
 		<script src="../../js/common.js"></script>
 		<script src="../../data/home.js"></script>

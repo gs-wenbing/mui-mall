@@ -58,7 +58,7 @@
 					<a href="javascript:;" @tap="gotoGoodsDetail(item.GoodsID)">
 						<!-- 清仓 -->
 						<div :class="classObject(index)" class="classfy-item__img icon-tag flexbox">
-							<img class="mui-media-object mui-pull-left" :src="item.DefaultPicURL">
+							<img class="mui-media-object mui-pull-left" v-lazy="item.DefaultPicURL">
 						</div>
 						<div class="mui-media-body classfy-item__body" style="min-height: 100px;height:auto;">
 							<h2 class="mui-media-title" style="padding-right: 0px;word-wrap:break-word;overflow: hidden;line-height: 22px;font-size: 14px;">
@@ -79,6 +79,7 @@
 		<script src="../../js/zepto.min.js"></script>
 		<script src="../../js/iconfont.js"></script>
 		<script src="../../js/vue.js"></script>
+		<script src="../../js/vue-lazyload.js"></script>
 		<script src="../../js/api.js"></script>
 		<script src="../../data/search.js"></script>
 		<script src="search.js"></script>
