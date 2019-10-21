@@ -39,9 +39,11 @@ window.addEventListener('refresh', function(e) { //执行刷新
 //底部选项卡切换跳转
 (function jumpPage() {
 	//跳转页面
-	var subpages = ['view/home/home.html', 'view/home/classify.html', 'view/home/cart.html', 'view/home/my.html'];
+	var subpages = ['view/home/main/home.html', 'view/home/classify/classify.html', 'view/home/cart/cart.html', 'view/home/my/my.html'];
 	var ids = ['home.html', 'classify.html', 'cart.html', 'my.html'];
 	var aniShow = {};
+	//当前激活选项
+	var activeTab = ids[0];
 	//创建子页面，首个选项卡页面显示，其它均隐藏；
 	mui.plusReady(function() {
 		plus.screen.lockOrientation("portrait-primary"); 
@@ -63,29 +65,32 @@ window.addEventListener('refresh', function(e) { //执行刷新
 			};
 		}
 		var self = plus.webview.currentWebview();
-		for (var i = 0; i < 4; i++) {
-			var temp = {};
-			var sub = plus.webview.create(subpages[i], ids[i], subpage_style);
-			if (i > 0) {
-				sub.hide();
-			} else {
-				temp[ids[i]] = "true";
-				mui.extend(aniShow, temp);
+		try{
+			for (var i = 0; i < 4; i++) {
+				var temp = {};
+				var sub = plus.webview.create(subpages[i], ids[i], subpage_style);
+				if (i > 0) {
+					sub.hide();
+				} else {
+					temp[ids[i]] = "true";
+					mui.extend(aniShow, temp);
+				}
+				self.append(sub);
 			}
-			self.append(sub);
+		}catch(e){
+			console.log(e);
 		}
+		
 		// 获取本地应用资源版本号
 		plus.runtime.getProperty(plus.runtime.appid, function(inf) {
 
 			wgtVer = inf.version;
 			console.log("当前应用版本：" + wgtVer);
 		});
-
+		plus.webview.show(activeTab, "fade-in", 300);
 	});
-	//当前激活选项
-	var activeTab = ids[0];
-
-	var title = document.getElementById("title");
+	
+	
 	//选项卡点击事件
 	mui('.mui-bar-tab').on('tap', 'a', function(e) {
 		e.preventDefault();

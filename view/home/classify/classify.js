@@ -39,7 +39,7 @@ mui.plusReady(function() {
 			gotoGoodsClass: function(GoodsClassID) {
 				document.activeElement.blur(); //隐藏软键盘  
 				var extras = {}
-				createWindow("../search/search.html", "search.html", extras);
+				openWindow("../../search/search.html", "search.html", extras);
 				this.searchString = "";
 			},
 			swichTab: function(index) {

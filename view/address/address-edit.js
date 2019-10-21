@@ -43,7 +43,6 @@
 			});
 		}, false);
 		editAddress.$nextTick(function(){
-			showWindow();
 		})
 	})
 })(mui, document);

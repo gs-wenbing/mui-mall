@@ -220,54 +220,41 @@ function nodeToString(node) {
 	return str;
 }
 
-/**
- * 打开页面
- * url 页面
- * id  页面ID
- * extras 参数，Json
- */
-function openWindow(url, id, extras) {
-	mui.openWindow({
-		url: url,
-		id: id,
-		extras: extras,
-		waiting: {
-			autoShow: false,
-		}
-	});
+
+function openWindowWithTitle(url, id,title, extras){
+	mui.openWindow(url, id, {
+			extras: extras,
+			show: {
+				event: "loaded" //在当前页面加载,加载完在跳转
+			},
+			style:{
+				titleNView: { // 窗口的标题栏控件
+					titleText: title, // 标题栏文字,当不设置此属性时，默认加载当前页面的标题，并自动更新页面的标题
+					titleColor: "#FFFFFF", // 字体颜色,颜色值格式为"#RRGGBB",默认值为"#000000"
+					backgroundColor: "#E60012", // 控件背景颜色,颜色值格式为"#RRGGBB",默认值为"#F7F7F7"
+					autoBackButton: true
+				}
+			},
+			waiting: {
+				autoShow: true, //自动显示等待框，默认为true
+				//title: '正在加载...' //等待对话框上显示的提示内容
+			}
+	})
 }
-/**
- * 打开页面
- * url 页面
- * id  页面ID
- * title  标题
- * extras 参数，Json
- */
-function createWindowWithTitle(url, id,title, extras) {
-	plus.nativeUI.showWaiting();
-	//注意titleColor值必须是大写的，否则在IOS上标题栏字体不显示
-	var styles = { // 窗口参数 参考5+规范中的WebviewStyle,也就是说WebviewStyle下的参数都可以在此设置
-		titleNView: { // 窗口的标题栏控件
-			titleText: title, // 标题栏文字,当不设置此属性时，默认加载当前页面的标题，并自动更新页面的标题
-			titleColor: "#FFFFFF", // 字体颜色,颜色值格式为"#RRGGBB",默认值为"#000000"
-			backgroundColor: "#E60012", // 控件背景颜色,颜色值格式为"#RRGGBB",默认值为"#F7F7F7"
-			autoBackButton: true
-		}
-	}
-	plus.webview.create(url, id, styles, extras);
-}
-/**
- * 打开页面
- * url 页面
- * id  页面ID
- * extras 参数，Json
- */
-function createWindow(url, id, extras) {
-	plus.nativeUI.showWaiting();
-	plus.webview.create(url, id, {}, extras);
+function openWindow(url, id, extras){
+	mui.openWindow(url, id, {
+			extras: extras,
+			show: {
+				event: "loaded" //在当前页面加载,加载完在跳转
+			},
+			waiting: {
+				autoShow: true, //自动显示等待框，默认为true
+				//title: '正在加载...' //等待对话框上显示的提示内容
+			}
+	})
 }
 
-function createGoodsDetail(goodsId) {
+function openGoodsDetail(path,goodsId) {
 	plus.nativeUI.showWaiting();
 	var styles = {
 		"titleNView": { //详情页原生导航配置
@@ -284,13 +271,7 @@ function createGoodsDetail(goodsId) {
 	var extras = {
 		goodsId: goodsId
 	}
-	plus.webview.create("../detail/goods-detail.html", "goods-detail.html", styles, extras);
-}
-
-function showWindow() {
-	var currentView = plus.webview.currentWebview();
-	currentView.show('slide-in-right', 300);
-	plus.nativeUI.closeWaiting();
+	plus.webview.create(path, "goods-detail.html", styles, extras);
 }
 
 function goLogin(loginPath, toView, toViewID, extras) {
@@ -299,5 +280,8 @@ function goLogin(loginPath, toView, toViewID, extras) {
 		toViewID: toViewID,
 		extras: extras
 	}
-	createWindow(loginPath, "login.html", param)
+	openWindow(loginPath, "login.html", param)
 }
+
+
+

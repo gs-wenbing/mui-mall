@@ -23,7 +23,6 @@ var UserInfo = new Vue({
 	}
 })
 mui.plusReady(function() {
-	showWindow();
 	getAccountDetail();
 })
 

@@ -49,7 +49,6 @@ mui.plusReady(function() {
 		alert("获取支付通道失败：" + e.message);
 	});
 	GoodsPayment();
-	showWindow();
 })
 
 function initEvent() {
@@ -186,7 +185,7 @@ var orderDetail = new Vue({
 				OrderID:orderDetail.Order.OrderID,
 				isInvoice:self.isInvoice
 			}
-			createWindow("OfflineSelectAccount.html", "OfflineSelectAccount.html", param)
+			openWindow("OfflineSelectAccount.html", "OfflineSelectAccount.html", param)
 		}
 	}
 });

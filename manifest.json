@@ -4,7 +4,7 @@
     "name" : "mui-mall", /*应用名称，程序桌面图标名称*/
     "version" : {
         "name" : "1.0.0", /*应用版本名称*/
-        "code" : "83"
+        "code" : 1
     },
     "description" : "", /*应用描述信息*/
     "icons" : {
@@ -39,12 +39,12 @@
             "description" : "管理语音识别插件"
         },
         "Payment" : {
-			 "description" : "管理支付插件"
-		}
+            "description" : "管理支付插件"
+        }
     },
     "plus" : {
         "splashscreen" : {
-            "autoclose" : false, /*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+            "autoclose" : true, /*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
             "waiting" : false,
             "delay" : 2000
         },
@@ -74,7 +74,7 @@
                 "UIReserveStatusbarOffset" : false
             },
             "google" : {
-				"ImmersedStatusbar": true,  
+                "ImmersedStatusbar" : true,
                 "packagename" : "", /*Android应用包名，如io.dcloud.HelloH5*/
                 "keystore" : "", /*Android应用打包使用的密钥库文件*/
                 "password" : "", /*Android应用打包使用密钥库中证书的密码*/
@@ -104,7 +104,9 @@
                     "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
-                ]
+                ],
+                "targetSdkVersion" : 26,
+                "minSdkVersion" : 19
             },
             "orientation" : [ "portrait-primary", "portrait-secondary" ], /*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
             "icons" : {

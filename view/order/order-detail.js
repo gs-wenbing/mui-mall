@@ -45,7 +45,7 @@ var orderDetail = new Vue({
 			var extras = {
 				OrderID: this.order.OrderID,
 			}
-			createWindow("../pay/payment.html", "payment.html",  extras);
+			openWindow("../pay/payment.html", "payment.html",  extras);
 		},
 		close:function() {
 			$('#btn-select').removeClass('mui-active');
@@ -55,7 +55,6 @@ var orderDetail = new Vue({
 });
 mui.plusReady(function() {
 	getOrderDetail();
-	showWindow();
 })
 
 

@@ -1,3 +1,4 @@
+
 mui.init({
 	pullRefresh: {
 		container: '.mui-content',
@@ -51,15 +52,15 @@ var mallGoods = new Vue({
 		gotoGoodsClass: function(ParantClassID, GoodsClassID, type) {
 			document.activeElement.blur(); //隐藏软键盘  
 			var extras = {}
-			createWindow("../search/search.html", "search.html", extras)
+			openWindow("../../search/search.html", "search.html", extras)
 			mui("#search-input")[0].value = "";
 		},
 
 		gotoGoodsDetail: function(goodsId) {
-			createGoodsDetail(goodsId);
+			openGoodsDetail("../../detail/goods-detail.html",goodsId);
 		},
 		scanCode: function() {
-			createWithoutTitle('../barcode/barcode.html', {
+			createWithoutTitle('../../barcode/barcode.html', {
 				titleNView: {
 					type: 'transparent',
 					titleText: '扫一扫',

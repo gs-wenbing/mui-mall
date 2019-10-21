@@ -13,7 +13,6 @@ function GetReceAddressList() {
 		var data = addressByCache;
 		RecieveAddress.RecieveAddressList = data.RecieveAddressList;
 		RecieveAddress.$nextTick(function(){
-			showWindow();
 			mui('.mui-scroll-wrapper').scroll();
 		})
 	}, 500);
@@ -45,14 +44,14 @@ var RecieveAddress = new Vue({
 			var param = {
 				title: "新增收货地址"
 			}
-			createWindowWithTitle("address-edit.html", "address-edit.html","新增收货地址");
+			openWindowWithTitle("address-edit.html", "address-edit.html","新增收货地址");
 		},
 		editAddress: function(index){
 			var param = {
 				editAddress: RecieveAddress.RecieveAddressList[index],
 				title: "编辑收货地址"
 			}
-			createWindowWithTitle("address-edit.html", "address-edit.html","编辑收货地址", param);
+			openWindowWithTitle("address-edit.html", "address-edit.html","编辑收货地址", param);
 		},
 		deleteAddress: function(RecieveAddressID){
 			var btnArray = ['否', '是'];

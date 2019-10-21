@@ -7,8 +7,13 @@
 		},
 	});
 })(mui)
-
+function showWindow() {
+	var currentView = plus.webview.currentWebview();
+	currentView.show('slide-in-right', 300);
+	plus.nativeUI.closeWaiting();
+}
 mui.plusReady(function() {
+	showWindow();
 	getGoodsDetail();
 	mui('.mui-bar-tab').on('tap', 'a', function(e) {
 		var index = this.getAttribute('data-index');
@@ -19,7 +24,7 @@ mui.plusReady(function() {
 		} else if (index == 4) {
 			AddShoppingCar();
 		} else if (index == 5) {
-			createWindow("../settlement/settlement.html","settlement.html",{});
+			openWindow("../settlement/settlement.html","settlement.html",{});
 		}
 	});
 	mui.previewImage();
@@ -50,7 +55,7 @@ var goodsDetail = new Vue({
 				keyWords: "",
 				PmID: PromotionID,
 			}
-			createWindow("second-classfy.html", "second-classfy.html", extras)
+			openWindow("second-classfy.html", "second-classfy.html", extras)
 		}
 	}
 });
@@ -82,7 +87,6 @@ function getGoodsDetail() {
 		goodsDetail.GetGoodsPicURL = data.GetGoodsPicURL;
 
 		goodsDetail.$nextTick(function() {
-			showWindow();
 			mui(".mui-slider").slider({
 				interval: 5000, //如果你想自动3000ms滑动一下就写上这个。 
 			});

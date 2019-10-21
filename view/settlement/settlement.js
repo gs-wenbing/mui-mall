@@ -29,14 +29,14 @@ var payOrder = new Vue({
 				mui.toast("请添加或选择收货地址！");
 				return false;
 			}
-			createWindow("../pay/payment.html","payment.html",{});
+			openWindow("../pay/payment.html","payment.html",{});
 		},
 		gotoAddressManage: function() {
 			//去选择收货地址
 			var param = {
 				selectOneAddress: true
 			}
-			createWindowWithTitle("../address/address.html", "address.html","地址管理", param);
+			openWindowWithTitle("../address/address.html", "address.html","地址管理", param);
 		}
 	}
 
@@ -63,7 +63,6 @@ function getSettlementInfo() {
 		payOrder.AmountInfo.GoodsTotalAmount = data.GoodsTotalAmount;
 		
 		payOrder.GoodsList = data.GoodsList;
-		showWindow();
 		payOrder.$nextTick(function() { //渲染完成后触发事件
 		
 			var height = $("#adress-detail").height();

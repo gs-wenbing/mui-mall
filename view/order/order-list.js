@@ -69,7 +69,6 @@ mui.plusReady(function() {
 	});
 	var self = plus.webview.currentWebview();
 	orderInfo.Status = self.Status;
-	showWindow();
 	loadAction();
 })
 
@@ -170,14 +169,14 @@ var orderInfo = new Vue({
 			var extras = {
 				OrderID: OrderID
 			}
-			createWindowWithTitle("order-detail.html", "order-detail.html","订单详情", extras)
+			openWindowWithTitle("order-detail.html", "order-detail.html","订单详情", extras)
 		},
 
 		toPayment: function(OrderID) {
 			var extras = {
 				OrderID: OrderID,
 			}
-			createWindow("../pay/payment.html", "payment.html",  extras);
+			openWindow("../pay/payment.html", "payment.html",  extras);
 		},
 
 		showCancleBox: function(OrderID) {

@@ -67,7 +67,6 @@ mui.plusReady(function() {
 	//加载数据
 	pulldownRefresh();
 	GoodsSearch.$nextTick(function() {
-		showWindow();
 	})
 });
 
@@ -145,7 +144,7 @@ var GoodsSearch = new Vue({
 			filterGoods();
 		},
 		gotoGoodsDetail: function(goodsId) {
-			createGoodsDetail(goodsId);
+			openGoodsDetail("../detail/goods-detail.html",goodsId);
 		},
 		onInput: function() {
 			

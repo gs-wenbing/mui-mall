@@ -10,13 +10,13 @@ var userInfo = new Vue({
 		 * 跳转到设置页面
 		 */
 		toSetting:function(){
-			createWindow("../setting/setting.html", "setting.html", "账户设置", null);
+			openWindow("../../setting/setting.html", "setting.html", "账户设置", null);
 		},
 		/**
 		 * 未登录时去登录
 		 */
 		login: function() {
-			goLogin("../login/login.html", "home.html", "home.html", null)
+			openWindow("../../login/login.html", "home.html", "home.html", null)
 		},
 		/**
 		 * 跳转到订单
@@ -27,10 +27,10 @@ var userInfo = new Vue({
 				Status: status
 			}
 			if (!this.user) {
-				goLogin("../login/login.html", "", "", extras)
+				goLogin("../../login/login.html", "", "", extras)
 				return false;
 			}
-			createWindow("../order/order-list.html", "order-list.html", extras);
+			openWindow("../../order/order-list.html", "order-list.html", extras);
 		},
 		/**
 		 * @param {Object} href
@@ -41,7 +41,7 @@ var userInfo = new Vue({
 				Status: ""
 			}
 			if (!this.user) {
-				goLogin("../login/login.html", href, id, extras)
+				goLogin("../../login/login.html", href, id, extras)
 				return false;
 			}
 			mui.toast("跳转...")

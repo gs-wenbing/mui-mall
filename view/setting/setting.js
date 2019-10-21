@@ -1,7 +1,6 @@
 mui.init();
 
 mui.plusReady(function() {
-	showWindow();
 	userInfo.user = getUser();
 	
 	//主列表点击事件
@@ -36,16 +35,16 @@ mui.plusReady(function() {
 			if (userInfo.user) {
 				//打开新窗口
 				if(href.indexOf("address")>0){
-					createWindowWithTitle(href, id,title, extras)
+					openWindowWithTitle(href, id,title, extras)
 				}else{
-					createWindowWithTitle(href, id,title, null)
+					openWindowWithTitle(href, id,title, null)
 				}
 			} else {
 				var islogin = this.getAttribute("data-login");
 				if (islogin == 1) {
 					goLogin("../login/login.html", "home.html", "home.html", "", null)
 				} else {
-					createWindowWithTitle(href, id,title, null)
+					openWindowWithTitle(href, id,title, null)
 				}
 			}
 		}
@@ -69,7 +68,7 @@ var userInfo = new Vue({
 				var params = {
 					isLogoutOpr: 1
 				}
-				createWindow("../login/login.html", "login.html", params)
+				openWindow("../login/login.html", "login.html", params)
 			}
 		}
 	}

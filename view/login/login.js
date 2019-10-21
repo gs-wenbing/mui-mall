@@ -1,6 +1,5 @@
 mui.init();
 mui.plusReady(function() {
-	showWindow();
 
 	var _submit = document.querySelector('.btn-submit');
 	//监听点击事件

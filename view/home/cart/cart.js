@@ -88,8 +88,8 @@ function GetShoppingCartList() {
 
 Vue.use(VueLazyload, {
 	preLoad: 1.3,
-	error: '../../img/goods-default.gif',
-	loading: '../../img/goods-default.gif',
+	error: '../../../img/goods-default.gif',
+	loading: '../../../img/goods-default.gif',
 	attempt: 1
 })
 var goodsCarts = new Vue({
@@ -169,7 +169,7 @@ var goodsCarts = new Vue({
 
 		},
 		submit: function() {
-			createWindow("../settlement/settlement.html","settlement.html",{});
+			openWindow("../../settlement/settlement.html","settlement.html",{});
 		},
 		tapNum: function(Goods) {
 			var $that = this;
@@ -201,10 +201,10 @@ var goodsCarts = new Vue({
 		toShopping: function() {
 			var user = getUser();
 			if (user == null) {
-				goLogin("../login/login.html", "home.html", "home.html", null)
+				goLogin("../../login/login.html", "home.html", "home.html", null)
 				return false;
 			}
-			createWindow("../search/search.html", "search.html", {})
+			openWindow("../../search/search.html", "search.html", {})
 		},
 	},
 	watch: {

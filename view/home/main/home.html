@@ -7,11 +7,11 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
-		<link href="../../css/style.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
-		<script src="../../js/api.js"></script>
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../../css/iconfont.css" rel="stylesheet" type="text/css"/>
+		<link href="../../../css/style.css" rel="stylesheet" />
+		<link href="../../../css/icons-extra.css" rel="stylesheet" type="text/css" />
+		
 
 	</head>
 	<style>
@@ -28,11 +28,11 @@
 				<div class="header-search">
 					<input id="search-input" type="search" @tap="onInput" placeholder="点击搜索名称,产品型号" style="border: 2px solid #f14646;height: 32px !important;">
 					<button @tap="gotoGoodsClass('','','')" class="btn-search" type="button" style="top: 10px;">
-						<img src="../../img/search.png" style="height: 17px;"/>
+						<img src="../../../img/search.png" style="height: 17px;"/>
 					</button>
 				</div>
 				<div id="saoma" class="saoma" @tap="scanCode()" style="text-align:center;border-radius: 50%;height: 26px;width: 26px;background:rgba(137,15,21,0.8);">
-					<img src="../../img/saoma.png" style="height: 18px;width: 18px;vertical-align: middle;margin-top: 3px;"/>
+					<img src="../../../img/saoma.png" style="height: 18px;width: 18px;vertical-align: middle;margin-top: 3px;"/>
 				</div>
 			</div>
 			<!-- 不加这行时，IOS快速滑动标题栏变黑 header-bar-->
@@ -48,31 +48,31 @@
 						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
 						<div class="mui-slider-item mui-slider-item-duplicate">
 							<a href="#">
-								<img style="width: 100%;" src="../../img/banner3.png">
+								<img style="width: 100%;" src="../../../img/banner3.png">
 							</a>
 						</div>
 						<!-- 第一张 -->
 						<div class="mui-slider-item">
 							<a href="#">
-								<img style="width: 100%;" src="../../img/banner1.png">
+								<img style="width: 100%;" src="../../../img/banner1.png">
 							</a>
 						</div>
 						<!-- 第二张 -->
 						<div class="mui-slider-item">
 							<a href="#">
-								<img style="width: 100%;" src="../../img/banner2.png">
+								<img style="width: 100%;" src="../../../img/banner2.png">
 							</a>
 						</div>
 						<!-- 第三张 -->
 						<div class="mui-slider-item">
 							<a @tap="toRewardInfo()">
-								<img style="width: 100%;" src="../../img/banner3.png">
+								<img style="width: 100%;" src="../../../img/banner3.png">
 							</a>
 						</div>
 						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
 						<div class="mui-slider-item mui-slider-item-duplicate">
 							<a href="#">
-								<img style="width: 100%;" src="../../img/banner1.png">
+								<img style="width: 100%;" src="../../../img/banner1.png">
 							</a>
 						</div>
 					</div>
@@ -98,31 +98,31 @@
 			</div>
 			<div class="shortcut bg-white mgt-015">
 				<a class="shortcut-item" @tap="gotoGoodsClass('','','In')">
-					<img class="shortcut-icon" src="../../img/shortcut-new.png">
+					<img class="shortcut-icon" src="../../../img/shortcut-new.png">
 					<div class="shortcut-text">
 						新品推荐
 					</div>
 				</a>
 				<a class="shortcut-item" @tap="gotoGoodsClass('','','Ih')">
-					<img class="shortcut-icon" src="../../img/shortcut-hot.png">
+					<img class="shortcut-icon" src="../../../img/shortcut-hot.png">
 					<div class="shortcut-text">
 						热销市场
 					</div>
 				</a>
 				<a class="shortcut-item" @tap="gotoGoodsClass('','','Ip')">
-					<img class="shortcut-icon" src="../../img/shortcut-discount.png">
+					<img class="shortcut-icon" src="../../../img/shortcut-discount.png">
 					<div class="shortcut-text">
 						促销折扣
 					</div>
 				</a>
 				<a class="shortcut-item">
-					<img class="shortcut-icon" src="../../img/shortcut-brand.png">
+					<img class="shortcut-icon" src="../../../img/shortcut-brand.png">
 					<div class="shortcut-text">
 						品牌街
 					</div>
 				</a>
 				<a class="shortcut-item">
-					<img class="shortcut-icon" src="../../img/shortcut-suggest.png">
+					<img class="shortcut-icon" src="../../../img/shortcut-suggest.png">
 					<div class="shortcut-text">
 						建议订单
 					</div>
@@ -198,13 +198,14 @@
 				</div>
 			</div>
 		</div>
-		<script src="../../js/mui.js"></script>
-		<script src="../../js/vue.js"></script>
-		<script src="../../js/vue-lazyload.js"></script>
-		<script src="../../js/zepto.min.js"></script>
-		<script src="../../js/common.js"></script>
-		<script src="../../data/home.js"></script>
-		<script src="../../data/classy.js"></script>
+		<script src="../../../js/mui.js"></script>
+		<script src="../../../js/vue.js"></script>
+		<script src="../../../js/vue-lazyload.js"></script>
+		<script src="../../../js/zepto.min.js"></script>
+		<script src="../../../js/common.js"></script>
+		<script src="../../../data/home.js"></script>
+		<script src="../../../data/classy.js"></script>
+		<script src="../../../js/api.js"></script>
 		<script src="home.js"></script>
 	</body>
 </html>
