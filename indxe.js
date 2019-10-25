@@ -58,7 +58,7 @@ window.addEventListener('refresh', function(e) { //执行刷新
 		if (isIPhoneX()) {
 			subpage_style = {
 				top: '0px',
-				bottom: '88px', //34px
+				bottom: '88px', 
 				styles: {
 					"render": "always", //一直渲染
 				}
