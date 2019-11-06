@@ -94,7 +94,7 @@ function initEvent() {
 					var btnArray = ['否', '是'];
 					mui.confirm('还没有支付密码，是否去设置？', ' ', btnArray, function(e) {
 						if (e.index == 1) {
-							openWindow("../setting/setPayPwd.html","setPayPwd.html",{});
+							UIAPI.openWindow("../setting/setPayPwd.html","setPayPwd.html",{});
 						} 
 					},"div")
 					return false;
@@ -104,7 +104,7 @@ function initEvent() {
 			}
 		}
 	}).on('tap', '.forgetPwd', function(event) {
-		openWindow("../setting/setPayPwd.html","setPayPwd.html",{});
+		UIAPI.openWindow("../setting/setPayPwd.html","setPayPwd.html",{});
 	});
 	//支付弹出层关闭按钮事件
 	$('.icon-close').on('click', function() {
@@ -175,7 +175,7 @@ var orderDetail = new Vue({
 			AcountBalance:100,
 			HasPassword:true
 		},
-		user: getUser(),
+		user:StorageAPI.getUser(),
 	},
 	methods:{
 		goXianxiaPay:function(){
@@ -185,7 +185,7 @@ var orderDetail = new Vue({
 				OrderID:orderDetail.Order.OrderID,
 				isInvoice:self.isInvoice
 			}
-			openWindow("OfflineSelectAccount.html", "OfflineSelectAccount.html", param)
+			UIAPI.openWindow("OfflineSelectAccount.html", "OfflineSelectAccount.html", param)
 		}
 	}
 });
@@ -226,7 +226,7 @@ function ThirdPay(payMoney, id) {
 							OrderID: orderDetail.Order.OrderID,
 							isSuccess: 1,
 						}
-						openWindow("pay-success.html", "pay-success.html", param);
+						UIAPI.openWindow("pay-success.html", "pay-success.html", param);
 					}, function(error) {
 						mui.alert('支付失败', ' ', function() {},"div");
 					});
@@ -267,5 +267,5 @@ function payOrder(psd) {
 		OrderID: orderDetail.Order.OrderID,
 		isSuccess: 1,
 	}
-	openWindow("pay-success.html", "pay-success.html", param)
+	UIAPI.openWindow("pay-success.html", "pay-success.html", param)
 }

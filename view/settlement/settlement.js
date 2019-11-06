@@ -5,7 +5,6 @@ mui.plusReady(function() {
 var payOrder = new Vue({
 	el: "#el-box",
 	data: {
-		URL_PIC: URL_PIC,
 		RecieveAddress: null,
 		GoodsList: [],
 		AmountInfo: {
@@ -17,7 +16,7 @@ var payOrder = new Vue({
 			GoodsTotalAmount: 0,
 		},
 		IsCoupon: true,
-		user: getUser(),
+		user: StorageAPI.getUser(),
 		TotalAmount: 0,
 	},
 	methods: {
@@ -29,14 +28,14 @@ var payOrder = new Vue({
 				mui.toast("请添加或选择收货地址！");
 				return false;
 			}
-			openWindow("../pay/payment.html","payment.html",{});
+			UIAPI.openWindow("../pay/payment.html","payment.html",{});
 		},
 		gotoAddressManage: function() {
 			//去选择收货地址
 			var param = {
 				selectOneAddress: true
 			}
-			openWindowWithTitle("../address/address.html", "address.html","地址管理", param);
+			UIAPI.openWindowWithTitle("../address/address.html", "address.html",param);
 		}
 	}
 

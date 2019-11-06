@@ -5,11 +5,12 @@
 		<meta charset="utf-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
-		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
-		<link href="../../css/style.css" rel="stylesheet" />
-		<link rel="stylesheet" href="../../css/mui.picker.css">
-		<link rel="stylesheet" href="../../css/mui.poppicker.css">
+		<script type="text/javascript">
+			document.write('<script src="../../js/mount.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link(2,['../../css/mui.picker.css','../../css/mui.poppicker.css']);
+		</script>
 	</head>
 	<body id="app" class="mui-fullscreen">
 		<div class="mui-page-content">
@@ -60,14 +61,10 @@
 		</div>
 		<a @tap="saveAddressData()" class="mui-bar mui-bar-tab bg-red text-white bottom-fixed-block">保存</a>
 		</div>
-		<script src="../../js/mui.js"></script>
-		<script src="../../js/vue.js"></script>
-		<script src="../../js/mui.picker.js"></script>
-		<script src="../../js/mui.poppicker.js"></script>
-		<script src="../../js/city.data.js"></script>
-		<script src="../../js/zepto.min.js"></script>
-		<script src="../../js/api.js"></script>
-		<script src="address-edit.js"></script>
+		
+		<script type="text/javascript">
+			script(2,['../../js/mui.picker.js','../../js/mui.poppicker.js','../../js/city.data.js','address-edit.js']);
+		</script>
 	</body>
 
 </html>

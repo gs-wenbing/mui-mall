@@ -1,4 +1,4 @@
-detail = {
+goodsDetailModleByCache = {
 	"Goods": {
 		"GoodsID": 49,
 		"GoodsName": "牛滑木色杆1.0MM半针配RS02系列芯拔帽中油笔",

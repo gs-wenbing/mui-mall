@@ -67,5 +67,22 @@ addressByCache = {
 		"RecieverCountyName": "市辖区",
 		"PostCode": "",
 		"IsDefault": 0
+	}, {
+		"RecieveAddressID": 946,
+		"RecieveName": "天天想",
+		"MobilePhone": "13761742290",
+		"RecieverProvinceID": 450000,
+		"RecieverCityID": 450100,
+		"RecieverCountyID": 450101,
+		"RecieverAddress": "xxx路1288号",
+		"Remark": null,
+		"CreateTime2": null,
+		"CustomerEnterID": 126,
+		"Disable": 0,
+		"RecieverProvinceName": "广西壮族自治区",
+		"RecieverCityName": "南宁市",
+		"RecieverCountyName": "市辖区",
+		"PostCode": "",
+		"IsDefault": 0
 	}]
 }

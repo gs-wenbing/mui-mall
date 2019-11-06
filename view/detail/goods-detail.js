@@ -24,7 +24,7 @@ mui.plusReady(function() {
 		} else if (index == 4) {
 			AddShoppingCar();
 		} else if (index == 5) {
-			openWindow("../settlement/settlement.html","settlement.html",{});
+			UIAPI.openWindow("../settlement/settlement.html","settlement.html",{});
 		}
 	});
 	mui.previewImage();
@@ -55,7 +55,7 @@ var goodsDetail = new Vue({
 				keyWords: "",
 				PmID: PromotionID,
 			}
-			openWindow("second-classfy.html", "second-classfy.html", extras)
+			UIAPI.openWindow("second-classfy.html", "second-classfy.html", extras)
 		}
 	}
 });
@@ -65,21 +65,21 @@ var goodsDetail = new Vue({
 function getGoodsDetail() {
 	var self = plus.webview.currentWebview();
 	var goodsId = self.goodsId;
-	console.log("goodsId:::::::::::" + goodsId);
+	
 	window.setTimeout(function() {
-		var data = detail;
+		var data = goodsDetailModleByCache;
 		//描述图片信息
 		var GoodsDesc = decodeURIComponent(data.Goods.GoodsDesc);
 		// console.log(GoodsDesc);
 		GoodsDesc = GoodsDesc.replace(new RegExp("{IMGIP}", 'g'), "res.genvana.cn");
 
-		var htmlDOM = parseDom("<div>" + GoodsDesc + "</div>")
+		var htmlDOM = UIAPI.parseDom("<div>" + GoodsDesc + "</div>")
 		var imgs = htmlDOM[0].getElementsByTagName('img');
 		mui.each(imgs, function(i, img) {
 			img.setAttribute("data-preview-src", "");
 			img.setAttribute("data-preview-group", "2");
 		})
-		data.Goods.GoodsDesc = nodeToString(htmlDOM[0]);
+		data.Goods.GoodsDesc = UIAPI.nodeToString(htmlDOM[0]);
 
 		goodsDetail.Goods = data.Goods;
 		goodsDetail.GoodsSkuList = data.GoodsSku;

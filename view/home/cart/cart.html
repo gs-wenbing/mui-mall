@@ -6,11 +6,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-		<link href="../../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../../../css/iconfont.css" />
-		<link href="../../../css/style.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../../../css/icons-extra.css" />
+		<script type="text/javascript">
+			document.write('<script src="../../../js/mount.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link(3,['../../../css/icons-extra.css']);
+		</script>
 	</head>
 	<style type="text/css">
 		.classfy-item__body{
@@ -133,13 +134,9 @@
 				<button @tap="deleteCart" class="mui-btn-danger mui-btn-outlined mui-pull-right btn-remove mui-hidden" style="font-size: 12px;margin-top: 10px;height: 30px;width: 70px;">删除</button>
 			</div>
 		</div>
-		<script src="../../../js/mui.js"></script>
-		<script src="../../../js/vue.js"></script>
-		<script src="../../../js/vue-lazyload.js"></script>
-		<script src="../../../js/zepto.min.js"></script>
-		<script src="../../../js/api.js"></script>
-		<script src="../../../data/cart.js"></script>
-		<script src="cart.js"></script>
+		<script type="text/javascript">
+			script(3,['../../../js/vue-lazyload.js','../../../data/cartModel.js','cart.js']);
+		</script>
 	</body>
 
 </html>

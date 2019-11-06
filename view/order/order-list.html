@@ -7,10 +7,12 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link href="../../css/iconfont.css" rel="stylesheet"/>
-		<link href="../../css/style.css" rel="stylesheet" />
-		<link href="../../css/scrollbar.css" rel="stylesheet"/>
+		<script type="text/javascript">
+			document.write('<script src="../../js/mount.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link(2,['../../css/scrollbar.css']);
+		</script>
 	</head>
 	
 	<body id="app">
@@ -151,27 +153,9 @@
 			</div>
 			<a @tap="cancelOrder()" class="mui-bar mui-bar-tab bg-red text-white bottom-fixed-block">提交</a>
 		</div>
-		<script src="../../js/iScroll.js"></script>
-		<script src="../../js/mui.js"></script>
-		<script src="../../js/zepto.min.js"></script>
-		<script src="../../js/vue.js"></script>
-		<script src="../../js/api.js"></script>
-		<script src="../../data/order-list.js"></script>
-		<script src="order-list.js"></script>
-		<script>window.PointerEvent = undefined</script>
+		
 		<script type="text/javascript">
-			mui.init()
-			
-			 //监听单选框状态变化
-			$('input[name="reason-radio"]').on('change', function () {
-				if ($(this).val() == "2"){
-					$("#cancelReason").css("width","6.83rem");
-					$("#cancelReason").show();
-				}else{
-					$("#cancelReason").css("width","6.83rem");
-					$("#cancelReason").hide();
-				}
-			})
+			script(2,['../../js/iScroll.js','../../data/orderListModel.js','order-list.js']);
 		</script>
 	</body>
 

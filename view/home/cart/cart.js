@@ -50,7 +50,7 @@ function pulldownRefresh() {
 
 //获取购物车数据
 function GetShoppingCartList() {
-	var user = getUser();
+	var user = StorageAPI.getUser();
 	if (user == null) {
 		mui('.mui-content').pullRefresh().endPulldownToRefresh();
 		goodsCarts.GoodsList = [];
@@ -101,7 +101,7 @@ var goodsCarts = new Vue({
 		allCount: 0, //有效商品总数
 		isDelete: false,
 		isLogin: true,
-		user: getUser()
+		user: StorageAPI.getUser()
 	},
 	computed: {
 		total_num: function() {
@@ -169,7 +169,7 @@ var goodsCarts = new Vue({
 
 		},
 		submit: function() {
-			openWindow("../../settlement/settlement.html","settlement.html",{});
+			UIAPI.openWindow("../../settlement/settlement.html","settlement.html",{});
 		},
 		tapNum: function(Goods) {
 			var $that = this;
@@ -199,12 +199,12 @@ var goodsCarts = new Vue({
 			}
 		},
 		toShopping: function() {
-			var user = getUser();
+			var user = StorageAPI.getUser();
 			if (user == null) {
-				goLogin("../../login/login.html", "home.html", "home.html", null)
+				UIAPI.goLogin("../../login/login.html", "home.html", "home.html", null)
 				return false;
 			}
-			openWindow("../../search/search.html", "search.html", {})
+			UIAPI.openWindow("../../search/search.html", "search.html", {})
 		},
 	},
 	watch: {

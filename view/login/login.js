@@ -44,9 +44,9 @@ var LoginInfo = new Vue({
 	},
 	created: function() {
 		//记住密码
-		if (getStorage('isRemember') == 1) {
-			this.LoginName = getStorage("LoginName");
-			this.Password = getStorage("Password");
+		if (StorageAPI.getStorage('isRemember') == 1) {
+			this.LoginName = StorageAPI.getStorage("LoginName");
+			this.Password = StorageAPI.getStorage("Password");
 		}
 	}
 })
@@ -65,14 +65,14 @@ function login(self, that) {
 	var t1 = window.setTimeout(function(){
 		mui(that).button('reset');
 		document.activeElement.blur(); //隐藏软键盘  
-		setStorage("user-test", userInfoByCache);
+		StorageAPI.setStorage("user-test", userInfoByCache);
 		//记住密码
 		if (LoginInfo.isRemember) {
-			setStorage("isRemember", 1);
-			setStorage("LoginName", LoginInfo.LoginName);
-			setStorage("Password", LoginInfo.Password);
+			StorageAPI.setStorage("isRemember", 1);
+			StorageAPI.setStorage("LoginName", LoginInfo.LoginName);
+			StorageAPI.setStorage("Password", LoginInfo.Password);
 		} else {
-			setStorage("isRemember", 0);
+			StorageAPI.setStorage("isRemember", 0);
 			var storage = window.localStorage;
 			storage.removeItem('LoginName');
 			storage.removeItem('Password');

@@ -27,7 +27,7 @@ mui.plusReady(function() {
 })
 
 function getAccountDetail() {
-	var user = getUser();
+	var user = StorageAPI.getUser();
 	UserInfo.User = user;
 	
 }
@@ -53,7 +53,7 @@ function choicePic() {
 }
 
 function setImg(src) {
-	uploadImage(src, "employees", 500, 500, function(isSuccess, serverPath) {
+	NetAPI.uploadImage(src, "employees", 500, 500, function(isSuccess, serverPath) {
 		if (isSuccess) {
 			//修改用户头像
 			UserInfo.User.HeadImageUrl = serverPath;

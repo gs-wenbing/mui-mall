@@ -1,4 +1,4 @@
-homeGoodsList = [{
+var homeGoodsListByCache = [{
 	"GoodsID": 9,
 	"GoodsCode": "JWN20181024144242892",
 	"GoodsName": "MINI0.5MM子弹配RS07系列芯拔帽中性笔",

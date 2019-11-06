@@ -9,9 +9,12 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 
-		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
-		<link href="../../css/style.css" rel="stylesheet" />
+		<<script type="text/javascript">
+			document.write('<script src="../../js/mount.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link(2);
+		</script>
 		<style>
 			.mui-selected .mui-navigate-right {
 				color: #e60012 !important;
@@ -26,13 +29,13 @@
 		<!--侧滑菜单容器-->
 		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable mui-slide-in">
 			<!--品牌菜单部分-->
-			<aside id="offCanvasSide1" class="mui-off-canvas-right" style="width: 100%;">
+			<aside id="offCanvasSide1" class="mui-off-canvas-right" style="width: 100%;top:-20px">
 				<div class="mui-bar mui-bar-nav sidebar-header noShadow" style="width: 90%;">
 					<a @tap="closeSide" class="action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 					<h1 class="mui-title">品牌</h1>
 					<a @tap="conformSide" class="link-confirm mui-pull-right">确定</a>
 				</div>
-				<div class="mui-scroll-wrapper sidebar-body">
+				<div class="mui-scroll-wrapper sidebar-body" style="bottom:20px">
 					<div class="mui-scroll">
 						<div class="mgb-20">
 							<ul class="mui-table-view mui-table-view-checkbox" style="padding: 10px;">
@@ -49,13 +52,13 @@
 				</div>
 			</aside>
 			<!--分类菜单部分-->
-			<aside id="offCanvasSide2" class="mui-off-canvas-right " style="width: 100%;">
+			<aside id="offCanvasSide2" class="mui-off-canvas-right " style="width: 100%;top:-20px">
 				<div class="mui-bar mui-bar-nav sidebar-header noShadow" style="width: 90%;">
 					<a @tap="closeSide" class="action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 					<h1 class="mui-title">分类</h1>
 					<a @tap="conformSide" class="link-confirm mui-pull-right">确定</a>
 				</div>
-				<div class="mui-scroll-wrapper sidebar-body">
+				<div class="mui-scroll-wrapper sidebar-body"  style="bottom:20px">
 					<div class="mui-scroll">
 						<div v-if="classy.IsVisible==0" class="mgb-20" v-for="classy in ClassList">
 							<h5 class="mui-content-padded title">{{classy.GoodsClassName}}</h5>
@@ -74,7 +77,7 @@
 			</aside>
 			<!-- 主页面部分 -->
 			<div class="mui-inner-wrap">
-				<div class="mui-scroll-wrapper" style="top: 22px;background-color: #ffffff;width: 90%;">
+				<div class="mui-scroll-wrapper" style="background-color: #ffffff;width: 90%;top:-5px;bottom:20px">
 					<div class="mui-scroll">
 						<div class="wedget">
 							<div class="widget-title">价格区间</div>
@@ -125,14 +128,9 @@
 				</div>
 			</div>
 		</div>
-
-		<script src="../../js/mui.min.js"></script>
-		<script src="../../js/vue.js"></script>
-		<script src="../../js/iconfont.js"></script>
-		<script src="../../js/zepto.min.js"></script>
-		<script src="../../data/brand.js"></script>
-		<script src="../../data/classy.js"></script>
-		<script src="../../js/api.js"></script>
+		<script type="text/javascript">
+			script(2,['../../js/iconfont.js','../../data/brandModel.js','../../data/classyModel.js']);
+		</script>
 		<script type="text/javascript" charset="utf-8">
 
 			var GoodsSearch = new Vue({
@@ -150,8 +148,8 @@
 				created() {
 					var $that = this;
 					window.setTimeout(function() {
-						$that.BrandList = brandList;
-						$that.ClassList = classList;
+						$that.BrandList = brandListByCache;
+						$that.ClassList = classListByCache;
 					}, 500);
 				},
 				methods: {

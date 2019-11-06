@@ -169,14 +169,14 @@ var orderInfo = new Vue({
 			var extras = {
 				OrderID: OrderID
 			}
-			openWindowWithTitle("order-detail.html", "order-detail.html","订单详情", extras)
+			UIAPI.openWindowWithTitle("order-detail.html", "order-detail.html","订单详情", extras)
 		},
 
 		toPayment: function(OrderID) {
 			var extras = {
 				OrderID: OrderID,
 			}
-			openWindow("../pay/payment.html", "payment.html",  extras);
+			UIAPI.openWindow("../pay/payment.html", "payment.html",  extras);
 		},
 
 		showCancleBox: function(OrderID) {
@@ -257,6 +257,16 @@ function init() {
 			})
 			pullAction(0);
 			closePop();
+		}
+	})
+	//监听单选框状态变化
+	$('input[name="reason-radio"]').on('change', function () {
+		if ($(this).val() == "2"){
+			$("#cancelReason").css("width","6.83rem");
+			$("#cancelReason").show();
+		}else{
+			$("#cancelReason").css("width","6.83rem");
+			$("#cancelReason").hide();
 		}
 	})
 	window.addEventListener('tap', function(e) {

@@ -7,9 +7,12 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
-		<link href="../../css/style.css" rel="stylesheet" />
+		<script type="text/javascript">
+			document.write('<script src="../../js/mount.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link(2);
+		</script>
 	</head>
 	<body id="app">
 		<div class="state-container">
@@ -23,14 +26,13 @@
 				感谢您对品牌联盟的支持！
 			</div>
 			<div class="state-btns">
-				<a date-href="order-list" type="button" class="mui-btn mui-btn-danger mui-btn-outlined">查看订单</a>
-				<a date-href="home" type="button" class="mui-btn mui-btn-danger">返回首页</a>
+				<a date-href="toOrder" type="button" class="mui-btn mui-btn-danger mui-btn-outlined">查看订单</a>
+				<a date-href="toHome" type="button" class="mui-btn mui-btn-danger">返回首页</a>
 			</div>
 		</div>
-		<script src="../../js/mui.js"></script>
-		<script src="../../js/vue.js"></script>
-		<script src="../../js/zepto.min.js"></script>
-		<script src="../../js/api.js"></script>
+		<script type="text/javascript">
+			script(2);
+		</script>
 		<script type="text/javascript">
 			mui.init();
 			var Info = new Vue({
@@ -47,46 +49,22 @@
 				Info.isSuccess = self.isSuccess;
 				mui(".state-btns").on("tap", "a", function(event) {
 					var href = $(this).attr("date-href");
-					//商品详情
-					var goodsDetail = plus.webview.getWebviewById("goods-detail.html");
-					if (goodsDetail) {
-						plus.webview.close(goodsDetail, "none");
-					}
-					//商品搜索页
-					var search = plus.webview.getWebviewById("search.html");
-					if (search) {
-						plus.webview.close(search, "none");
-					}
-					//商品搜索页侧滑栏
-					var classMenu = plus.webview.getWebviewById("class-menu.html");
-					if (classMenu) {
-						plus.webview.close(classMenu, "none");
-					}
-					//购物车 确认订单
-					var settlement = plus.webview.getWebviewById("settlement.html");
-					if (settlement) {
-						plus.webview.close(settlement, "none");
-					}
-					//订单详情
-					var orderDetail = plus.webview.getWebviewById("order-detail.html");
-					if (orderDetail) {
-						plus.webview.close(orderDetail, "none");
-					}
-					//支付页面
-					var payment = plus.webview.getWebviewById("payment.html");
-					if (payment) {
-						plus.webview.close(payment, "none");
-					}
-					var order = plus.webview.getWebviewById("order-list.html");
-					if (order) {
-						plus.webview.close(order, "none");
-					}
-					if ("order-list" == href) {
+					UIAPI.closePages([
+						"goods-detail.html",//商品详情
+						"search.html",//商品搜索页
+						"class-menu.html",//商品搜索页侧滑栏
+						"settlement.html",//购物车 确认订单
+						"order-detail.html",//订单详情
+						"order-list.html",
+						"payment.html",//支付页面
+					]);
+					
+					if ("toOrder" == href) {
 						var extras = {
 							Status: "",
 							OrderID:self.OrderID
 						}
-						openWindowWithTitle("../order/order-detail.html", "order-detail.html", extras)
+						UIAPI.openWindowWithTitle("../order/order-detail.html", "order-detail.html", extras)
 						plus.webview.currentWebview().close();
 					} else {
 						var main = plus.webview.getLaunchWebview();

@@ -82,7 +82,7 @@ function pulldownRefresh() {
 		mui('.mui-content').pullRefresh().enablePullupToRefresh();
 	}
 	window.setTimeout(function() {
-		GoodsSearch.MallGoodsList = goodsList[pageIndex];
+		GoodsSearch.MallGoodsList = goodsListByCache[pageIndex];
 		if(mui('.mui-content').pullRefresh()){
 			mui(".mui-content").pullRefresh().endPulldownToRefresh();
 		}
@@ -93,12 +93,12 @@ function pulldownRefresh() {
  * 上拉加载更多
  */
 function pullupLoading(){
-	if(pageIndex===goodsList.length){
+	if(pageIndex===goodsListByCache.length){
 		return false;
 	}
 	window.setTimeout(function() {
 		//模拟加载数据
-		var list = goodsList[pageIndex];
+		var list = goodsListByCache[pageIndex];
 		if (list.length<pageSize) {
 			$(".underline").css('display', 'block');
 			mui('.mui-content').pullRefresh().disablePullupToRefresh();
@@ -144,7 +144,7 @@ var GoodsSearch = new Vue({
 			filterGoods();
 		},
 		gotoGoodsDetail: function(goodsId) {
-			openGoodsDetail("../detail/goods-detail.html",goodsId);
+			UIAPI.openGoodsDetail("../detail/goods-detail.html",goodsId);
 		},
 		onInput: function() {
 			
@@ -172,10 +172,10 @@ $(document).on('focusout', function () {
  * 筛选商品
  */
 function filterGoods(){
-	//模拟
-	var wd = plus.nativeUI.showWaiting();
+	//模拟 
+	UIAPI.showWaiting()
 	window.setTimeout(function() {
-		wd.close();
+		UIAPI.closeWaiting();
 	}, 1000);
 }
 

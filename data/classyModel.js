@@ -1,4 +1,4 @@
-classList = [{
+var classListByCache = [{
 	"GoodsClassID": 1,
 	"GoodsClassName": "书写用品",
 	"ParentID": 0,

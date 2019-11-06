@@ -7,9 +7,13 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
-		<link href="../../css/style.css" rel="stylesheet" />
+		
+		<script type="text/javascript">
+			document.write('<script src="../../js/mount.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link(2);
+		</script>
 		<style type="text/css">
 			.mui-media-left{
 			float: left;width: 75%;min-height: 100px;height:auto;padding-bottom: 25px;
@@ -176,13 +180,10 @@
 				<button class="mui-btn mui-btn-danger mui-pull-right" :disabled="RecieveAddress==null" type="button" @tap="submit()">提交订单</button>
 			</div>
 		</div>
-
-		<script src="../../js/mui.js"></script>
-		<script src="../../js/zepto.min.js"></script>
-		<script src="../../js/vue.js"></script>
-		<script src="../../js/api.js"></script>
-		<script src="../../data/settlement.js"></script>
-		<script src="settlement.js"></script>
+		
+		<script type="text/javascript">
+			script(2,['../../data/settlementModel.js','settlement.js']);
+		</script>
 	</body>
 
 </html>

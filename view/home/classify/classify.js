@@ -26,33 +26,18 @@ mui.plusReady(function() {
 			},
 		},
 		created: function() {
-			this.GoodsClassList = classList;
-			var newslist = document.getElementsByClassName('mui-slider-item');
-			window.addEventListener('newsCallBack', function(event) {
-				var cnt = event.detail.cnt; //从父页面获得需要切换到的选项内容的标签  
-				//尝试通过css来进行控制->结果失败……  
-				$(".mui-slider-item").removeClass('mui-active');
-				newslist[cnt].className = "mui-slider-item mui-control-content mui-active";
-			});
+			this.GoodsClassList = classListByCache;
 		},
 		methods: {
 			gotoGoodsClass: function(GoodsClassID) {
 				document.activeElement.blur(); //隐藏软键盘  
 				var extras = {}
-				openWindow("../../search/search.html", "search.html", extras);
+				UIAPI.openWindow("../../search/search.html", "search.html", extras);
 				this.searchString = "";
 			},
 			swichTab: function(index) {
 				mui('#slider').slider().gotoItem(index);
 			},
-			hideUnVisibleData: function(list) {
-				var $that = this;
-				mui.each(list, function(index, item) {
-					if (item.IsVisible == 0) {
-						$that.GoodsClassList.push(item);
-					}
-				})
-			}
 		}
 
 	})

@@ -7,9 +7,12 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-		<link href="../../css/mui.min.css" rel="stylesheet"/>
-		<link href="../../css/iconfont.css" rel="stylesheet"/>
-		<link href="../../css/style.css" rel="stylesheet"/>
+		<script type="text/javascript">
+			document.write('<script src="../../js/mount.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link(2);
+		</script>
 		<style type="text/css">
 			.classfy-item__body{
 				min-height: 100px;height:auto;
@@ -197,37 +200,11 @@
 			</div>
 			<a @tap="cancelOrder" class="mui-bar mui-bar-tab bg-red text-white bottom-fixed-block">提交</a>
 		</div>
-		<script src="../../js/mui.js"></script>
-		<script src="../../js/vue.js"></script>
-		<script src="../../js/zepto.min.js"></script>
-		<script src="../../js/api.js"></script>
-		<script src="../../data/order-detail.js"></script>
-		<script src="order-detail.js"></script>
+		
 		<script type="text/javascript">
-			mui.init()
-			//监听单选框状态变化
-			$('input[name="reason-radio"]').on('change', function () {
-				if ($(this).val() == "2"){
-					$("#cancelReason").css("width","6.83rem");
-					$("#cancelReason").show();
-				}else{
-					$("#cancelReason").css("width","6.83rem");
-					$("#cancelReason").hide();
-				}
-			})
-			var originalHeight=document.documentElement.clientHeight || document.body.clientHeight;
-			window.onresize=function(){
-				//软键盘弹起与隐藏  都会引起窗口的高度发生变化
-				var  resizeHeight=document.documentElement.clientHeight || document.body.clientHeight;
-				if(resizeHeight*1>originalHeight*1){ //resizeHeight<originalHeight证明窗口被挤压了
-					console.log(11111111)
-					$('#btn-select').css('bottom',resizeHeight-originalHeight);
-				}else{
-					console.log(2222222)
-					$('#btn-select').css('bottom','0px');
-				}
-			}
+			script(2,['../../data/orderDetailModel.js','order-detail.js']);
 		</script>
+		
 	</body>
 
 </html>

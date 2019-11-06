@@ -1,7 +1,7 @@
 mui.init();
 
 mui.plusReady(function() {
-	userInfo.user = getUser();
+	userInfo.user = StorageAPI.getUser();
 	
 	//主列表点击事件
 	mui('.mui-scroll').on('tap', 'a', function() {
@@ -35,16 +35,16 @@ mui.plusReady(function() {
 			if (userInfo.user) {
 				//打开新窗口
 				if(href.indexOf("address")>0){
-					openWindowWithTitle(href, id,title, extras)
+					UIAPI.openWindowWithTitle(href, id,title, extras)
 				}else{
-					openWindowWithTitle(href, id,title, null)
+					UIAPI.openWindowWithTitle(href, id,title, null)
 				}
 			} else {
 				var islogin = this.getAttribute("data-login");
 				if (islogin == 1) {
-					goLogin("../login/login.html", "home.html", "home.html", "", null)
+					UIAPI.goLogin("../login/login.html", "home.html", "home.html", "", null)
 				} else {
-					openWindowWithTitle(href, id,title, null)
+					UIAPI.openWindowWithTitle(href, id,title, null)
 				}
 			}
 		}
@@ -68,7 +68,7 @@ var userInfo = new Vue({
 				var params = {
 					isLogoutOpr: 1
 				}
-				openWindow("../login/login.html", "login.html", params)
+				UIAPI.openWindow("../login/login.html", "login.html", params)
 			}
 		}
 	}

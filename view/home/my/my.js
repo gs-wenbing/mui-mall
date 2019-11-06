@@ -3,20 +3,20 @@ mui.init();
 var userInfo = new Vue({
 	el: "#app",
 	data: {
-		user: getUser()
+		user: StorageAPI.getUser()
 	},
 	methods: {
 		/**
 		 * 跳转到设置页面
 		 */
 		toSetting:function(){
-			openWindow("../../setting/setting.html", "setting.html", "账户设置", null);
+			UIAPI.openWindow("../../setting/setting.html", "setting.html", "账户设置", null);
 		},
 		/**
 		 * 未登录时去登录
 		 */
 		login: function() {
-			openWindow("../../login/login.html", "home.html", "home.html", null)
+			UIAPI.goLogin("../../login/login.html", "home.html", "home.html", null)
 		},
 		/**
 		 * 跳转到订单
@@ -27,10 +27,10 @@ var userInfo = new Vue({
 				Status: status
 			}
 			if (!this.user) {
-				goLogin("../../login/login.html", "", "", extras)
+				UIAPI.goLogin("../../login/login.html", "", "", extras)
 				return false;
 			}
-			openWindow("../../order/order-list.html", "order-list.html", extras);
+			UIAPI.openWindow("../../order/order-list.html", "order-list.html", extras);
 		},
 		/**
 		 * @param {Object} href
@@ -41,7 +41,7 @@ var userInfo = new Vue({
 				Status: ""
 			}
 			if (!this.user) {
-				goLogin("../../login/login.html", href, id, extras)
+				UIAPI.goLogin("../../login/login.html", href, id, extras)
 				return false;
 			}
 			mui.toast("跳转...")
@@ -66,5 +66,5 @@ var userInfo = new Vue({
 })
 window.addEventListener('refresh_my', function(e) { //执行刷新
 	userInfo.user = {};
-	userInfo.user = getUser();
+	userInfo.user = StorageAPI.getUser();
 });

@@ -61,15 +61,10 @@
 					plus.runtime.openURL(result);
 					back();//返回上一页
 				} else{
-					// if(type == 'EAN13' || type == 'EAN8'){
-						var extras = {
-							barcode:result
-						}
-						openWindow("barcode-result.html","barcode-result.html",extras);
-// 					}else{
-// 						alert(type+":"+result);
-// 						back();
-// 					}
+					var extras = {
+						barcode:result
+					}
+					UIAPI.openWindow("barcode-result.html","barcode-result.html",extras);
 				}
 			}
 			// 创建子窗口

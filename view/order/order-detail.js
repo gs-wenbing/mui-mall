@@ -45,7 +45,7 @@ var orderDetail = new Vue({
 			var extras = {
 				OrderID: this.order.OrderID,
 			}
-			openWindow("../pay/payment.html", "payment.html",  extras);
+			UIAPI.openWindow("../pay/payment.html", "payment.html",  extras);
 		},
 		close:function() {
 			$('#btn-select').removeClass('mui-active');
@@ -79,4 +79,14 @@ function updateOrderList(){
 window.addEventListener('refrash', function(e) {
 	updateOrderList();
 	getOrderDetail();
+})
+//监听单选框状态变化
+$('input[name="reason-radio"]').on('change', function () {
+	if ($(this).val() == "2"){
+		$("#cancelReason").css("width","6.83rem");
+		$("#cancelReason").show();
+	}else{
+		$("#cancelReason").css("width","6.83rem");
+		$("#cancelReason").hide();
+	}
 })

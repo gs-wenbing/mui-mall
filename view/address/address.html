@@ -5,14 +5,18 @@
 		<meta charset="utf-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
-		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
-		<link href="../../css/style.css" rel="stylesheet" />
+		<script type="text/javascript">
+			document.write('<script src="../../js/mount.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link(2);
+		</script>
 		<style type="text/css">
 			.adressM-panel__opt .mui-checkbox input[type="checkbox"]::before{ font-size: 18px;}
 		</style>
 	</head>
 	<body class="mui-fullscreen">
+		
 		<div class="mui-page-content">
 			<div class="state-container" v-if="RecieveAddressList.length==0">
 				<div class="state-icon state-nodata"></div>
@@ -21,7 +25,7 @@
 				</div>
 				<a @tap="addNewAdress" type="button" class="mui-btn mui-btn-danger">添加地址</a>
 			</div>
-			<div class="mui-scroll-wrapper" v-if="RecieveAddressList.length!=0" style="margin-bottom: 110px;">
+			<div class="mui-scroll-wrapper" v-if="RecieveAddressList.length!=0" style="bottom: 50px;">
 				<div class="mui-scroll">
 					<div class="adressM-panel mgb-6"  v-for="(index,address) in RecieveAddressList">
 						<div @tap="selectResAddress(index)">
@@ -56,12 +60,9 @@
 			</div>
 			<a @tap="addNewAdress" v-if="RecieveAddressList.length!=0" class="mui-bar mui-bar-tab bg-red text-white bottom-fixed-block">添加新地址</a>
 		</div>
-		<script src="../../js/mui.js"></script>
-		<script src="../../js/zepto.min.js"></script>
-		<script src="../../js/vue.js"></script>
-		<script src="../../js/api.js"></script>
-		<script src="../../data/address.js"></script>
-		<script src="address.js"></script>
+		<script type="text/javascript">
+			script(2,['../../data/addressModel.js','address.js']);
+		</script>
 	</body>
 
 </html>

@@ -1,4 +1,4 @@
-goodsList = [
+goodsListByCache = [
 	[{
 		"GoodsID": 9,
 		"GoodsCode": "JWN20181024144242892",
